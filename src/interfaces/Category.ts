@@ -1,8 +1,9 @@
-import { Widget } from "./Widget";
+import { Widget } from './Widget';
 
 export interface Category {
   id: number;
   name: string;
   slug: string;
-  widgets: Widget[];
+  widgets?: Widget[];
+  children?: Category[];
 }

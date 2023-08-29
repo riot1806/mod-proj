@@ -1,45 +1,14 @@
 import styles from '../styles.module.scss';
 
-import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { useGetHomeQuery } from '@/redux/api/homeApi';
+import Navigation from '@/components/navigation/Navigation';
 
 const HeaderMiddle = () => {
-  const { data } = useGetHomeQuery(null);
-  const searchParams = useSearchParams();
-
-  const search = searchParams.get('c');
-
-  const rest = (slug: string) => {
-    if (search) {
-      return {
-        className: search === slug ? styles.header__active : '',
-      };
-    } else {
-      return {
-        className: slug === 'women' ? styles.header__active : '',
-      };
-    }
-  };
-
   return (
     <div className={styles.header__middle}>
-      <nav>
-        <ul>
-          {data?.map((item) => (
-            <li key={item.id}>
-              <Link
-                href={{ pathname: '/', query: { c: item.slug } }}
-                {...rest(item.slug)}
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <Navigation />
       <Link href='/' className={styles.header__logo}>
         MOD
       </Link>

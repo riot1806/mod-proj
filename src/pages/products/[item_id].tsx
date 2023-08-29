@@ -8,10 +8,12 @@ import { useGetProductQuery } from '@/redux/api/productApi';
 import { useGetImageSource } from '@/hooks/useGetImageSource';
 import { Media } from '@/interfaces/Media';
 import { useAddToCartMutation } from '@/redux/api/cartApi';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import GoBack from '@/components/goback/GoBack';
 import Sizes from '@/components/sizes/Sizes';
 import Colors from '@/components/colors/Colors';
 import Button from '@/components/custom/button/Button';
+import SingleProductMobile from '@/components/single-product-mobile/SingleProductMobile';
 
 const SingleProduct = () => {
   const { query } = useRouter();
@@ -19,6 +21,7 @@ const SingleProduct = () => {
   const [sizeId, setSizeId] = useState<number>();
   const [activeImage, setActiveImage] = useState('');
   const [addToCart, { isLoading }] = useAddToCartMutation();
+  const isMobile = useIsMobile();
 
   const handleAddToCart = () => {
     if (!sizeId) return alert('Выберите размер!');
@@ -35,6 +38,18 @@ const SingleProduct = () => {
   useEffect(() => {
     setActiveImage(useGetImageSource(data?.media[0]));
   }, [isSuccess]);
+
+  if (isMobile)
+    return (
+      <SingleProductMobile
+        product={data}
+        sizeId={sizeId!}
+        // @ts-ignore
+        setSizeId={setSizeId}
+        handleAddToCart={handleAddToCart}
+        isLoading={isLoading}
+      />
+    );
 
   return (
     <section>

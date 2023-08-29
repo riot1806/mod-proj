@@ -10,11 +10,12 @@ export default function Home() {
   const search = searchParams.get('c');
 
   const activeCategory =
-    data?.find((c) => c.slug === search) || (data && data[1]);
+    data?.find((c) => c.slug === search) ||
+    (data && data.find((c) => c.slug === 'men'));
 
   return (
     <>
-      {activeCategory?.widgets.map((widget) => (
+      {activeCategory?.widgets?.map((widget) => (
         <Widget key={widget.id} widget={widget} />
       ))}
     </>

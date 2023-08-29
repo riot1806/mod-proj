@@ -97,3 +97,29 @@
     width: 100%;
   }
 }
+
+@media (max-width: 768px) {
+  .checkout__layout {
+    flex-direction: column;
+
+    .checkout__left {
+      width: 100%;
+      order: 2;
+    }
+
+    .checkout__right {
+      width: 100%;
+      order: 1;
+    }
+  }
+
+  .profile__layout {
+    .profile__left {
+      width: 100%;
+    }
+
+    .profile__right {
+      display: none;
+    }
+  }
+}

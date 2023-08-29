@@ -16,3 +16,8 @@ export const baseCarouselConfig = {
     },
   },
 };
+
+export const singleProductCarouselConfig = {
+  items: 1,
+  dots: true,
+};

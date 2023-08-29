@@ -11,5 +11,5 @@ export const rootApi = createApi({
     },
   }),
   endpoints: () => ({}),
-  tagTypes: [],
+  tagTypes: ['Cart'],
 });

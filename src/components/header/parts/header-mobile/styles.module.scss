@@ -1,0 +1,39 @@
+.header__mobile {
+  padding: 10px;
+
+  img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  .header__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & > div {
+      display: flex;
+      gap: 20px;
+      z-index: 2;
+    }
+
+    .header__logo {
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      font-weight: 700;
+      font-size: 26px;
+      text-align: center;
+    }
+  }
+
+  .header__middle {
+    margin: 20px 0;
+
+    form {
+      width: 100%;
+    }
+  }
+}

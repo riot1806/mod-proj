@@ -38,10 +38,10 @@ const Order = () => {
   const [trigger] = useLazyGetAddressesQuery();
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
 
-    addAddress({
+    await addAddress({
       first_name: userData?.first_name!,
       last_name: userData?.last_name!,
       street: data.address,
@@ -65,9 +65,7 @@ const Order = () => {
                 alert(`Ваш заказ №${response.data.reference} оформлен`);
                 return router.push('/');
               })
-              .finally(() => {
-                setIsLoading(false);
-              })
+              .finally(() => setIsLoading(false))
           )
       );
   };
@@ -86,7 +84,13 @@ const Order = () => {
       <div className={styles.form__flex}>
         <label htmlFor='building'>
           ДОМ
-          <input type='text' id='building' required {...register('building')} />
+          <input
+            type='text'
+            id='building'
+            required
+            {...register('building')}
+            maxLength={8}
+          />
         </label>
         <label htmlFor='flat'>
           КВ

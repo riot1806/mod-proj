@@ -3,7 +3,14 @@ import styles from './styles.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { useIsMobile } from '@/hooks/useIsMobile';
+import FooterMobile from './footer-mobile/FooterMobile';
+
 const Footer = () => {
+  const isMobile = useIsMobile();
+
+  if (isMobile) return <FooterMobile />;
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__wrapper}>

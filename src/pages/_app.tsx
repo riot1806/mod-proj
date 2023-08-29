@@ -8,15 +8,18 @@ import NextNProgress from 'nextjs-progressbar';
 
 import { store } from '@/redux/store';
 import { nprogressConfig } from '@/utils/nprogress';
+import { DrawerContextProvider } from '@/context/DrawerContext';
 import Layout from '@/components/layout/Layout';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <Layout>
-        <NextNProgress {...nprogressConfig} />
-        <Component {...pageProps} />
-      </Layout>
+      <DrawerContextProvider>
+        <Layout>
+          <NextNProgress {...nprogressConfig} />
+          <Component {...pageProps} />
+        </Layout>
+      </DrawerContextProvider>
     </Provider>
   );
 }
