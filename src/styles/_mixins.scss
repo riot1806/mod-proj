@@ -1,0 +1,22 @@
+@mixin input {
+  outline: none;
+  border: 2px solid black;
+  font-size: 16px;
+  padding: 10px;
+}
+
+@mixin form {
+  display: grid;
+  gap: 20px;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    input, textarea {
+      @include input;
+      resize: none;
+    }
+  }
+}

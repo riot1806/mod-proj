@@ -1,0 +1,19 @@
+.searchbar {
+  width: 50%;
+  display: flex;
+  gap: 10px;
+  border-radius: 5px;
+  background-color: #efefef;
+  padding: 10px;
+
+  input {
+    outline: none;
+    border: none;
+    background: none;
+    font-size: 14px;
+
+    &::placeholder {
+      color: #878787;
+    }
+  }
+}

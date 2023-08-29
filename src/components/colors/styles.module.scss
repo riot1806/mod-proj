@@ -1,0 +1,17 @@
+.colors {
+  p {
+    opacity: 0.5;
+  }
+
+  ul {
+    width: 100% !important;
+    display: flex !important;
+    margin-top: 10px;
+
+    li {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+  }
+}

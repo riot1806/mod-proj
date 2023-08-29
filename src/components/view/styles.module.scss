@@ -1,0 +1,45 @@
+@import '@/styles/mixins.scss';
+
+.form {
+  @include form;
+
+  .form__flex {
+    display: flex;
+    gap: 20px;
+  }
+
+  .form__types {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    li {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      &:first-child {
+        border-bottom: 1px solid #EEEEF0;
+        padding-bottom: 20px;
+      }
+
+      img {
+        object-fit: contain;
+      }
+
+      b {
+        margin-right: auto;
+      }
+
+      strong {
+        margin-left: auto;
+      }
+
+      .form__check {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
