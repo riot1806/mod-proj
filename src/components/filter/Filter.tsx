@@ -4,6 +4,7 @@ import Select, { ClassNamesConfig } from 'react-select';
 
 import { useGetCategoryFiltersQuery } from '@/redux/api/categoryApi';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import FilterMobile from './mobile/FilterMobile';
 
 interface Props {
   categoryId: number;
@@ -31,17 +32,21 @@ const Filter = ({ categoryId }: Props) => {
   return (
     <div className={styles.filter}>
       <div className={styles.filter__top}>
-        {data?.map((filter) => (
-          <Select
-            key={filter.id}
-            placeholder={filter.name}
-            options={filter.values.map((value) => ({
-              value: value.slug,
-              label: value.name,
-            }))}
-            classNames={classNames}
-          />
-        ))}
+        {isMobile ? (
+          <FilterMobile />
+        ) : (
+          data?.map((filter) => (
+            <Select
+              key={filter.id}
+              placeholder={filter.name}
+              options={filter.values.map((value) => ({
+                value: value.slug,
+                label: value.name,
+              }))}
+              classNames={classNames}
+            />
+          ))
+        )}
       </div>
     </div>
   );

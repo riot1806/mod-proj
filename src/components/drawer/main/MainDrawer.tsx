@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Navigation from '@/components/navigation/Navigation';
+import DrawerHead from '../head/DrawerHead';
 
 const MainDrawer = () => {
   const [open, setOpen] = useState(false);
@@ -33,6 +34,7 @@ const MainDrawer = () => {
         PaperProps={{ style: { width: '100%' } }}
       >
         <div className={styles.drawer}>
+          <DrawerHead title='' setState={setOpen} />
           <div className={styles.drawer__auth}>
             {isAuth ? (
               <Link href='/profile'>

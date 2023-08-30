@@ -37,7 +37,7 @@ const SingleProductMobile = ({
           const imageSource = useGetImageSource(media);
 
           return (
-            <div className={styles.single__product_slide}>
+            <div key={media.id} className={styles.single__product_slide}>
               <Image src={imageSource} alt='' fill />
               <div className={styles.single__product_over}>
                 <button onClick={() => router.back()}>

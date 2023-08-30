@@ -14,7 +14,7 @@ const ProfileSettings = () => {
   return (
     <ProfileLayout>
       <div className={styles.profile__settings}>
-        <h2>НАСТРОЙКИ</h2>
+        <h2 className={styles.profile__title}>НАСТРОЙКИ</h2>
         <form>
           <label htmlFor='notifications'>
             УВЕДОМЛЕНИЯ

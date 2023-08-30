@@ -1,0 +1,21 @@
+.filter__mobile {
+  width: 100%;  
+
+  .filter__buttons {
+    display: flex;
+    gap: 20px;
+
+    button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 16px;
+      font-weight: 700;
+      border: 2px solid #222222;
+      border-radius: 5px;
+      padding: 10px;
+    }
+  }
+}

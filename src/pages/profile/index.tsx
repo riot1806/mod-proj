@@ -7,7 +7,7 @@ const Profile = () => {
   return (
     <ProfileLayout>
       <div className={styles.profile}>
-        <h2>МОИ ДАННЫЕ</h2>
+        <h2 className={styles.profile__title}>МОИ ДАННЫЕ</h2>
         <strong>
           Сохраняйте понравившиеся вам товары и проверяйте их наличие
         </strong>

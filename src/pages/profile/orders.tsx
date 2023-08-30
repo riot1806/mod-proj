@@ -15,7 +15,7 @@ const ProfileOrders = () => {
       <div className={styles.profile__orders}>
         {data?.length ? (
           <div className={styles.profile__content}>
-            <h2>МОИ ЗАКАЗЫ</h2>
+            <h2 className={styles.profile__title}>МОИ ЗАКАЗЫ</h2>
             <Searchbar placeholder='Поиск' />
             <div className={styles.profile__wrapper}>
               {data?.map((order) =>

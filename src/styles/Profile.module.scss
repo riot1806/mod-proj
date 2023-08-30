@@ -110,3 +110,17 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .profile__title {
+    display: none;
+  }
+
+  .profile form {
+    grid-template-columns: 1fr;
+
+    .profile__avatar {
+      grid-column: unset;
+    }
+  }
+}
