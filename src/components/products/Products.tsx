@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import { Product } from '@/interfaces/Product';
 import { baseCarouselConfig } from '@/utils/carousel';
 import Carousel from '../carousel/Carousel';
-import ProductItem from './ProductItem';
+import ProductItem from '../product-item/ProductItem';
 
 interface Props {
   title: string;

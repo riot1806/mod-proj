@@ -14,9 +14,46 @@
     flex-direction: column;
     gap: 10px;
 
-    input, textarea {
+    input,
+    textarea {
       @include input;
       resize: none;
     }
+  }
+}
+
+@mixin select {
+  .filter__select_control,
+  .filter__select__control_focused {
+    border: none;
+    box-shadow: none;
+  }
+
+  .filter__select_control {
+    background-color: #f6f6f6;
+  }
+
+  .filter__select__control_focused {
+    background-color: #222222;
+
+    .filter__select_placeholder {
+      color: white;
+    }
+  }
+
+  .filter__select_placeholder {
+    color: black;
+  }
+
+  .filter__select_indicator {
+    display: none;
+  }
+
+  .filter__select_list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter__select_option {
+    background-color: #f6f6f6;
   }
 }

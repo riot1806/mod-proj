@@ -1,10 +1,21 @@
 import styles from '@/styles/Products.module.scss';
 
-import { useGetCategoriesQuery } from '@/redux/api/categoryApi';
+import { useSearchParams } from 'next/navigation';
+
+import {
+  useGetCategoriesQuery,
+  useGetCategoryProductsQuery,
+} from '@/redux/api/categoryApi';
 import AccordionComponent from '@/components/accordion/Accordion';
+import Filter from '@/components/filter/Filter';
+import ProductItem from '@/components/product-item/ProductItem';
 
 const Products = () => {
+  const searchParams = useSearchParams();
+  const search = searchParams.get('c');
+
   const { data } = useGetCategoriesQuery(null);
+  const { data: productsData } = useGetCategoryProductsQuery(Number(search));
 
   return (
     <section className={styles.products}>
@@ -13,7 +24,14 @@ const Products = () => {
           <AccordionComponent key={category.id} category={category} />
         ))}
       </div>
-      <div className={styles.products__right}></div>
+      <div className={styles.products__right}>
+        <Filter categoryId={Number(search)} />
+        <div className={styles.products__wrapper}>
+          {productsData?.map((product) => (
+            <ProductItem key={product.id} item={product} />
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

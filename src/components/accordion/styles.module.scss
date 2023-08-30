@@ -1,0 +1,27 @@
+.accordion {
+  text-transform: uppercase;
+  background-color: transparent !important;
+  box-shadow: none !important;
+
+  &::before {
+    content: none !important;
+  }
+
+  .accordion__summary {
+    min-height: unset !important;
+    padding: 0 !important;
+  }
+
+  .accordion__gutters {
+    margin: 10px 0 !important;
+  }
+
+  .accordion__list {
+    display: grid;
+    gap: 20px;
+
+    li {
+      font-size: 14px;
+    }
+  }
+}

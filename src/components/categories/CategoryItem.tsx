@@ -19,7 +19,7 @@ const CategoryItem = ({ item }: Props) => {
   const imageSource = useGetImageSource(item.media!);
 
   return (
-    <Link href='/'>
+    <Link href={{ pathname: '/products', query: { c: item.id } }}>
       <Image src={imageSource} alt='' fill />
       <p style={styles}>{item.name}</p>
     </Link>

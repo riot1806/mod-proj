@@ -1,0 +1,15 @@
+@import '@/styles/mixins.scss';
+
+.filter {
+  .filter__top {
+    display: flex;
+    gap: 10px;
+
+    .filter__select {
+      width: 100%;
+      text-transform: uppercase;
+
+      @include select;
+    }
+  }
+}

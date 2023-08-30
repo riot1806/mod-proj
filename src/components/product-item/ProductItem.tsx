@@ -15,20 +15,17 @@ const ProductItem = ({ item }: Props) => {
   const imageSource = useGetImageSource(item.media!);
 
   return (
-    <div className={styles.product}>
+    <Link href={`/products/${item.item_id}`} className={styles.product}>
       <div className={styles.product__top}>
         <Image src={imageSource} alt='' fill />
         <Fav itemId={item.item_id!} />
       </div>
-      <Link
-        href={`/products/${item.item_id}`}
-        className={styles.product__bottom}
-      >
+      <div className={styles.product__bottom}>
         <p>{item.brand.name}</p>
         <b>{item.name}</b>
         <strong>{item.price} UZS</strong>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
