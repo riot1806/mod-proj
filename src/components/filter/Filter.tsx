@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import Select, { ClassNamesConfig } from 'react-select';
 
 import { useGetCategoryFiltersQuery } from '@/redux/api/categoryApi';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface Props {
   categoryId: number;
@@ -17,11 +18,15 @@ const classNames: ClassNamesConfig = {
   menuList: () => styles.filter__select_list,
   indicatorSeparator: () => styles.filter__select_indicator,
   placeholder: () => styles.filter__select_placeholder,
-  option: (state) => (state.isFocused ? styles.filter__select_option : ''),
+  option: (state) =>
+    state.isFocused || state.isSelected ? styles.filter__select_option : '',
+  input: () => styles.filter__select_input,
+  singleValue: () => styles.filter__select_value,
 };
 
 const Filter = ({ categoryId }: Props) => {
   const { data } = useGetCategoryFiltersQuery(categoryId);
+  const isMobile = useIsMobile();
 
   return (
     <div className={styles.filter}>

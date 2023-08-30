@@ -15,7 +15,9 @@ const Products = () => {
   const search = searchParams.get('c');
 
   const { data } = useGetCategoriesQuery(null);
-  const { data: productsData } = useGetCategoryProductsQuery(Number(search));
+  const { data: productsData } = useGetCategoryProductsQuery({
+    categoryId: Number(search),
+  });
 
   return (
     <section className={styles.products}>

@@ -15,7 +15,10 @@ const ProductItem = ({ item }: Props) => {
   const imageSource = useGetImageSource(item.media!);
 
   return (
-    <Link href={`/products/${item.item_id}`} className={styles.product}>
+    <Link
+      href={`/products/${item.item_id || item.id}`}
+      className={styles.product}
+    >
       <div className={styles.product__top}>
         <Image src={imageSource} alt='' fill />
         <Fav itemId={item.item_id!} />

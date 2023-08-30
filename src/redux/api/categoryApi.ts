@@ -17,8 +17,8 @@ const categoryApi = rootApi.injectEndpoints({
       }),
       transformResponse: (response: { data: Filter[] }) => response.data,
     }),
-    getCategoryProducts: builder.query<CartItem[], number>({
-      query: (categoryId) => ({
+    getCategoryProducts: builder.query<CartItem[], { categoryId: number }>({
+      query: ({ categoryId }) => ({
         url: `/categories/${categoryId}/products`,
       }),
       transformResponse: (response: {
