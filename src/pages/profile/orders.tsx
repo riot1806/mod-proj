@@ -24,6 +24,7 @@ const ProfileOrders = () => {
                     key={product.id}
                     reference={order.reference}
                     address={order.address}
+                    status={order.state}
                     product={product}
                   />
                 ))

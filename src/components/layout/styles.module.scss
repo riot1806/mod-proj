@@ -78,6 +78,29 @@
   }
 }
 
+.profile__layout_avatar {
+  position: relative;
+  background-color: #efefef;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 50px;
+  padding: 20px;
+
+  img {
+    margin-top: -50px;
+  }
+
+  p {
+    font-size: 18px;
+
+    small {
+      opacity: 0.5;
+    }
+  }
+}
+
 .profile__layout {
   width: 100%;
   display: flex;
@@ -90,6 +113,11 @@
     ul li {
       border-bottom: 1px solid #efefef;
       padding: 15px 15px 15px 0;
+
+      button {
+        font-size: 16px;
+        text-transform: uppercase;
+      }
     }
   }
 

@@ -3,17 +3,31 @@ import styles from './styles.module.scss';
 import Image from 'next/image';
 
 import { useGetImageSource } from '@/hooks/useGetImageSource';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { CartItem } from '@/interfaces/CartItem';
 import { Address } from '@/interfaces/Address';
+import OrderItemMobile from './mobile/OrderItemMobile';
 
 interface Props {
   reference: number;
   address: Address;
+  status: string;
   product: CartItem;
 }
 
-const OrderItem = ({ reference, address, product }: Props) => {
+const OrderItem = ({ reference, address, status, product }: Props) => {
   const imageSource = useGetImageSource(product.media!);
+  const isMobile = useIsMobile();
+
+  if (isMobile)
+    return (
+      <OrderItemMobile
+        reference={reference}
+        status={status}
+        product={product}
+        imageSource={imageSource}
+      />
+    );
 
   return (
     <div className={styles.item}>

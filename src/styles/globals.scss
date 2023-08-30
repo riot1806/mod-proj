@@ -8,6 +8,11 @@
 
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: 400;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 h1,
@@ -24,6 +29,7 @@ b {
 a {
   color: inherit;
   text-decoration: none;
+  -webkit-appearance: none;
 
   &:hover {
     opacity: 0.5;
@@ -65,4 +71,8 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type='number'] {
   -moz-appearance: textfield;
+}
+
+.MuiModal-root .MuiBox-root {
+  height: 100%;
 }

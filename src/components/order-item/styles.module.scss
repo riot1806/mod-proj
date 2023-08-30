@@ -15,6 +15,12 @@
       flex-direction: column;
       justify-content: space-between;
 
+      .item__col {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
       b,
       strong {
         font-size: 18px;
@@ -40,6 +46,12 @@
 
         strong {
           font-size: 17px;
+        }
+
+        img {
+          width: 16px;
+          height: 16px;
+          object-fit: contain;
         }
       }
     }

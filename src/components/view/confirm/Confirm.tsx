@@ -25,8 +25,11 @@ const Confirm = ({ phone, checkout }: Props) => {
       .unwrap()
       .then(({ token }) => {
         localStorage.setItem('token', token);
-        checkout ? router.push('/checkout/otp/end') : router.reload();
-      }).catch((err) => alert(err.data.message));
+        checkout
+          ? router.push('/checkout/otp/end')
+          : (window.location.href = '/');
+      })
+      .catch((err) => alert(err.data.message));
   };
 
   return (
