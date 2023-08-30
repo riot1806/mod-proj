@@ -3,13 +3,17 @@ import styles from './styles.module.scss';
 
 import Image from 'next/image';
 
+import { Filter } from '@/types/filter.type';
 import FilterDrawer from '@/components/drawer/filter/FilterDrawer';
 
-const FilterMobile = () => {
+interface Props {
+  data: Filter[] | undefined;
+}
+
+const FilterMobile = ({ data }: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   return (
     <div className={styles.filter__mobile}>
@@ -23,7 +27,7 @@ const FilterMobile = () => {
           <Image src='/static/media/sort.svg' alt='' width={20} height={20} />
         </button>
       </div>
-      <FilterDrawer open={open} setOpen={setOpen} />
+      <FilterDrawer open={open} setOpen={setOpen} data={data} />
     </div>
   );
 };

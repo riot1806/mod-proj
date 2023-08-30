@@ -27,6 +27,11 @@ const Products = () => {
         ))}
       </div>
       <div className={styles.products__right}>
+        {!search && (
+          <strong className={styles.products__nothing}>
+            Выберите категорию слева
+          </strong>
+        )}
         <Filter categoryId={Number(search)} />
         <div className={styles.products__wrapper}>
           {productsData?.map((product) => (

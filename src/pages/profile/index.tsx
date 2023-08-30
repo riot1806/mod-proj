@@ -1,9 +1,20 @@
+import { useEffect } from 'react';
 import styles from '@/styles/Profile.module.scss';
 
+import { useRouter } from 'next/router';
+
+import { useGetLS } from '@/hooks/ls';
 import ProfileLayout from '@/components/layout/ProfileLayout';
 import ProfileForm from '@/components/view/profile-form/ProfileForm';
 
 const Profile = () => {
+  const isAuth = useGetLS('token');
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuth) router.push('/reg');
+  }, []);
+
   return (
     <ProfileLayout>
       <div className={styles.profile}>

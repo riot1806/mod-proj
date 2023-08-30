@@ -33,7 +33,7 @@ const Filter = ({ categoryId }: Props) => {
     <div className={styles.filter}>
       <div className={styles.filter__top}>
         {isMobile ? (
-          <FilterMobile />
+          <FilterMobile data={data} />
         ) : (
           data?.map((filter) => (
             <Select
