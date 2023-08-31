@@ -2,24 +2,13 @@ import styles from '@/styles/Profile.module.scss';
 
 import Image from 'next/image';
 
+import { useGetUserCardsQuery } from '@/redux/api/userApi';
 import { useGetLS } from '@/hooks/ls';
 import ProfileLayout from '@/components/layout/ProfileLayout';
 import AddCardModal from '@/components/modal/add-cart/AddCardModal';
 
-const data: any[] = [
-    // {
-    //   id: 1,
-    //   number: '860006******6311',
-    //   expire: '03/99',
-    // },
-    // {
-    //   id: 2,
-    //   number: '860006******6311',
-    //   expire: '03/99',
-    // },
-];
-
 const ProfileCards = () => {
+  const { data } = useGetUserCardsQuery(null);
   const isAuth = useGetLS('token');
 
   if (!Boolean(isAuth)) return null;

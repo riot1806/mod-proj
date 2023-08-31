@@ -1,5 +1,6 @@
 import styles from './styles.module.scss';
 
+import { useRouter } from 'next/router';
 import Select, { ClassNamesConfig } from 'react-select';
 
 import { useGetCategoryFiltersQuery } from '@/redux/api/categoryApi';
@@ -28,6 +29,24 @@ const classNames: ClassNamesConfig = {
 const Filter = ({ categoryId }: Props) => {
   const { data } = useGetCategoryFiltersQuery(categoryId);
   const isMobile = useIsMobile();
+  const router = useRouter();
+
+  const handleChange = (value: string, slug: string) => {
+    data?.forEach((filter) => {
+      if (filter.slug === slug) {
+        router.query[filter.slug] = value;
+      }
+
+      return;
+    });
+
+    router.push({
+      pathname: '/products',
+      query: {
+        ...router.query,
+      },
+    });
+  };
 
   return (
     <div className={styles.filter}>
@@ -44,6 +63,8 @@ const Filter = ({ categoryId }: Props) => {
                 label: value.name,
               }))}
               classNames={classNames}
+              // @ts-ignore
+              onChange={(newValue) => handleChange(newValue.value, filter.slug)}
             />
           ))
         )}

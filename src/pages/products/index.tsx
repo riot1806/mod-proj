@@ -17,6 +17,7 @@ const Products = () => {
   const { data } = useGetCategoriesQuery(null);
   const { data: productsData } = useGetCategoryProductsQuery({
     categoryId: Number(search),
+    params: {},
   });
 
   return (

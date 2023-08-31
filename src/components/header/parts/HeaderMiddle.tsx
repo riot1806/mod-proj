@@ -3,9 +3,12 @@ import styles from '../styles.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { useViewCartQuery } from '@/redux/api/cartApi';
 import Navigation from '@/components/navigation/Navigation';
 
 const HeaderMiddle = () => {
+  const { data } = useViewCartQuery(null);
+
   return (
     <div className={styles.header__middle}>
       <Navigation />
@@ -24,6 +27,7 @@ const HeaderMiddle = () => {
             <Image src='/static/media/bag.svg' alt='' fill />
             Корзина
           </Link>
+          <span>{data?.products.length}</span>
         </li>
       </ul>
     </div>

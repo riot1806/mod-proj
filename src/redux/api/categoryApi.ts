@@ -17,10 +17,14 @@ const categoryApi = rootApi.injectEndpoints({
       }),
       transformResponse: (response: { data: Filter[] }) => response.data,
     }),
-    getCategoryProducts: builder.query<CartItem[], { categoryId: number }>({
-      query: ({ categoryId }) => ({
+    getCategoryProducts: builder.query<
+      CartItem[],
+      { categoryId: number; params: object }
+    >({
+      query: ({ categoryId, params }) => ({
         url: `/categories/${categoryId}/products`,
         params: {
+          ...params,
           sort: 'popular',
         },
       }),
