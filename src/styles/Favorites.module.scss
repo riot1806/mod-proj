@@ -1,0 +1,13 @@
+@import '@/styles/mixins.scss';
+
+.favorites {
+  .favorites__wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .favorites__nothing {
+    @include page_nothing;
+  }
+}

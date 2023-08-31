@@ -20,7 +20,7 @@ const ProductItem = ({ item }: Props) => {
       className={styles.product}
     >
       <div className={styles.product__top}>
-        <Image src={imageSource} alt='' fill />
+        <Image src='https://brandsego.com/cdn/shop/files/Walk-Women-Sneakers-White-NA14665-Usman-1685023767.jpg?v=1685023769' alt='' fill />
         <Fav itemId={item.item_id!} />
       </div>
       <div className={styles.product__bottom}>

@@ -3,12 +3,16 @@ import styles from '@/styles/Profile.module.scss';
 import Image from 'next/image';
 
 import { useGetOrdersQuery } from '@/redux/api/orderApi';
+import { useGetLS } from '@/hooks/ls';
 import ProfileLayout from '@/components/layout/ProfileLayout';
 import Searchbar from '@/components/searchbar/Searchbar';
 import OrderItem from '@/components/order-item/OrderItem';
 
 const ProfileOrders = () => {
   const { data } = useGetOrdersQuery(null);
+  const isAuth = useGetLS('token');
+
+  if (!Boolean(isAuth)) return null;
 
   return (
     <ProfileLayout>

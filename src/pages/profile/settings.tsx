@@ -4,13 +4,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import Switch from '@mui/material/Switch';
 
 import { useGetUserQuery, useUpdateUserMutation } from '@/redux/api/userApi';
+import { useGetLS } from '@/hooks/ls';
 import ProfileLayout from '@/components/layout/ProfileLayout';
 import Button from '@/components/custom/button/Button';
-
-const classes = {
-  thumb: styles.profile__thumb,
-  track: styles.profile__track,
-};
 
 type Inputs = {
   notifications: boolean;
@@ -21,6 +17,7 @@ const ProfileSettings = () => {
   const { data: userData } = useGetUserQuery(null);
   const [updateUser] = useUpdateUserMutation();
   const { handleSubmit, setValue } = useForm<Inputs>();
+  const isAuth = useGetLS('token');
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     updateUser({
@@ -31,6 +28,8 @@ const ProfileSettings = () => {
     });
   };
 
+  if (!Boolean(isAuth)) return null;
+
   return (
     <ProfileLayout>
       <div className={styles.profile__settings}>
@@ -40,7 +39,7 @@ const ProfileSettings = () => {
             УВЕДОМЛЕНИЯ
             <Switch
               id='notifications'
-              classes={classes}
+              color='default'
               defaultChecked={userData?.notifications!}
               onChange={(event) =>
                 setValue('notifications', event.target.checked)
@@ -51,7 +50,7 @@ const ProfileSettings = () => {
             ПОДПИСКА НА РАССЫЛКУ
             <Switch
               id='newsletter'
-              classes={classes}
+              color='default'
               defaultChecked={userData?.newsletter!}
               onChange={(event) => setValue('newsletter', event.target.checked)}
             />

@@ -2,12 +2,16 @@ import styles from './styles.module.scss';
 
 import Image from 'next/image';
 
+import { useIsMobile } from '@/hooks/useIsMobile';
+
 interface Props {
   title: string;
   onClose: () => void;
 }
 
 const ModalHeader = ({ title, onClose }: Props) => {
+  const isMobile = useIsMobile();
+
   return (
     <div className={styles.modal__header}>
       <h4>{title}</h4>

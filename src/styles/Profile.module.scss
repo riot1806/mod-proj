@@ -47,6 +47,28 @@
   }
 }
 
+.profile__cards {
+  ul {
+    display: grid;
+    gap: 20px;
+    margin: 20px 0;
+
+    li {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      background-color: #efefef;
+      padding: 10px;
+
+      b {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
 .profile__orders {
   .profile__content {
     form {
@@ -68,16 +90,13 @@
       }
     }
   }
+}
 
-  .profile__nothing {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.profile__addresses {
+  .profile__wrapper {
+    display: grid;
     gap: 20px;
-
-    small {
-      color: #666666;
-    }
+    margin: 20px 0;
   }
 }
 
@@ -91,23 +110,23 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      .profile__thumb {
-        color: #222222;
-      }
-
-      .profile__track {
-        border: 2px solid black;
-        border-radius: 30px;
-        background-color: white;
-        opacity: 1;
-      }
     }
 
     .profile__buttons {
       display: flex;
       gap: 20px;
     }
+  }
+}
+
+.profile__nothing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  small {
+    color: #666666;
   }
 }
 
@@ -122,5 +141,9 @@
     .profile__avatar {
       grid-column: unset;
     }
+  }
+
+  .profile__cards li {
+    width: 100% !important;
   }
 }

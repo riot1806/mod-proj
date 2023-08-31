@@ -73,6 +73,9 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-.MuiModal-root .MuiBox-root {
-  height: 100%;
+@media (max-width: 768px) {
+  .MuiModal-root .MuiBox-root {
+    width: 100%;
+    height: 100%;
+  }
 }
