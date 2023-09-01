@@ -28,6 +28,11 @@
 }
 
 @mixin select {
+  .filter__select {
+    width: 100%;
+    text-transform: uppercase;
+  }
+
   .filter__select_control,
   .filter__select__control_focused {
     border: none;

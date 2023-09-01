@@ -57,7 +57,7 @@ const SingleProductMobile = ({
         })}
       </Carousel>
       <div className={styles.single__product_info}>
-        <p>{product?.brand.name}</p>
+        <p>{product?.brand?.name}</p>
         <b className={styles.single__product_b}>{product?.name}</b>
         <strong className={styles.single__product_s}>
           {product?.price} UZS
@@ -80,9 +80,9 @@ const SingleProductMobile = ({
         </Button>
         <SingleProductMore />
         <SingleProductTabs
-          description={product.description}
-          features={product.features}
-          sizes={product.options}
+          description={product?.description}
+          features={product?.features}
+          sizes={product?.options}
           sizeId={sizeId}
           setSizeId={setSizeId}
         />

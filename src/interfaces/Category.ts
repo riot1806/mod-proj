@@ -6,4 +6,5 @@ export interface Category {
   slug: string;
   widgets?: Widget[];
   children?: Category[];
+  categories?: Category[];
 }

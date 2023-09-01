@@ -9,7 +9,7 @@ const Navigation = () => {
   const { data } = useGetHomeQuery(null);
   const searchParams = useSearchParams();
 
-  const search = searchParams.get('c');
+  const search = searchParams.get('h');
 
   const rest = (slug: string) => {
     if (search) {
@@ -29,7 +29,7 @@ const Navigation = () => {
         {data?.map((item) => (
           <li key={item.id}>
             <Link
-              href={{ pathname: '/', query: { c: item.slug } }}
+              href={{ pathname: '/', query: { h: item.slug } }}
               {...rest(item.slug)}
             >
               {item.name}

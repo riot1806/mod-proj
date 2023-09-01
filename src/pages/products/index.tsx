@@ -1,6 +1,7 @@
 import styles from '@/styles/Products.module.scss';
 
 import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 import {
   useGetCategoriesQuery,
@@ -11,13 +12,21 @@ import Filter from '@/components/filter/Filter';
 import ProductItem from '@/components/product-item/ProductItem';
 
 const Products = () => {
+  const { query } = useRouter();
   const searchParams = useSearchParams();
   const search = searchParams.get('c');
 
   const { data } = useGetCategoriesQuery(null);
   const { data: productsData } = useGetCategoryProductsQuery({
     categoryId: Number(search),
-    params: {},
+    params: {
+      brand: query.brand,
+      color: query.color,
+      size: query.size,
+      care: query.care,
+      composition: query.care,
+      sort: query.sort,
+    },
   });
 
   return (

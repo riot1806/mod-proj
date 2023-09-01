@@ -1,4 +1,5 @@
 @import url('/static/fonts/roman/style.css');
+@import url('/static/fonts/med/style.css');
 @import url('/static/fonts/bold/style.css');
 
 * {
@@ -75,6 +76,10 @@ input[type='number'] {
 
 .MuiTabs-indicator {
   background-color: #222222 !important;
+}
+
+p small {
+  opacity: 0.5;
 }
 
 @media (max-width: 768px) {

@@ -1,19 +1,28 @@
 import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 
-import { Drawer } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useGetLS } from '@/hooks/ls';
+import { useSearchParams } from 'next/navigation';
+import { Drawer } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { useGetHomeQuery } from '@/redux/api/homeApi';
+import { useGetLS } from '@/hooks/ls';
 import Navigation from '@/components/navigation/Navigation';
 import DrawerHead from '../head/DrawerHead';
 
 const MainDrawer = () => {
+  const { data } = useGetHomeQuery(null);
   const [open, setOpen] = useState(false);
   const isAuth = useGetLS('token');
   const router = useRouter();
+
+  const searchParams = useSearchParams();
+
+  const search = searchParams.get('h');
+
+  const activeCategory = data?.find((c) => c.slug === (search || 'men'));
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -72,6 +81,21 @@ const MainDrawer = () => {
           <div className={styles.drawer__nav}>
             <Navigation />
           </div>
+          <ul className={styles.drawer__categories}>
+            {activeCategory?.categories?.map((c) => (
+              <li key={c.id}>
+                <Link href={{ pathname: '/products', query: { c: c.id } }}>
+                  {c.name}
+                </Link>
+                <Image
+                  src='/static/media/next.svg'
+                  alt=''
+                  width={16}
+                  height={16}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </Drawer>
     </>

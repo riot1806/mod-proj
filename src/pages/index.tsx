@@ -7,11 +7,9 @@ export default function Home() {
   const { data } = useGetHomeQuery(null);
   const searchParams = useSearchParams();
 
-  const search = searchParams.get('c');
+  const search = searchParams.get('h');
 
-  const activeCategory =
-    data?.find((c) => c.slug === search) ||
-    (data && data.find((c) => c.slug === 'men'));
+  const activeCategory = data?.find((c) => c.slug === (search || 'men'));
 
   return (
     <>

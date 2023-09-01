@@ -3,6 +3,7 @@ import styles from '@/styles/SingleProduct.module.scss';
 
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 
 import { useGetProductQuery } from '@/redux/api/productApi';
 import { useGetImageSource } from '@/hooks/useGetImageSource';
@@ -15,7 +16,11 @@ import Colors from '@/components/colors/Colors';
 import Button from '@/components/custom/button/Button';
 import SingleProductMobile from '@/components/single-product-mobile/SingleProductMobile';
 import SingleProductMore from '@/components/single-product-more/SingleProductMore';
-import SingleProductTabs from '@/components/single-product-tabs/SingleProductTabs';
+
+const SingleProductTabs = dynamic(
+  () => import('@/components/single-product-tabs/SingleProductTabs'),
+  { ssr: false }
+);
 
 const SingleProduct = () => {
   const { query } = useRouter();

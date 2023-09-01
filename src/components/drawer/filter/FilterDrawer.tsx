@@ -1,6 +1,8 @@
-import { Dispatch, SetStateAction, useState, MouseEvent } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import styles from './styles.module.scss';
 
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { Drawer, Radio } from '@mui/material';
 import Image from 'next/image';
 
@@ -21,10 +23,21 @@ const sorts = [
 ];
 
 const FilterDrawer = ({ open, setOpen, data }: Props) => {
-  const [selectedValue, setSelectedValue] = useState('popular');
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const search = searchParams.get('sort');
+
+  const [selectedValue, setSelectedValue] = useState(search);
 
   const handleChange = (value: string) => {
     setSelectedValue(value);
+    router
+      .push({
+        pathname: '/products',
+        query: { ...router.query, sort: value },
+      })
+      .then(() => setOpen(false));
   };
 
   return (

@@ -11,6 +11,13 @@ interface Props {
   categoryId: number;
 }
 
+const sorts = [
+  { id: 1, name: 'ПО ПОПУЛЯРНОСТИ', slug: 'popular' },
+  { id: 2, name: 'ПО ВОЗРАСТАНИЮ ЦЕНЫ', slug: 'price_asc' },
+  { id: 3, name: 'ПО УБЫВАНИЮ ЦЕНЫ', slug: 'price_desc' },
+  { id: 4, name: 'ПО НОВИЗНЕ', slug: 'new' },
+];
+
 const classNames: ClassNamesConfig = {
   container: () => styles.filter__select,
   control: (state) =>
@@ -48,6 +55,15 @@ const Filter = ({ categoryId }: Props) => {
     });
   };
 
+  const handleSortChange = (value: string) => {
+    router.push({
+      pathname: '/products',
+      query: { ...router.query, sort: value },
+    });
+  };
+
+  if (!categoryId) return null;
+
   return (
     <div className={styles.filter}>
       <div className={styles.filter__top}>
@@ -69,6 +85,23 @@ const Filter = ({ categoryId }: Props) => {
           ))
         )}
       </div>
+      {!isMobile && (
+        <div className={styles.filter__bottom}>
+          <p>
+            <small>{19} ТОВАРОВ</small>
+          </p>
+          <Select
+            placeholder='СОРТИРОВАТЬ'
+            classNames={classNames}
+            options={sorts.map((sort) => ({
+              value: sort.slug,
+              label: sort.name,
+            }))}
+            // @ts-ignore
+            onChange={(newValue) => handleSortChange(newValue.value)}
+          />
+        </div>
+      )}
     </div>
   );
 };

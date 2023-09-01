@@ -16,6 +16,25 @@
   }
 
   .drawer__nav {
-    margin: 20px 0;
+    margin-top: 20px;
+  }
+
+  .drawer__categories li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    border-bottom: 1px solid #efefef;
+    padding: 20px 10px;
+
+    a {
+      font-family: 'Helvetica Neue Bold', sans-serif;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
   }
 }

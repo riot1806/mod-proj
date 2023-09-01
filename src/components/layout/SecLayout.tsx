@@ -19,10 +19,10 @@ const SecLayout = ({ children, title }: Props) => {
       <div className={styles.layout__top}>
         <button onClick={goBack}>
           <Image src='/static/media/back.svg' alt='' width={16} height={16} />
-          НАЗАД
+          {title}
         </button>
       </div>
-      <h1 className={styles.layout__title}>{title}</h1>
+      <br />
       <div className={styles.layout__bottom}>{children}</div>
     </section>
   );

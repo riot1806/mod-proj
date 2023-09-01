@@ -19,13 +19,12 @@ const categoryApi = rootApi.injectEndpoints({
     }),
     getCategoryProducts: builder.query<
       CartItem[],
-      { categoryId: number; params: object }
+      { categoryId: number; params: any }
     >({
       query: ({ categoryId, params }) => ({
         url: `/categories/${categoryId}/products`,
         params: {
           ...params,
-          sort: 'popular',
         },
       }),
       transformResponse: (response: {
