@@ -15,9 +15,20 @@
         font-weight: 700;
         color: black;
       }
+    }
+  }
+}
 
-      &:first-child {
-        list-style: none;
+@media (max-width: 768px) {
+  .nav {
+    border-bottom: 1px solid #ededed;
+
+    li {
+      height: 32px;
+
+      .active {
+        border-bottom: 4px solid black;
+        padding-bottom: 10px;
       }
     }
   }

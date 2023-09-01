@@ -1,0 +1,9 @@
+.tabs__description {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  ul li:first-child {
+    opacity: 0.5;
+  }
+}

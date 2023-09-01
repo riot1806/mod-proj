@@ -10,6 +10,11 @@ const HeaderMobileTop = () => {
     <div className={styles.header__top}>
       <div>
         <MainDrawer />
+      </div>
+      <Link href='/' className={styles.header__logo}>
+        MOD
+      </Link>
+      <div>
         <button>
           <Image
             src='/static/media/search_dark.svg'
@@ -18,11 +23,6 @@ const HeaderMobileTop = () => {
             height={16}
           />
         </button>
-      </div>
-      <Link href='/' className={styles.header__logo}>
-        MOD
-      </Link>
-      <div>
         <Link href='/favorites'>
           <Image src='/static/media/heart.svg' alt='' width={16} height={16} />
         </Link>

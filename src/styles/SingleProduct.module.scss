@@ -3,8 +3,9 @@
     display: flex;
     gap: 20px;
 
-    ul {
+    .product__pics {
       width: 150px;
+      height: fit-content;
       display: grid;
       gap: 10px;
 
@@ -29,8 +30,8 @@
       gap: 20px;
       text-transform: uppercase;
 
-      b,
-      strong {
+      .product__b,
+      .product__s {
         font-size: 20px;
       }
 
@@ -39,5 +40,9 @@
         text-align: center;
       }
     }
+  }
+
+  .product__bottom {
+    margin-top: 20px;
   }
 }

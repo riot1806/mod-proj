@@ -12,6 +12,8 @@ import Fav from '../fav/Fav';
 import Sizes from '../sizes/Sizes';
 import Colors from '../colors/Colors';
 import Button from '../custom/button/Button';
+import SingleProductMore from '../single-product-more/SingleProductMore';
+import SingleProductTabs from '../single-product-tabs/SingleProductTabs';
 
 interface Props {
   product: any;
@@ -56,8 +58,10 @@ const SingleProductMobile = ({
       </Carousel>
       <div className={styles.single__product_info}>
         <p>{product?.brand.name}</p>
-        <b>{product?.name}</b>
-        <strong>{product?.price} UZS</strong>
+        <b className={styles.single__product_b}>{product?.name}</b>
+        <strong className={styles.single__product_s}>
+          {product?.price} UZS
+        </strong>
         <Sizes sizes={product?.options} sizeId={sizeId} setSizeId={setSizeId} />
         <Colors colors={product?.colors} />
         <Button
@@ -74,6 +78,14 @@ const SingleProductMobile = ({
           />
           <span>ДОБАВИТЬ В КОРЗИНУ</span>
         </Button>
+        <SingleProductMore />
+        <SingleProductTabs
+          description={product.description}
+          features={product.features}
+          sizes={product.options}
+          sizeId={sizeId}
+          setSizeId={setSizeId}
+        />
       </div>
     </section>
   );

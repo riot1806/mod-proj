@@ -14,6 +14,8 @@ import Sizes from '@/components/sizes/Sizes';
 import Colors from '@/components/colors/Colors';
 import Button from '@/components/custom/button/Button';
 import SingleProductMobile from '@/components/single-product-mobile/SingleProductMobile';
+import SingleProductMore from '@/components/single-product-more/SingleProductMore';
+import SingleProductTabs from '@/components/single-product-tabs/SingleProductTabs';
 
 const SingleProduct = () => {
   const { query } = useRouter();
@@ -21,7 +23,7 @@ const SingleProduct = () => {
   const [sizeId, setSizeId] = useState<number>();
   const [activeImage, setActiveImage] = useState('');
   const [addToCart, { isLoading }] = useAddToCartMutation();
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile(1000);
 
   const handleAddToCart = () => {
     if (!sizeId) return alert('Выберите размер!');
@@ -56,7 +58,7 @@ const SingleProduct = () => {
       <GoBack />
       <div className={styles.product}>
         <div className={styles.product__top}>
-          <ul>
+          <ul className={styles.product__pics}>
             {data?.media.map((media: Media) => {
               const imageSource = useGetImageSource(media);
 
@@ -77,8 +79,8 @@ const SingleProduct = () => {
           )}
           <div className={styles.product__info}>
             <p>{data?.brand.name}</p>
-            <b>{data?.name}</b>
-            <strong>{data?.price} UZS</strong>
+            <b className={styles.product__b}>{data?.name}</b>
+            <strong className={styles.product__s}>{data?.price} UZS</strong>
             <Sizes
               sizes={data?.options}
               sizeId={sizeId!}
@@ -100,9 +102,19 @@ const SingleProduct = () => {
               />
               <span>ДОБАВИТЬ В КОРЗИНУ</span>
             </Button>
+            <SingleProductMore />
           </div>
         </div>
-        <div className={styles.product__bottom}></div>
+        <div className={styles.product__bottom}>
+          <SingleProductTabs
+            description={data?.description}
+            features={data?.features}
+            sizes={data?.options}
+            sizeId={sizeId!}
+            // @ts-ignore
+            setSizeId={setSizeId}
+          />
+        </div>
       </div>
     </section>
   );

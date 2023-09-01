@@ -73,6 +73,10 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
+.MuiTabs-indicator {
+  background-color: #222222 !important;
+}
+
 @media (max-width: 768px) {
   .MuiModal-root .MuiBox-root {
     width: 100%;

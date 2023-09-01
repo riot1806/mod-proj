@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 
 import { Item } from '@/interfaces/Item';
@@ -21,7 +22,9 @@ const Banner = ({ title, items }: Props) => {
   return (
     <section>
       {title && <h2>{title}</h2>}
-      <Image src={imageSource} alt='' fill style={styles} />
+      <Link href={{ pathname: '/products', query: { c: items[0].id } }}>
+        <Image src={imageSource} alt='' fill style={styles} />
+      </Link>
     </section>
   );
 };
