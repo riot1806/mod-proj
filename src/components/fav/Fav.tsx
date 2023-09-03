@@ -7,22 +7,19 @@ interface Props {
 }
 
 const Fav = ({ itemId }: Props) => {
-  const str = useGetLS('favorites');
+  const strArr = useGetLS('favorites');
+  const stringArray: string[] = JSON.parse(strArr!);
 
   const strId = itemId?.toString();
 
-  const isExists = str?.includes(strId);
+  const isExists = stringArray?.find((id) => id === strId);
 
   const handleToggle = () => {
-    if (!str) return localStorage.setItem('favorites', strId);
-    else if (isExists)
-      return localStorage.setItem(
-        'favorites',
-        str.replace(strId + ',' || ',' + strId, '')
-      );
+    if (!strArr)
+      return localStorage.setItem('favorites', JSON.stringify([strId]));
 
-    const val = str.concat(',', strId);
-    return localStorage.setItem('favorites', val);
+    const filtered = stringArray.filter((id) => id !== strId);
+    localStorage.setItem('favorites', JSON.stringify(filtered));
   };
 
   return (
