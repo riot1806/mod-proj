@@ -7,7 +7,9 @@ const favoritesApi = rootApi.injectEndpoints({
       query: () => ({
         url: '/favorites',
         params: {
-          ids: localStorage.getItem('favorites'),
+          ids: JSON.parse(localStorage.getItem('favorites')!)
+            .map((id: string) => id)
+            .join(','),
         },
       }),
       transformResponse: (response: { data: Product[] }) => response.data,

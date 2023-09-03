@@ -1,25 +1,26 @@
+import { useLocalStorage } from 'usehooks-ts';
 import Image from 'next/image';
-
-import { useGetLS } from '@/hooks/ls';
 
 interface Props {
   itemId: number;
 }
 
 const Fav = ({ itemId }: Props) => {
-  const strArr = useGetLS('favorites');
-  const stringArray: string[] = JSON.parse(strArr!);
+  const [favorites, setFavorites] = useLocalStorage<string[]>('favorites', []);
 
   const strId = itemId?.toString();
 
-  const isExists = stringArray?.find((id) => id === strId);
+  const isExists = favorites?.find((id) => id === strId);
 
-  const handleToggle = () => {
-    if (!strArr)
-      return localStorage.setItem('favorites', JSON.stringify([strId]));
+  const handleToggle = (event: any) => {
+    event.preventDefault();
 
-    const filtered = stringArray.filter((id) => id !== strId);
-    localStorage.setItem('favorites', JSON.stringify(filtered));
+    if (isExists) {
+      const newArr = favorites.filter((id) => id !== strId);
+      return setFavorites(newArr);
+    }
+
+    setFavorites([...favorites, strId]);
   };
 
   return (

@@ -11,3 +11,15 @@
     @include page_nothing;
   }
 }
+
+@media (max-width: 768px) {
+  .favorites__wrapper {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .favorites__wrapper {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
