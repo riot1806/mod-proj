@@ -43,7 +43,9 @@ const Cart = () => {
               <Link href='/login'>
                 <Button>ВОЙТИ</Button>
               </Link>
-              <Button dark>ПРОДОЛЖИТЬ ПОКУПКИ</Button>
+              <Link href='/'>
+                <Button dark>ПРОДОЛЖИТЬ ПОКУПКИ</Button>
+              </Link>
             </div>
           </div>
         )}

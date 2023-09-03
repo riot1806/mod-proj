@@ -7,6 +7,7 @@ export default function Document() {
         <title>MOD</title>
         <meta name='description' content='mod' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta name='format-detection' content='telephone=no' />
         <link rel='icon' href='/favicon.ico' />
         <script
           src='https://code.jquery.com/jquery-3.7.0.min.js'

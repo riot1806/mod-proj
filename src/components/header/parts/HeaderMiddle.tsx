@@ -4,10 +4,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { useViewCartQuery } from '@/redux/api/cartApi';
+import { useGetLS } from '@/hooks/ls';
 import Navigation from '@/components/navigation/Navigation';
 
 const HeaderMiddle = () => {
   const { data } = useViewCartQuery(null);
+  const isAuth = useGetLS('token');
 
   return (
     <div className={styles.header__middle}>
@@ -17,7 +19,7 @@ const HeaderMiddle = () => {
       </Link>
       <ul className={styles.header__links}>
         <li>
-          <Link href='/favorites'>
+          <Link href={isAuth ? '/profile/favorites' : '/favorites'}>
             <Image src='/static/media/heart.svg' alt='' fill />
             Избранное
           </Link>

@@ -4,11 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { useViewCartQuery } from '@/redux/api/cartApi';
+import { useGetLS } from '@/hooks/ls';
 import MainDrawer from '@/components/drawer/main/MainDrawer';
 import SearchDrawer from '@/components/drawer/search/SearchDrawer';
 
 const HeaderMobileTop = () => {
   const { data } = useViewCartQuery(null);
+  const isAuth = useGetLS('token');
 
   return (
     <div className={styles.header__top}>
@@ -20,7 +22,7 @@ const HeaderMobileTop = () => {
       </Link>
       <div>
         <SearchDrawer />
-        <Link href='/favorites'>
+        <Link href={isAuth ? '/profile/favorites' : '/favorites'}>
           <Image src='/static/media/heart.svg' alt='' width={16} height={16} />
         </Link>
         <Link href='/cart'>

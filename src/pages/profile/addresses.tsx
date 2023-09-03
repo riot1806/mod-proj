@@ -6,39 +6,10 @@ import { useGetLS } from '@/hooks/ls';
 import ProfileLayout from '@/components/layout/ProfileLayout';
 import AddressItem from '@/components/address-item/AddressItem';
 import AddAddressModal from '@/components/modal/add-address/AddAddressModal';
-
-const data = [
-  {
-    id: 1,
-    location: {
-      id: 1,
-      type: 'city',
-      name: 'Ташкент',
-    },
-    street: 'Uchtepa25',
-    building: '22a',
-    flat: 20,
-    entrance: 4,
-    intercom: 2211,
-    is_default: true,
-  },
-  {
-    id: 2,
-    location: {
-      id: 1,
-      type: 'city',
-      name: 'Ташкент',
-    },
-    street: 'Uchtepa25',
-    building: '22a',
-    flat: 20,
-    entrance: 4,
-    intercom: 2211,
-    is_default: false,
-  },
-];
+import { useGetUserAddressesQuery } from '@/redux/api/userApi';
 
 const ProfileAddresses = () => {
+  const { data } = useGetUserAddressesQuery(null);
   const isAuth = useGetLS('token');
 
   if (!Boolean(isAuth)) return null;
@@ -48,7 +19,7 @@ const ProfileAddresses = () => {
       <div className={styles.profile__addresses}>
         {data?.length ? (
           <>
-            <h2 className={styles.profile__title}>МОИ КАРТЫ</h2>
+            <h2 className={styles.profile__title}>МОИ АДРЕСА</h2>
             <div className={styles.profile__wrapper}>
               {data.map((address) => (
                 <AddressItem key={address.id} address={address} />

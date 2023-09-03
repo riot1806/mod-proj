@@ -100,6 +100,18 @@
   }
 }
 
+.profile__favorites {
+  .profile__wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 20px;
+  }
+
+  .profile__nothing {
+    @include page_nothing;
+  }
+}
+
 .profile__settings {
   form {
     display: grid;

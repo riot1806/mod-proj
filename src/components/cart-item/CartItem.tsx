@@ -13,9 +13,10 @@ import Button from '../custom/button/Button';
 interface Props {
   item: CartItem;
   checkout?: boolean;
+  search?: boolean;
 }
 
-const CartItem = ({ item, checkout }: Props) => {
+const CartItem = ({ item, checkout, search }: Props) => {
   const imageSource = useGetImageSource(item.media!);
   const [removeFromCart] = useRemoveFromCartMutation();
   const [updateQuantity] = useUpdateQuantityMutation();
@@ -44,36 +45,38 @@ const CartItem = ({ item, checkout }: Props) => {
       <div className={styles.item__info}>
         <b>{item.brand.name}</b>
         <p>{item.name}</p>
-        {!checkout && (
-          <>
-            <p>Размер: {item.option.name}</p>
-            <p>Цвет: {item.color.name}</p>
-          </>
-        )}
+        {!checkout ||
+          (!search && (
+            <>
+              <p>Размер: {item.option?.name}</p>
+              <p>Цвет: {item.color?.name}</p>
+            </>
+          ))}
         <strong>{item.price} so'm</strong>
         {checkout && <p>Кол-во: {item.quantity}</p>}
       </div>
-      {!checkout && (
-        <div className={styles.item__actions}>
-          <button onClick={handleRemoveItem}>
-            <Image
-              src='/static/media/trash.svg'
-              alt=''
-              width={20}
-              height={20}
-            />
-          </button>
-          <div className={styles.item__counter}>
-            <Button dark onClick={() => handleUpdateQuantity('inc')}>
-              +
-            </Button>
-            <span>{item.quantity}</span>
-            <Button dark onClick={() => handleUpdateQuantity('dec')}>
-              -
-            </Button>
+      {!checkout ||
+        (!search && (
+          <div className={styles.item__actions}>
+            <button onClick={handleRemoveItem}>
+              <Image
+                src='/static/media/trash.svg'
+                alt=''
+                width={20}
+                height={20}
+              />
+            </button>
+            <div className={styles.item__counter}>
+              <Button dark onClick={() => handleUpdateQuantity('inc')}>
+                +
+              </Button>
+              <span>{item.quantity}</span>
+              <Button dark onClick={() => handleUpdateQuantity('dec')}>
+                -
+              </Button>
+            </div>
           </div>
-        </div>
-      )}
+        ))}
     </div>
   );
 };

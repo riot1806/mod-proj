@@ -39,7 +39,7 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
             <Link href='/profile/addresses'>МОИ АДРЕСА</Link>
           </li>
           <li>
-            <Link href='/favorites'>ИЗБРАННЫЕ</Link>
+            <Link href='/profile/favorites'>ИЗБРАННЫЕ</Link>
           </li>
           <li>
             <Link href='/profile/settings'>НАСТРОЙКИ</Link>

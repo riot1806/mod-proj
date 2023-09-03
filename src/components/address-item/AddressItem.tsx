@@ -9,7 +9,6 @@ interface Props {
 const AddressItem = ({ address }: Props) => {
   return (
     <div className={styles.item}>
-      <p>Дильноза - +998901233113</p>
       <b>
         {address.street}, дом {address.building}, кв {address.flat},{' '}
         {address.location.name}
