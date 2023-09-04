@@ -2,14 +2,19 @@ import styles from '@/styles/Profile.module.scss';
 
 import Image from 'next/image';
 
-import { useGetUserCardsQuery } from '@/redux/api/userApi';
 import { useGetLS } from '@/hooks/ls';
+import { useGetCardsQuery, useRemoveCardMutation } from '@/redux/api/cardApi';
 import ProfileLayout from '@/components/layout/ProfileLayout';
 import AddCardModal from '@/components/modal/add-cart/AddCardModal';
 
 const ProfileCards = () => {
-  const { data } = useGetUserCardsQuery(null);
+  const { data } = useGetCardsQuery(null);
+  const [removeCard] = useRemoveCardMutation();
   const isAuth = useGetLS('token');
+
+  const handleDelete = async (cardId: number) => {
+    removeCard(cardId);
+  };
 
   if (!Boolean(isAuth)) return null;
 
@@ -23,7 +28,7 @@ const ProfileCards = () => {
               {data.map((card) => (
                 <li key={card.id}>
                   <b>{card.number}</b>
-                  <button>
+                  <button onClick={() => handleDelete(card.id)}>
                     <Image
                       src='/static/media/trash.svg'
                       alt=''
@@ -43,6 +48,7 @@ const ProfileCards = () => {
             <p>
               <small>Чтобы быстро оформлять заказы нужно добавить карту</small>
             </p>
+            <AddCardModal />
           </div>
         )}
       </div>

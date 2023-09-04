@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import styles from '../styles.module.scss';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { E164Number } from 'libphonenumber-js/core';
+import PhoneInput from 'react-phone-number-input';
 
 import { useRegMutation } from '@/redux/api/authApi';
 import { Callback } from '@/types/callback.type';
@@ -18,24 +21,26 @@ type Inputs = {
 };
 
 const Reg = ({ callback, checkout }: Props) => {
+  const [value, setValue] = useState<E164Number>();
   const [reg, { isLoading }] = useRegMutation();
   const { register, handleSubmit } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    reg(data)
+    reg({ ...data, phone: value?.toString()! })
       .unwrap()
-      .then(() => callback!({ state: true, data: data.phone }));
+      .then(() => callback!({ state: true, data: value }));
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor='phone'>
         Телефон
-        <input
-          type='text'
+        <PhoneInput
           id='phone'
-          placeholder='+998 (XX) XXX XX XX'
-          {...register('phone')}
+          placeholder='998 (XX) XXX XX XX'
+          defaultCountry='UZ'
+          value={value}
+          onChange={(value) => setValue(value)}
           required
         />
       </label>

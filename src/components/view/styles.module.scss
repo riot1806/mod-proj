@@ -3,6 +3,24 @@
 .form {
   @include form;
 
+  .form__addresses {
+    max-height: 200px;
+    display: grid;
+    gap: 20px;
+    overflow-y: scroll;
+    border: 1px solid #eeeef0;
+    border-radius: 5px;
+    padding: 20px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .form__active {
+      opacity: 0.5;
+    }
+  }
+
   .form__flex {
     display: flex;
     gap: 20px;
@@ -20,7 +38,7 @@
       gap: 20px;
 
       &:first-child {
-        border-bottom: 1px solid #EEEEF0;
+        border-bottom: 1px solid #eeeef0;
         padding-bottom: 20px;
       }
 

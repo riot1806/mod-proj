@@ -1,6 +1,5 @@
 import { rootApi } from './rootApi';
 import { User } from '@/interfaces/User';
-import { Card } from '@/interfaces/Card';
 import { Address } from '@/interfaces/Address';
 
 const userApi = rootApi.injectEndpoints({
@@ -10,12 +9,6 @@ const userApi = rootApi.injectEndpoints({
         url: '/otp/customer',
       }),
       transformResponse: (response: { data: User }) => response.data,
-    }),
-    getUserCards: builder.query<Card[], null>({
-      query: () => ({
-        url: '/customers/cards',
-      }),
-      transformResponse: (response: { data: Card[] }) => response.data,
     }),
     getUserAddresses: builder.query<Address[], null>({
       query: () => ({
@@ -35,7 +28,6 @@ const userApi = rootApi.injectEndpoints({
 
 export const {
   useGetUserQuery,
-  useGetUserCardsQuery,
   useGetUserAddressesQuery,
   useUpdateUserMutation,
 } = userApi;

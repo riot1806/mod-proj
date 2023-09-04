@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
 import { useGetHomeQuery } from '@/redux/api/homeApi';
-import Searchbar from '@/components/searchbar/Searchbar';
+import SearchDrawer from '@/components/drawer/search/SearchDrawer';
 
 const HeaderBottom = () => {
   const { data } = useGetHomeQuery(null);
@@ -25,7 +25,7 @@ const HeaderBottom = () => {
           </li>
         ))}
       </ul>
-      <Searchbar placeholder='Товар, бренд или цвет' />
+      <SearchDrawer />
     </div>
   );
 };

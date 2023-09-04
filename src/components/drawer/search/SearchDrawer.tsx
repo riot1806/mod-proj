@@ -4,13 +4,14 @@ import styles from './styles.module.scss';
 import { Box, Drawer } from '@mui/material';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import Image from 'next/image';
 
 import { useLazySearchProductsQuery } from '@/redux/api/searchApi';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import DrawerHead from '../head/DrawerHead';
 import CartItem from '@/components/cart-item/CartItem';
 import Searchbar from '@/components/searchbar/Searchbar';
-import Link from 'next/link';
 
 type Inputs = {
   query: string;
@@ -21,6 +22,7 @@ const SearchDrawer = () => {
   const { register, handleSubmit } = useForm<Inputs>();
   const [trigger, { data }] = useLazySearchProductsQuery();
   const router = useRouter();
+  const isMobile = useIsMobile();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -35,14 +37,18 @@ const SearchDrawer = () => {
 
   return (
     <>
-      <button onClick={handleOpen}>
-        <Image
-          src='/static/media/search_dark.svg'
-          alt=''
-          width={16}
-          height={16}
-        />
-      </button>
+      {isMobile ? (
+        <button onClick={handleOpen}>
+          <Image
+            src='/static/media/search_dark.svg'
+            alt=''
+            width={16}
+            height={16}
+          />
+        </button>
+      ) : (
+        <Searchbar placeholder='Товар, бренд или цвет' onClick={handleOpen} />
+      )}
       <Drawer
         anchor='right'
         open={open}

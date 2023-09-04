@@ -44,10 +44,10 @@ const SingleProductMore = () => {
           <span>Италия</span>
         </li>
       </ul>
-      <div className={styles.more__questions}>
+      {/* <div className={styles.more__questions}>
         <b>ОСТАЛИСЬ ВОПРОСЫ?</b>
         <Button>НАПИСАТЬ НАМ</Button>
-      </div>
+      </div> */}
     </div>
   );
 };

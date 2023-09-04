@@ -4,12 +4,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { useViewCartQuery } from '@/redux/api/cartApi';
+import { useGetLS } from '@/hooks/ls';
 import SecLayout from '@/components/layout/SecLayout';
 import Button from '@/components/custom/button/Button';
 import CartItem from '@/components/cart-item/CartItem';
 
 const Cart = () => {
   const { data } = useViewCartQuery(null);
+  const isAuth = useGetLS('token');
 
   return (
     <SecLayout title='КОРЗИНА'>
@@ -18,13 +20,13 @@ const Cart = () => {
           <div className={styles.cart__wrapper}>
             <div className={styles.cart__left}>
               {data?.products.map((product) => (
-                <CartItem key={product.id} item={product} />
+                <CartItem key={product.id} item={product} cart />
               ))}
             </div>
             <div className={styles.cart__right}>
               <p>Всего {data?.total_amount} so'm</p>
               <p>Величая налоги за исключением доставки</p>
-              <Link href='/checkout'>
+              <Link href={isAuth ? '/checkout/otp/end' : '/checkout'}>
                 <Button dark>КУПИТЬ</Button>
               </Link>
             </div>

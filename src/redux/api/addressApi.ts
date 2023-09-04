@@ -31,4 +31,8 @@ const addressApi = rootApi.injectEndpoints({
   }),
 });
 
-export const { useAddAddressMutation, useLazyGetAddressesQuery } = addressApi;
+export const {
+  useGetAddressesQuery,
+  useAddAddressMutation,
+  useLazyGetAddressesQuery,
+} = addressApi;

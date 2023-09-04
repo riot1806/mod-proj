@@ -33,7 +33,7 @@ const ProfileFavorites = () => {
             <p>
               <small>Вы пока ничего не добавили в избранное</small>
             </p>
-            <Link href='/products'>
+            <Link href='/'>
               <Button>ПЕРЕЙТИ В КАТАЛОГ</Button>
             </Link>
           </div>

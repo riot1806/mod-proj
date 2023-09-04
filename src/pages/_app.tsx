@@ -1,6 +1,7 @@
 import '@/styles/globals.scss';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import 'react-phone-number-input/style.css'
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';

@@ -28,12 +28,8 @@ const CheckoutLayout: FC<PropsWithChildren> = ({ children }) => {
           </div>
           <ul className={styles.checkout__total}>
             <li>
-              <span>1 товар</span>
-              <span>230 000 сум</span>
-            </li>
-            <li>
               <strong>Всего</strong>
-              <strong>230 000 сум</strong>
+              <strong>{data?.total_amount} сум</strong>
             </li>
           </ul>
         </div>

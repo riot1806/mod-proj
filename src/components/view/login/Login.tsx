@@ -1,6 +1,8 @@
+import { useState, SyntheticEvent } from 'react';
 import styles from '../styles.module.scss';
 
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { E164Number } from 'libphonenumber-js/core';
+import PhoneInput from 'react-phone-number-input';
 
 import { useLoginMutation } from '@/redux/api/authApi';
 import { Callback } from '@/types/callback.type';
@@ -10,29 +12,28 @@ interface Props {
   callback?: Callback;
 }
 
-type Inputs = {
-  phone: string;
-};
-
 const Login = ({ callback }: Props) => {
   const [login, { isLoading }] = useLoginMutation();
-  const { register, handleSubmit } = useForm<Inputs>();
+  const [value, setValue] = useState<E164Number>();
 
-  const onSubmit: SubmitHandler<Inputs> = ({ phone }) => {
-    login({ phone })
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+
+    login({ phone: String(value) })
       .unwrap()
-      .then(() => callback!({ state: true, data: phone }));
+      .then(() => callback!({ state: true, data: value }));
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <label htmlFor='phone'>
         Телефон
-        <input
-          type='text'
+        <PhoneInput
           id='phone'
-          placeholder='+998 (XX) XXX XX XX'
-          {...register('phone')}
+          placeholder='998 (XX) XXX XX XX'
+          defaultCountry='UZ'
+          value={value}
+          onChange={(value) => setValue(value)}
           required
         />
       </label>

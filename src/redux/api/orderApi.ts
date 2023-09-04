@@ -11,13 +11,19 @@ const orderApi = rootApi.injectEndpoints({
     }),
     createOrder: builder.mutation<
       any,
-      { address_id: number; delivery: string; payment: string }
+      {
+        address_id: number;
+        delivery: string;
+        payment: string;
+        provider?: string;
+      }
     >({
       query: (payload) => ({
         url: '/orders',
         method: 'POST',
         body: payload,
       }),
+      invalidatesTags: ['Cart'],
     }),
   }),
 });
