@@ -17,12 +17,12 @@ interface Props {
 }
 
 const Banner = ({ title, items }: Props) => {
-  const imageSource = useGetImageSource(items[0].media!);
+  const imageSource = useGetImageSource(items[0]?.media!);
 
   return (
     <section>
       {title && <h2>{title}</h2>}
-      <Link href={{ pathname: '/products', query: { c: items[0].id } }}>
+      <Link href={{ pathname: '/products', query: { c: items[0]?.id } }}>
         <Image src={imageSource} alt='' fill style={styles} />
       </Link>
     </section>
