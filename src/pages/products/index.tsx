@@ -42,7 +42,7 @@ const Products = () => {
             Выберите категорию слева
           </strong>
         )}
-        <Filter categoryId={Number(search)} />
+        <Filter categoryId={Number(search)} productsLength={productsData?.length!} />
         <div className={styles.products__wrapper}>
           {productsData?.map((product) => (
             <ProductItem key={product.id} item={product} />

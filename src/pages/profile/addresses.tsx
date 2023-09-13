@@ -36,6 +36,7 @@ const ProfileAddresses = () => {
               height={60}
             />
             <p>У ВАС НЕТ АДРЕСОВ</p>
+            <AddAddressModal />
           </div>
         )}
       </div>

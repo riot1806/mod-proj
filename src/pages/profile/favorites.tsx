@@ -7,9 +7,13 @@ import { useViewFavoritesQuery } from '@/redux/api/favoritesApi';
 import ProfileLayout from '@/components/layout/ProfileLayout';
 import ProductItem from '@/components/product-item/ProductItem';
 import Button from '@/components/custom/button/Button';
+import { useGetLS } from '@/hooks/ls';
 
 const ProfileFavorites = () => {
   const { data } = useViewFavoritesQuery(null);
+  const isAuth = useGetLS('token');
+
+  if (!Boolean(isAuth)) return null;
 
   return (
     <ProfileLayout>

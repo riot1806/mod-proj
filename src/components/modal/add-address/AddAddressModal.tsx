@@ -2,16 +2,44 @@ import { useState } from 'react';
 import styles from './styles.module.scss';
 
 import { Box, Modal, Checkbox } from '@mui/material';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { modalSx } from '@/utils/modal';
 import Button from '@/components/custom/button/Button';
 import ModalHeader from '../modal-header/ModalHeader';
+import { useGetUserQuery } from '@/redux/api/userApi';
+import { useAddAddressMutation } from '@/redux/api/addressApi';
+
+type Inputs = {
+  first_name: string;
+  last_name: string;
+  street: string;
+  building: string;
+  flat: number;
+  location_id: number;
+  city: string;
+};
 
 const AddAddressModal = () => {
   const [open, setOpen] = useState(false);
+  const { data } = useGetUserQuery(null);
+  const { register, handleSubmit } = useForm<Inputs>();
+  const [addAddress, { isLoading }] = useAddAddressMutation();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    addAddress({
+      first_name: data?.first_name!,
+      last_name: data?.last_name!,
+      street: data.street,
+      building: data.building,
+      flat: data.flat,
+      location_id: 1,
+      city: data.city,
+    });
+  };
 
   return (
     <>
@@ -20,56 +48,57 @@ const AddAddressModal = () => {
       </Button>
 
       <Modal open={open} onClose={handleClose}>
-        <Box sx={modalSx}>
+        <Box sx={{ ...modalSx, overflowY: 'scroll' }}>
           <ModalHeader title='ДОБАВИТЬ АДРЕС' onClose={handleClose} />
           <div className={styles.modal__body}>
-            <form>
-              <label htmlFor='receiver'>
-                ИМЯ ПОЛУЧАТЕЛЯ
-                <input type='text' id='receiver' required />
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <label htmlFor='first_name'>
+                Имя получателя
+                <input
+                  type='text'
+                  id='first_name'
+                  defaultValue={data?.first_name}
+                  {...register('first_name')}
+                  required
+                />
               </label>
-              <label htmlFor='country'>
-                СТРАНА
-                <input type='text' id='country' required />
+              <label htmlFor='last_name'>
+                Фамилия получателя
+                <input
+                  type='text'
+                  id='last_name'
+                  defaultValue={data?.last_name}
+                  {...register('last_name')}
+                  required
+                />
               </label>
-              <label htmlFor='address'>
-                УЛИЦА, ДОМ, КВАРТИРА
-                <input type='text' id='address' required />
+              <label htmlFor='street'>
+                Адрес
+                <input
+                  type='text'
+                  id='street'
+                  {...register('street')}
+                  required
+                />
               </label>
-              <label htmlFor='area'>
-                КРАЙ, ОБЛАСТЬ, РЕГИОН
-                <input type='text' id='area' required />
+              <label htmlFor='building'>
+                Дом
+                <input
+                  type='text'
+                  id='building'
+                  {...register('building')}
+                  required
+                />
+              </label>
+              <label htmlFor='flat'>
+                Квартира
+                <input type='number' id='flat' {...register('flat')} required />
               </label>
               <label htmlFor='city'>
-                ГОРОД
-                <input type='text' id='city' required />
+                Город
+                <input type='text' id='city' {...register('city')} required />
               </label>
-              <label htmlFor='postal'>
-                ПОЧТОВЫЙ ИНДЕКС
-                <input type='number' id='postal' required />
-              </label>
-              <div className={styles.modal__flex}>
-                <Checkbox
-                  sx={{
-                    color: '#222222',
-                    '&.Mui-checked': { color: '#222222' },
-                  }}
-                />
-                <p>
-                  <small>В моем адресе нет почтового кода</small>
-                </p>
-              </div>
-              <label htmlFor='phone'>
-                ТЕЛЕФОН
-                <input type='text' id='phone' required />
-              </label>
-              <div className={styles.modal__flex}>
-                <Checkbox />
-                <p>
-                  <small>Установить по умолчанию</small>
-                </p>
-              </div>
-              <Button dark type='submit'>
+              <Button dark type='submit' withLoading={isLoading}>
                 ДОБАВИТЬ
               </Button>
             </form>

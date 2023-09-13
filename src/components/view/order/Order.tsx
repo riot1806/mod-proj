@@ -16,6 +16,8 @@ import Button from '@/components/custom/button/Button';
 import DeliverType from '@/components/deliver-type/DeliverType';
 import PaymentMethod from '@/components/payment-method/PaymentMethod';
 import AddressItem from '@/components/address-item/AddressItem';
+import AddAddressModal from '@/components/modal/add-address/AddAddressModal';
+import Link from 'next/link';
 
 type DeliverType = 'regular' | 'express';
 type PaymentMethodType = 'cash' | 'card';
@@ -108,17 +110,21 @@ const Order = () => {
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <h3>АДРЕС ДОСТАВКИ</h3>
-      {isAuth ? (
+      {Boolean(isAuth) ? (
         <div className={styles.form__addresses}>
-          {addresses?.map((address) => (
-            <AddressItem
-              key={address.id}
-              address={address}
-              checkout
-              className={addressId === address.id ? styles.form__active : ''}
-              onClick={() => setAddressId(address.id)}
-            />
-          ))}
+          {addresses?.length ? (
+            addresses?.map((address) => (
+              <AddressItem
+                key={address.id}
+                address={address}
+                checkout
+                className={addressId === address.id ? styles.form__active : ''}
+                onClick={() => setAddressId(address.id)}
+              />
+            ))
+          ) : (
+            <Link href='/profile/addresses'>Добавить адрес</Link>
+          )}
         </div>
       ) : (
         <>

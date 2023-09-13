@@ -23,6 +23,7 @@ const SecLayout = ({ children, title }: Props) => {
         </button>
       </div>
       <br />
+      <br />
       <div className={styles.layout__bottom}>{children}</div>
     </section>
   );

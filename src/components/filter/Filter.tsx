@@ -9,6 +9,7 @@ import FilterMobile from './mobile/FilterMobile';
 
 interface Props {
   categoryId: number;
+  productsLength: number;
 }
 
 const sorts = [
@@ -33,7 +34,7 @@ const classNames: ClassNamesConfig = {
   singleValue: () => styles.filter__select_value,
 };
 
-const Filter = ({ categoryId }: Props) => {
+const Filter = ({ categoryId, productsLength }: Props) => {
   const { data } = useGetCategoryFiltersQuery(categoryId);
   const isMobile = useIsMobile();
   const router = useRouter();
@@ -88,7 +89,7 @@ const Filter = ({ categoryId }: Props) => {
       {!isMobile && (
         <div className={styles.filter__bottom}>
           <p>
-            <small>{19} ТОВАРОВ</small>
+            <small>КОЛ-ВО ТОВАРОВ: {productsLength}</small>
           </p>
           <Select
             placeholder='СОРТИРОВАТЬ'
