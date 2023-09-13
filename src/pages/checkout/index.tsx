@@ -20,10 +20,11 @@ const Checkout = () => {
   }, []);
 
   useDidMountEffect(() => {
-    router.push({
-      pathname: '/checkout/otp',
-      query: { phone: callback.data },
-    });
+    if (callback.data)
+      router.push({
+        pathname: '/checkout/otp',
+        query: { phone: callback.data },
+      });
   }, [callback]);
 
   return (

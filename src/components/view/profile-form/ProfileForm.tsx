@@ -82,7 +82,11 @@ const ProfileForm = ({ styles }: Props) => {
           options={options}
           id='gender'
           instanceId={useId()}
-          placeholder={userData?.gender === 'male' ? 'МУЖСКОЙ' : 'ЖЕНСКИЙ'}
+          placeholder='Выберите'
+          defaultValue={{
+            value: userData?.gender,
+            label: userData?.gender === 'male' ? 'МУЖСКОЙ' : 'ЖЕНСКИЙ',
+          }}
           styles={selectStyles}
           onChange={(newValue) => setValue('gender', newValue?.value!)}
           required

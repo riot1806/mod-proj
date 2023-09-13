@@ -84,7 +84,7 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
       {jsx}
     </section>
   ) : (
-    <SecLayout title={`ЗДРАВСТВУЙТЕ ${data?.first_name.toUpperCase()}`}>
+    <SecLayout title={`ЗДРАВСТВУЙТЕ ${data?.first_name?.toUpperCase()}`}>
       {jsx}
     </SecLayout>
   );
