@@ -66,12 +66,12 @@ const CartItem = ({ item, cart, checkout, search }: Props) => {
             />
           </button>
           <div className={styles.item__counter}>
-            <Button dark onClick={() => handleUpdateQuantity('inc')}>
-              +
-            </Button>
-            <span>{item.quantity}</span>
             <Button dark onClick={() => handleUpdateQuantity('dec')}>
               -
+            </Button>
+            <span>{item.quantity}</span>
+            <Button dark onClick={() => handleUpdateQuantity('inc')}>
+              +
             </Button>
           </div>
         </div>

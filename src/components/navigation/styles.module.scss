@@ -28,8 +28,11 @@
       height: 32px;
 
       .active {
+        width: fit-content;
+        display: block;
         border-bottom: 4px solid black;
-        padding-bottom: 10px;
+        margin: -1px auto 0 auto;
+        padding-bottom: 11px;
       }
     }
   }

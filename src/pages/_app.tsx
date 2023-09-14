@@ -48,7 +48,7 @@ function App({ Component, pageProps }: AppProps) {
     <DrawerContextProvider>
       <Layout>
         <NextNProgress {...nprogressConfig} />
-        {isLoading && <PreLoader />}
+        {/* {isLoading && <PreLoader />} */}
         <Component {...pageProps} />
       </Layout>
     </DrawerContextProvider>
