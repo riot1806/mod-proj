@@ -38,7 +38,9 @@ const AddAddressModal = () => {
       flat: data.flat,
       location_id: 1,
       city: data.city,
-    });
+    })
+      .unwrap()
+      .then(() => handleClose());
   };
 
   return (
@@ -78,6 +80,7 @@ const AddAddressModal = () => {
                   type='text'
                   id='street'
                   {...register('street')}
+                  minLength={5}
                   required
                 />
               </label>

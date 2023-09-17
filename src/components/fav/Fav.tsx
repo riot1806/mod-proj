@@ -1,5 +1,9 @@
+import { useEffect } from 'react';
+
 import { useLocalStorage } from 'usehooks-ts';
 import Image from 'next/image';
+
+import { useViewFavoritesQuery } from '@/redux/api/favoritesApi';
 
 interface Props {
   itemId: number;
@@ -7,6 +11,7 @@ interface Props {
 
 const Fav = ({ itemId }: Props) => {
   const [favorites, setFavorites] = useLocalStorage<string[]>('favorites', []);
+  const { refetch } = useViewFavoritesQuery(null);
 
   const strId = itemId?.toString();
 
@@ -22,6 +27,10 @@ const Fav = ({ itemId }: Props) => {
 
     setFavorites([...favorites, strId]);
   };
+
+  useEffect(() => {
+    refetch();
+  }, [favorites]);
 
   return (
     <button onClick={handleToggle}>

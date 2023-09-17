@@ -3,7 +3,11 @@ import { Cart } from '@/types/cart.type';
 
 export interface Order {
   id: number;
-  state: string;
+  state: {
+    id: number;
+    type: string;
+    name: string;
+  };
   payment: string;
   delivery: string;
   reference: number;

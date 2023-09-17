@@ -11,13 +11,32 @@ import OrderItemMobile from './mobile/OrderItemMobile';
 interface Props {
   reference: number;
   address: Address;
-  status: string;
+  status: {
+    id: number;
+    type: string;
+    name: string;
+  };
   product: CartItem;
 }
 
 const OrderItem = ({ reference, address, status, product }: Props) => {
   const imageSource = useGetImageSource(product.media!);
   const isMobile = useIsMobile();
+
+  const statusColor = () => {
+    switch (status.type) {
+      case 'success':
+        return '#2AA469';
+      case 'warning':
+        return '#D54A52';
+      case 'danger':
+        return '#F8D62C';
+      case 'info':
+        return '#5E9DC6';
+      default:
+        return '';
+    }
+  };
 
   if (isMobile)
     return (
@@ -26,6 +45,7 @@ const OrderItem = ({ reference, address, status, product }: Props) => {
         status={status}
         product={product}
         imageSource={imageSource}
+        statusColor={statusColor}
       />
     );
 
@@ -37,6 +57,13 @@ const OrderItem = ({ reference, address, status, product }: Props) => {
           {address.street}, дом {address.building}, кв {address.flat},{' '}
           {address.location.name}
         </p>
+      </div>
+      <div className={styles.item__middle}>
+        <div className={styles.item__middle_status}>
+          <span style={{ backgroundColor: statusColor() }}></span>
+          <b>{status.name}</b>
+        </div>
+        <div></div>
       </div>
       <div className={styles.item__bottom}>
         <Image src={imageSource} alt='' width={100} height={100} />

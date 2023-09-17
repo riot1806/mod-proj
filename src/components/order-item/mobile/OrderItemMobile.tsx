@@ -7,31 +7,41 @@ import { CartItem } from '@/interfaces/CartItem';
 
 interface Props {
   reference: number;
-  status: string;
+  status: {
+    id: number;
+    type: string;
+    name: string;
+  };
   product: CartItem;
   imageSource: string;
+  statusColor: () => string;
 }
 
 const OrderItemMobile = ({
   reference,
-  status = 'Pending',
+  status,
   product,
   imageSource,
+  statusColor,
 }: Props) => {
   return (
     <div className={styles.item}>
       <div className={styles.item__bottom}>
+        <div
+          className={styles.item__status_bar}
+          style={{ backgroundColor: statusColor() }}
+        ></div>
         <Image src={imageSource} alt='' width={100} height={100} />
         <div className={styles.item__info}>
           <div className={styles.item__col}>
             <b>№{reference}</b>
             <strong>{product.price} UZS</strong>
           </div>
-          {status && <b>{status}</b>}
+          {status && <b className={styles.item__status}>{status.name}</b>}
         </div>
         <ul className={styles.item__details}>
           <li>
-            <span>КОЛ-ВО</span>
+            <span>КОЛ-ВО:</span>
             <span>{product.quantity}</span>
           </li>
           <li>

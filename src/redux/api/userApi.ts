@@ -10,12 +10,6 @@ const userApi = rootApi.injectEndpoints({
       }),
       transformResponse: (response: { data: User }) => response.data,
     }),
-    getUserAddresses: builder.query<Address[], null>({
-      query: () => ({
-        url: '/customers/addresses',
-      }),
-      transformResponse: (response: { data: Address[] }) => response.data,
-    }),
     updateUser: builder.mutation({
       query: (payload) => ({
         url: '/customers/profile',
@@ -28,6 +22,5 @@ const userApi = rootApi.injectEndpoints({
 
 export const {
   useGetUserQuery,
-  useGetUserAddressesQuery,
   useUpdateUserMutation,
 } = userApi;

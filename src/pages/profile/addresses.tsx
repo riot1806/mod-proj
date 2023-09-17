@@ -6,10 +6,10 @@ import { useGetLS } from '@/hooks/ls';
 import ProfileLayout from '@/components/layout/ProfileLayout';
 import AddressItem from '@/components/address-item/AddressItem';
 import AddAddressModal from '@/components/modal/add-address/AddAddressModal';
-import { useGetUserAddressesQuery } from '@/redux/api/userApi';
+import { useGetAddressesQuery } from '@/redux/api/addressApi';
 
 const ProfileAddresses = () => {
-  const { data } = useGetUserAddressesQuery(null);
+  const { data } = useGetAddressesQuery(null);
   const isAuth = useGetLS('token');
 
   if (!Boolean(isAuth)) return null;

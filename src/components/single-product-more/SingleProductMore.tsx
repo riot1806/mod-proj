@@ -22,7 +22,7 @@ const SingleProductMore = () => {
           </span>
         </li>
       </ul>
-      <ul className={styles.more__middle}>
+      {/* <ul className={styles.more__middle}>
         <li>
           <span>ЦВЕТ</span>
           <span>Фиолетовый</span>
@@ -43,7 +43,7 @@ const SingleProductMore = () => {
           <span>СТРАНА</span>
           <span>Италия</span>
         </li>
-      </ul>
+      </ul> */}
       {/* <div className={styles.more__questions}>
         <b>ОСТАЛИСЬ ВОПРОСЫ?</b>
         <Button>НАПИСАТЬ НАМ</Button>

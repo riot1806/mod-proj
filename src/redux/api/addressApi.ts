@@ -20,6 +20,7 @@ const addressApi = rootApi.injectEndpoints({
         url: '/customers/addresses',
       }),
       transformResponse: (response: { data: Address[] }) => response.data,
+      providesTags: ['Address'],
     }),
     addAddress: builder.mutation<null, AddressPayload>({
       query: (payload) => ({
@@ -27,6 +28,7 @@ const addressApi = rootApi.injectEndpoints({
         method: 'POST',
         body: payload,
       }),
+      invalidatesTags: ['Address'],
     }),
   }),
 });

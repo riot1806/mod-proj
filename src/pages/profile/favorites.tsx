@@ -4,10 +4,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { useViewFavoritesQuery } from '@/redux/api/favoritesApi';
+import { useGetLS } from '@/hooks/ls';
 import ProfileLayout from '@/components/layout/ProfileLayout';
 import ProductItem from '@/components/product-item/ProductItem';
 import Button from '@/components/custom/button/Button';
-import { useGetLS } from '@/hooks/ls';
 
 const ProfileFavorites = () => {
   const { data } = useViewFavoritesQuery(null);
