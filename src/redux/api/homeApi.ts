@@ -9,7 +9,13 @@ const homeApi = rootApi.injectEndpoints({
       }),
       transformResponse: (response: { data: Category[] }) => response.data,
     }),
+    getHomeCategories: builder.query<Category[], number>({
+      query: (id) => ({
+        url: `/home/${id}/categories`,
+      }),
+      transformResponse: (response: { data: Category[] }) => response.data,
+    }),
   }),
 });
 
-export const { useGetHomeQuery } = homeApi;
+export const { useGetHomeQuery, useGetHomeCategoriesQuery } = homeApi;

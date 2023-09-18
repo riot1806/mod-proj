@@ -17,7 +17,6 @@ import DeliverType from '@/components/deliver-type/DeliverType';
 import PaymentMethod from '@/components/payment-method/PaymentMethod';
 import AddressItem from '@/components/address-item/AddressItem';
 import AddAddressModal from '@/components/modal/add-address/AddAddressModal';
-import Link from 'next/link';
 
 type DeliverType = 'regular' | 'express';
 type PaymentMethodType = 'cash' | 'card';
@@ -123,7 +122,7 @@ const Order = () => {
               />
             ))
           ) : (
-            <Link href='/profile/addresses'>Добавить адрес</Link>
+            <AddAddressModal />
           )}
         </div>
       ) : (

@@ -101,7 +101,39 @@
         gap: 20px;
 
         li {
-          position: relative;
+          height: 40px;
+          display: flex;
+          align-items: center;
+        }
+
+        li:hover {
+          .dropdown {
+            display: flex;
+          }
+        }
+      }
+
+      .dropdown {
+        width: 100%;
+        height: fit-content;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        background-color: white;
+        z-index: 9;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        display: none;
+        padding: 20px;
+
+        ul {
+          display: grid !important;
+          height: fit-content;
+          gap: 0 !important;
+
+          .dropdown__bold {
+            font-weight: 700;
+          }
         }
       }
 

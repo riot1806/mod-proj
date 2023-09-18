@@ -13,8 +13,7 @@ const CheckoutOtp = () => {
   return (
     <CheckoutLayout>
       <div className={styles.checkout__card}>
-        <p>На ваш телефон отправлен номер подтверждения</p>
-        <b>05:00</b>
+        <p>На ваш телефон отправлен код подтверждения</p>
       </div>
       <Confirm phone={search!} checkout />
     </CheckoutLayout>

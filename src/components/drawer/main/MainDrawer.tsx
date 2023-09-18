@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './styles.module.scss';
 
-import { useRouter } from 'next/router';
 import { useSearchParams } from 'next/navigation';
 import { Drawer } from '@mui/material';
 import Image from 'next/image';
@@ -16,7 +15,6 @@ const MainDrawer = () => {
   const { data } = useGetHomeQuery(null);
   const [open, setOpen] = useState(false);
   const isAuth = useGetLS('token');
-  const router = useRouter();
 
   const searchParams = useSearchParams();
 
@@ -26,10 +24,6 @@ const MainDrawer = () => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  useEffect(() => {
-    handleClose();
-  }, [router]);
 
   return (
     <>
