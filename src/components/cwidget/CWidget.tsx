@@ -1,12 +1,14 @@
 import styles from './styles.module.scss';
 
 import { useSearchParams } from 'next/navigation';
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import Link from 'next/link';
+import Image from 'next/image';
 
 import {
   useGetHomeCategoriesQuery,
   useGetHomeQuery,
 } from '@/redux/api/homeApi';
-import AccordionComponent from '../accordion/Accordion';
 
 const CWidget = () => {
   const { data } = useGetHomeQuery(null);
@@ -21,7 +23,30 @@ const CWidget = () => {
   return (
     <section className={styles.cwidget}>
       {categoryData?.map((category) => (
-        <AccordionComponent key={category.id} category={category} />
+        <Accordion key={category.id} classes={{ root: styles.accordion }}>
+          <AccordionSummary>
+            <div className={styles.accordion__summ}>
+              <b>{category.name}</b>
+              <Image
+                src='/static/media/arrow_down.svg'
+                alt=''
+                width={16}
+                height={16}
+              />
+            </div>
+          </AccordionSummary>
+          <AccordionDetails>
+            <ul>
+              {category.children?.map((cat) => (
+                <li key={cat.id}>
+                  <Link href={{ pathname: '/products', query: { c: cat.id } }}>
+                    {cat.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </AccordionDetails>
+        </Accordion>
       ))}
     </section>
   );

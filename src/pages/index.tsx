@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <>
-      {/* <CWidget /> */}
+      {isMobile && <CWidget />}
       {activeCategory?.widgets?.map((widget) => (
         <Widget key={widget.id} widget={widget} />
       ))}
