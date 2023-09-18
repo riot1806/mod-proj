@@ -4,6 +4,7 @@ import { useGetHomeQuery } from '@/redux/api/homeApi';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import Widget from '@/components/widget/Widget';
 import Services from '@/components/services/Services';
+import Recent from '@/components/recent/Recent';
 
 export default function Home() {
   const { data } = useGetHomeQuery(null);
@@ -19,6 +20,7 @@ export default function Home() {
       {activeCategory?.widgets?.map((widget) => (
         <Widget key={widget.id} widget={widget} />
       ))}
+      {isMobile && <Recent />}
       {isMobile && <Services />}
     </>
   );

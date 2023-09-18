@@ -9,7 +9,7 @@ import Button from '@/components/custom/button/Button';
 import ProductItem from '@/components/product-item/ProductItem';
 
 const Favorites = () => {
-  const { data } = useViewFavoritesQuery(null);
+  const { data } = useViewFavoritesQuery('favorites');
 
   return (
     <SecLayout title='ИЗБРАННЫЕ'>

@@ -10,7 +10,7 @@ import ProductItem from '@/components/product-item/ProductItem';
 import Button from '@/components/custom/button/Button';
 
 const ProfileFavorites = () => {
-  const { data } = useViewFavoritesQuery(null);
+  const { data } = useViewFavoritesQuery('favorites');
   const isAuth = useGetLS('token');
 
   if (!Boolean(isAuth)) return null;

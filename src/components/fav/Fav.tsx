@@ -11,7 +11,7 @@ interface Props {
 
 const Fav = ({ itemId }: Props) => {
   const [favorites, setFavorites] = useLocalStorage<string[]>('favorites', []);
-  const { refetch } = useViewFavoritesQuery(null);
+  const { refetch } = useViewFavoritesQuery('favorites');
 
   const strId = itemId?.toString();
 

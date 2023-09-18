@@ -3,11 +3,11 @@ import { Product } from '@/interfaces/Product';
 
 const favoritesApi = rootApi.injectEndpoints({
   endpoints: (builder) => ({
-    viewFavorites: builder.query<Product[], null>({
-      query: () => ({
+    viewFavorites: builder.query<Product[], string>({
+      query: (key = 'favorites') => ({
         url: '/favorites',
         params: {
-          ids: JSON.parse(localStorage.getItem('favorites')!)
+          ids: JSON.parse(localStorage.getItem(key)!)
             .map((id: string) => id)
             .join(','),
         },

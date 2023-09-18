@@ -40,7 +40,7 @@ const MainDrawer = () => {
           <DrawerHead title='' setState={setOpen} />
           <div className={styles.drawer__auth}>
             {isAuth ? (
-              <Link href='/profile'>
+              <Link href='/profile' onClick={handleClose}>
                 <Image
                   src='/static/media/user.svg'
                   alt=''
@@ -51,7 +51,7 @@ const MainDrawer = () => {
               </Link>
             ) : (
               <>
-                <Link href='/login'>
+                <Link href='/login' onClick={handleClose}>
                   <Image
                     src='/static/media/lock.svg'
                     alt=''
@@ -60,7 +60,7 @@ const MainDrawer = () => {
                   />
                   ВХОД
                 </Link>
-                <Link href='/reg'>
+                <Link href='/reg' onClick={handleClose}>
                   <Image
                     src='/static/media/pen.svg'
                     alt=''
@@ -78,7 +78,10 @@ const MainDrawer = () => {
           <ul className={styles.drawer__categories}>
             {activeCategory?.categories?.map((c) => (
               <li key={c.id}>
-                <Link href={{ pathname: '/products', query: { c: c.id } }}>
+                <Link
+                  href={{ pathname: '/products', query: { c: c.id } }}
+                  onClick={handleClose}
+                >
                   {c.name}
                 </Link>
                 <Image
