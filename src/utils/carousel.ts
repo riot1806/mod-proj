@@ -1,6 +1,6 @@
 export const baseCarouselConfig = {
   margin: 20,
-  loop: true,
+  loop: false,
   responsive: {
     0: {
       items: 1,

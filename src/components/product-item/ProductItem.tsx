@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 import { useLocalStorage } from 'usehooks-ts';
@@ -9,6 +9,7 @@ import { Product } from '@/interfaces/Product';
 import { useGetImageSource } from '@/hooks/useGetImageSource';
 import { useViewFavoritesQuery } from '@/redux/api/favoritesApi';
 import Fav from '../fav/Fav';
+import ImageLoader from '../template/ImageLoader';
 
 interface Props {
   item: Product;
@@ -18,6 +19,7 @@ const ProductItem = ({ item }: Props) => {
   const imageSource = useGetImageSource(item.media!);
   const [recent, setRecent] = useLocalStorage<string[]>('recent', []);
   const { refetch } = useViewFavoritesQuery('recent');
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const strId = item.item_id?.toString() || item.id?.toString();
 
@@ -27,7 +29,6 @@ const ProductItem = ({ item }: Props) => {
     if (isExists) {
       return;
     }
-
     setRecent([...recent, strId]);
   };
 
@@ -42,7 +43,13 @@ const ProductItem = ({ item }: Props) => {
       onClick={addToRecent}
     >
       <div className={styles.product__top}>
-        <Image src={imageSource} alt='' fill />
+        {!imageLoaded && <ImageLoader />}
+        <Image
+          src={imageSource}
+          alt=''
+          fill
+          onLoadingComplete={() => setImageLoaded(true)}
+        />
         <Fav itemId={item.item_id || item.id} />
       </div>
       <div className={styles.product__bottom}>
