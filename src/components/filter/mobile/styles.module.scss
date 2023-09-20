@@ -1,5 +1,5 @@
 .filter__mobile {
-  width: 100%;  
+  width: 100%;
 
   .filter__buttons {
     display: flex;
@@ -16,6 +16,26 @@
       border: 2px solid #222222;
       border-radius: 5px;
       padding: 10px;
+    }
+  }
+
+  .filter__brands {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll;
+    margin-top: 20px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    button {
+      min-width: fit-content;
+      height: 30px;
+      border: 2px solid #7b7b7b;
+      border-radius: 5px;
+      text-transform: uppercase;
+      padding: 0 20px;
     }
   }
 }

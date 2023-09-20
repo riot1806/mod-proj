@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './styles.module.scss';
 
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import { Filter } from '@/types/filter.type';
@@ -12,8 +13,11 @@ interface Props {
 
 const FilterMobile = ({ data }: Props) => {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const handleOpen = () => setOpen(true);
+
+  const brands = data?.find((filter) => filter.slug === 'brand')?.values;
 
   return (
     <div className={styles.filter__mobile}>
@@ -26,6 +30,21 @@ const FilterMobile = ({ data }: Props) => {
           Сортировка
           <Image src='/static/media/sort.svg' alt='' width={20} height={20} />
         </button>
+      </div>
+      <div className={styles.filter__brands}>
+        {brands?.map((brand) => (
+          <button
+            key={brand.id}
+            onClick={() =>
+              router.push({
+                pathname: '/products',
+                query: { ...router.query, brand: brand.slug },
+              })
+            }
+          >
+            {brand.name}
+          </button>
+        ))}
       </div>
       <FilterDrawer open={open} setOpen={setOpen} data={data} />
     </div>
