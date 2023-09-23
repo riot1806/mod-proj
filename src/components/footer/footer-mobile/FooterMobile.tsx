@@ -6,6 +6,14 @@ import Image from 'next/image';
 const FooterMobile = () => {
   return (
     <footer className={styles.footer__mobile}>
+      <div className={styles.footer__top}>
+        <p>ОБСЛУЖИВАНИЕ КЛИЕНТОВ</p>
+        <div>
+          <p>ГОРЯЧАЯ ЛИНИЯ</p>
+          <a href='tel:+998339999990'>+998 (33) 999-99-90</a>
+          <p>Будни: с 9:00 до 19:00 (Ташкентское время)</p>
+        </div>
+      </div>
       <ul className={styles.footer__links}>
         <li>
           <Link href='/'>ПРИЛОЖЕНИЕ MOD</Link>

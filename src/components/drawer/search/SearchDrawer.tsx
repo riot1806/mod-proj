@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 import { Box, Drawer } from '@mui/material';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, set } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,6 +12,7 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import DrawerHead from '../head/DrawerHead';
 import CartItem from '@/components/cart-item/CartItem';
 import Searchbar from '@/components/searchbar/Searchbar';
+import SearchDropdown from '@/components/search-dropdown/SearchDropdown';
 
 type Inputs = {
   query: string;
@@ -23,12 +24,22 @@ const SearchDrawer = () => {
   const [trigger, { data }] = useLazySearchProductsQuery();
   const router = useRouter();
   const isMobile = useIsMobile();
+  const [show, setShow] = useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const onSubmit: SubmitHandler<Inputs> = ({ query }) => {
     trigger(query);
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+
+    if (!value) return setShow(false);
+
+    setShow(true);
+    trigger(value);
   };
 
   useEffect(() => {
@@ -47,7 +58,22 @@ const SearchDrawer = () => {
           />
         </button>
       ) : (
-        <Searchbar placeholder='Товар, бренд или цвет' onClick={handleOpen} />
+        <>
+          <form className={styles.searchbar}>
+            <Image
+              src='/static/media/search.svg'
+              alt=''
+              width={16}
+              height={16}
+            />
+            <input
+              type='text'
+              placeholder='Цвет, бренд или цвет'
+              onChange={handleChange}
+            />
+            <SearchDropdown styles={styles} show={show} data={data!} />
+          </form>
+        </>
       )}
       <Drawer
         anchor='right'
@@ -61,6 +87,7 @@ const SearchDrawer = () => {
             placeholder='Товар, бренд или цвет'
             onSubmit={handleSubmit(onSubmit)}
             register={register('query')}
+            onChange={handleChange}
           />
           <div className={styles.drawer__wrapper}>
             {data?.map((product) => (

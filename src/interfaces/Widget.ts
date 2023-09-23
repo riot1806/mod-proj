@@ -4,4 +4,5 @@ export interface Widget {
   type: string;
   title: string | null;
   items: [];
+  isHasCategory?: boolean;
 }

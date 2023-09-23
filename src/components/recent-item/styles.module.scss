@@ -41,26 +41,23 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    text-transform: uppercase;
+    text-align: center;
     margin-top: 10px;
+
+    b {
+      text-transform: uppercase;
+    }
 
     p {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      opacity: 0.5;
     }
 
-    .product__sale {
-      display: flex;
-      gap: 20px;
-
-      span {
-        color: #d54a52;
-      }
-
-      s {
-        opacity: 0.5;
-      }
+    b,
+    strong {
+      font-size: 17px;
     }
   }
 }

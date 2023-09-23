@@ -11,9 +11,15 @@ interface Props {
   [x: string]: any;
 }
 
-const Searchbar = ({ placeholder, onSubmit, register, ...props }: Props) => {
+const Searchbar = ({
+  placeholder,
+  onSubmit,
+  register,
+  className,
+  ...props
+}: Props) => {
   return (
-    <form className={styles.searchbar} onSubmit={onSubmit}>
+    <form className={`${styles.searchbar} ${className}`} onSubmit={onSubmit}>
       <Image src='/static/media/search.svg' alt='' width={16} height={16} />
       <input type='text' placeholder={placeholder} {...register} {...props} />
     </form>

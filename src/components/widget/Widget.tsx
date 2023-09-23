@@ -19,7 +19,7 @@ const Widget = ({ widget }: Props) => {
     case 'banner':
       return <Banner title={title} items={items} />;
     default:
-      return <></>;
+      return null;
   }
 };
 

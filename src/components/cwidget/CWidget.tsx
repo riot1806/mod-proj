@@ -23,8 +23,18 @@ const CWidget = () => {
   return (
     <section className={styles.cwidget}>
       {categoryData?.map((category) => (
-        <Accordion key={category.id} classes={{ root: styles.accordion }}>
-          <AccordionSummary>
+        <Accordion
+          key={category.id}
+          classes={{
+            root: styles.accordion,
+          }}
+        >
+          <AccordionSummary
+            classes={{
+              root: styles.accordion__summary,
+              contentGutters: styles.accordion__gutters,
+            }}
+          >
             <div className={styles.accordion__summ}>
               <b>{category.name}</b>
               <Image

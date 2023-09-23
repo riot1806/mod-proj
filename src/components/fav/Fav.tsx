@@ -35,11 +35,14 @@ const Fav = ({ itemId }: Props) => {
   return (
     <button onClick={handleToggle}>
       <Image
-        src={isExists ? '/static/media/x.svg' : '/static/media/heart.svg'}
+        src={
+          isExists ? '/static/media/heart-fill.svg' : '/static/media/heart.svg'
+        }
         alt=''
-        width={16}
-        height={16}
+        width={0}
+        height={0}
         data-x={isExists ? 'true' : 'false'}
+        style={{ width: '20px', height: '20px' }}
       />
     </button>
   );
