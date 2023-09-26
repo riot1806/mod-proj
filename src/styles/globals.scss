@@ -82,6 +82,11 @@ input[type='number'] {
   background-color: #222222 !important;
 }
 
+#__next {
+  display: flex;
+  flex-direction: column;
+}
+
 p small {
   opacity: 0.5;
 }

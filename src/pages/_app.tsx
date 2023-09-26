@@ -5,17 +5,23 @@ import 'react-phone-number-input/style.css';
 
 import type { AppProps } from 'next/app';
 import NextNProgress from 'nextjs-progressbar';
+import dynamic from 'next/dynamic';
 
 import { nprogressConfig } from '@/utils/nprogress';
 import { DrawerContextProvider } from '@/context/DrawerContext';
 import Layout from '@/components/layout/Layout';
 import withReduxProvider from '@/hoc/withReduxProvider';
 
+const TopWidget = dynamic(() => import('@/components/top-widget/TopWidget'), {
+  ssr: false,
+});
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <DrawerContextProvider>
       <Layout>
         <NextNProgress {...nprogressConfig} />
+        <TopWidget />
         <Component {...pageProps} />
       </Layout>
     </DrawerContextProvider>

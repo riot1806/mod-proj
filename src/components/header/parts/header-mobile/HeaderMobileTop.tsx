@@ -16,7 +16,7 @@ const HeaderMobileTop = () => {
 
   return (
     <div className={styles.header__top}>
-      <div>
+      <div className={styles.header__burger}>
         <MainDrawer />
       </div>
       <Link href='/' className={styles.header__logo}>

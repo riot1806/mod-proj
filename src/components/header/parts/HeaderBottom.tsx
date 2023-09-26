@@ -9,9 +9,10 @@ import {
 } from '@/redux/api/homeApi';
 import SearchDrawer from '@/components/drawer/search/SearchDrawer';
 import Dropdown from '@/components/dropdown/Dropdown';
+import { Box, LinearProgress } from '@mui/material';
 
 const HeaderBottom = () => {
-  const { data } = useGetHomeQuery(null);
+  const { data, isLoading } = useGetHomeQuery(null);
   const searchParams = useSearchParams();
 
   const search = searchParams.get('h');
@@ -22,16 +23,22 @@ const HeaderBottom = () => {
 
   return (
     <div className={styles.header__bottom}>
-      <ul>
-        {categoryData?.map((c) => (
-          <li key={c.id}>
-            <Link href={{ pathname: '/products', query: { c: c.id } }}>
-              {c.name}
-            </Link>
-            <Dropdown id={activeCategory?.id!} styles={styles} />
-          </li>
-        ))}
-      </ul>
+      {isLoading ? (
+        <Box sx={{ width: '100%' }}>
+          <LinearProgress color='inherit' />
+        </Box>
+      ) : (
+        <ul>
+          {categoryData?.map((c) => (
+            <li key={c.id}>
+              <Link href={{ pathname: '/products', query: { c: c.id } }}>
+                {c.name}
+              </Link>
+              <Dropdown id={activeCategory?.id!} styles={styles} />
+            </li>
+          ))}
+        </ul>
+      )}
       <SearchDrawer />
     </div>
   );

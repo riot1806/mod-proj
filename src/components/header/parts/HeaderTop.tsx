@@ -10,7 +10,7 @@ const HeaderTop = () => {
 
   return (
     <div className={styles.header__top}>
-      <Link href='/'>
+      <Link href='/support'>
         <Image src='/static/media/warn.svg' alt='' width={16} height={16} />
         Помощь и контакт
       </Link>

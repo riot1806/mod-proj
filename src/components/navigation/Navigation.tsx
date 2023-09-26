@@ -1,12 +1,13 @@
 import styles from './styles.module.scss';
 
 import { useSearchParams } from 'next/navigation';
+import { Box, LinearProgress } from '@mui/material';
 import Link from 'next/link';
 
 import { useGetHomeQuery } from '@/redux/api/homeApi';
 
 const Navigation = () => {
-  const { data } = useGetHomeQuery(null);
+  const { data, isLoading } = useGetHomeQuery(null);
   const searchParams = useSearchParams();
 
   const search = searchParams.get('h');
@@ -23,7 +24,11 @@ const Navigation = () => {
     }
   };
 
-  return (
+  return isLoading ? (
+    <Box sx={{ width: '20%' }}>
+      <LinearProgress color='inherit' />
+    </Box>
+  ) : (
     <nav className={styles.nav}>
       <ul>
         {data?.map((item) => (

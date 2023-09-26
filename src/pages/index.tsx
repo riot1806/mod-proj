@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
+import styles from '@/styles/Home.module.scss';
 
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
+import { CircularProgress } from '@mui/material';
 
 import { useGetHomeQuery } from '@/redux/api/homeApi';
 import { useIsMobile } from '@/hooks/useIsMobile';
@@ -29,12 +31,17 @@ export default function Home() {
 
   return (
     <>
-      {activeCategory?.widgets?.map((widget) => (
-        <Widget key={widget.id} widget={widget} />
-      ))}
+      {isLoading ? (
+        <div className={styles.home__preloader}>
+          <CircularProgress size={45} color='inherit' />
+        </div>
+      ) : (
+        activeCategory?.widgets?.map((widget) => (
+          <Widget key={widget.id} widget={widget} />
+        ))
+      )}
       {isMobile && <Recent />}
       {isMobile && <Services />}
     </>
   );
 }
-

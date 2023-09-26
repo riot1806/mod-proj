@@ -5,9 +5,12 @@ import { useRouter } from 'next/router';
 import Navigation from '@/components/navigation/Navigation';
 
 const HeaderMobileBottom = () => {
-  const router = useRouter();
+  const { pathname } = useRouter();
 
-  if (router.pathname === '/products/[item_id]') return null;
+  const isIncludes = (path: string) => pathname.includes(path);
+
+  if (isIncludes('products')) return null;
+  else if (isIncludes('profile')) return null;
 
   return (
     <div className={styles.header__bottom}>

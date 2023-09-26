@@ -54,21 +54,21 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
     </div>
   );
 
-  useEffect(() => {
-    const handleRouteChange = () => {
-      if (isMobile) {
-        setOpen(true);
-      }
+  // useEffect(() => {
+  //   const handleRouteChange = () => {
+  //     if (isMobile) {
+  //       setOpen(true);
+  //     }
 
-      return;
-    };
+  //     return;
+  //   };
 
-    router.events.on('routeChangeComplete', handleRouteChange);
+  //   router.events.on('routeChangeComplete', handleRouteChange);
 
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router]);
+  //   return () => {
+  //     router.events.off('routeChangeComplete', handleRouteChange);
+  //   };
+  // }, [router]);
 
   return isMobile ? (
     <section>
