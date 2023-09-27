@@ -18,6 +18,7 @@ const routes: { label: string; value: string }[] = [
   { label: 'МОИ АДРЕСА', value: '/profile/addresses' },
   { label: 'ИЗБРАННЫЕ', value: '/profile/favorites' },
   { label: 'НАСТРОЙКИ', value: '/profile/settings' },
+  { label: 'ЦЕНТР ПОДДЕРЖКИ MOD', value: '/support' },
 ];
 
 const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {

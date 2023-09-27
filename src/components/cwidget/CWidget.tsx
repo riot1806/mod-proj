@@ -36,13 +36,13 @@ const CWidget = () => {
             }}
           >
             <div className={styles.accordion__summ}>
-              <b>{category.name}</b>
               <Image
-                src='/static/media/arrow_down.svg'
+                src='/static/media/star.svg'
                 alt=''
                 width={16}
                 height={16}
               />
+              <b>{category.name}</b>
             </div>
           </AccordionSummary>
           <AccordionDetails>

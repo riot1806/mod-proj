@@ -1,10 +1,10 @@
 import styles from './styles.module.scss';
 
 import { useSearchParams } from 'next/navigation';
-import { Box, LinearProgress } from '@mui/material';
 import Link from 'next/link';
 
 import { useGetHomeQuery } from '@/redux/api/homeApi';
+import ContentLoader from 'react-content-loader';
 
 const Navigation = () => {
   const { data, isLoading } = useGetHomeQuery(null);
@@ -25,9 +25,14 @@ const Navigation = () => {
   };
 
   return isLoading ? (
-    <Box sx={{ width: '20%' }}>
-      <LinearProgress color='inherit' />
-    </Box>
+    <ContentLoader
+      width='20%'
+      height='10px'
+      backgroundColor='#f3f3f3'
+      foregroundColor='#ecebeb'
+    >
+      <rect x='0' y='0' rx='0' ry='0' width='100%' height='100%' />
+    </ContentLoader>
   ) : (
     <nav className={styles.nav}>
       <ul>

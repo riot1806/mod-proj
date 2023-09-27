@@ -2,6 +2,7 @@ import styles from '../styles.module.scss';
 
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import ContentLoader from 'react-content-loader';
 
 import {
   useGetHomeCategoriesQuery,
@@ -9,7 +10,6 @@ import {
 } from '@/redux/api/homeApi';
 import SearchDrawer from '@/components/drawer/search/SearchDrawer';
 import Dropdown from '@/components/dropdown/Dropdown';
-import { Box, LinearProgress } from '@mui/material';
 
 const HeaderBottom = () => {
   const { data, isLoading } = useGetHomeQuery(null);
@@ -24,9 +24,14 @@ const HeaderBottom = () => {
   return (
     <div className={styles.header__bottom}>
       {isLoading ? (
-        <Box sx={{ width: '100%' }}>
-          <LinearProgress color='inherit' />
-        </Box>
+        <ContentLoader
+          width='100%'
+          height='10px'
+          backgroundColor='#f3f3f3'
+          foregroundColor='#ecebeb'
+        >
+          <rect x='0' y='0' rx='0' ry='0' width='100%' height='100%' />
+        </ContentLoader>
       ) : (
         <ul>
           {categoryData?.map((c) => (

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import styles from './styles.module.scss';
 
 import { useRouter } from 'next/router';
@@ -33,6 +32,16 @@ const FilterValueDrawer = ({
   const handleFilter = (value: string) => {
     data.forEach((filter) => {
       if (filter.slug === slug) {
+        if (router.query[slug]?.includes(value)) {
+          router.query[slug] = router.query[slug]
+            ?.toString()
+            .split(',')
+            .filter((val) => val !== value)
+            .join(',');
+
+          return;
+        }
+
         router.query[slug] = Boolean(router.query[slug])
           ? router.query[slug]?.concat(',', value)
           : value;
