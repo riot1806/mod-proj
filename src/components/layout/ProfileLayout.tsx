@@ -7,9 +7,18 @@ import Image from 'next/image';
 
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useDrawerContext } from '@/hooks/useDrawerContext';
+import { useGetUserQuery } from '@/redux/api/userApi';
 import SecLayout from './SecLayout';
 import ProfileDrawer from '../drawer/profile/ProfileDrawer';
-import { useGetUserQuery } from '@/redux/api/userApi';
+
+const routes: { label: string; value: string }[] = [
+  { label: 'МОИ ДАННЫЕ', value: '/profile' },
+  { label: 'МОИ КАРТЫ', value: '/profile/cards' },
+  { label: 'МОИ ЗАКАЗЫ', value: '/profile/orders' },
+  { label: 'МОИ АДРЕСА', value: '/profile/addresses' },
+  { label: 'ИЗБРАННЫЕ', value: '/profile/favorites' },
+  { label: 'НАСТРОЙКИ', value: '/profile/settings' },
+];
 
 const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
   const { data } = useGetUserQuery(null);
@@ -22,28 +31,22 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
     window.location.href = '/';
   };
 
+  const handleRoute = (route: string) => {
+    if (isMobile) return router.push(route).then(() => setOpen(true));
+    return;
+  };
+
   const jsx = (
     <div className={styles.profile__layout}>
       <nav className={styles.profile__left}>
         <ul>
-          <li>
-            <Link href='/profile'>МОИ ДАННЫЕ</Link>
-          </li>
-          <li>
-            <Link href='/profile/cards'>МОИ КАРТЫ</Link>
-          </li>
-          <li>
-            <Link href='/profile/orders'>МОИ ЗАКАЗЫ</Link>
-          </li>
-          <li>
-            <Link href='/profile/addresses'>МОИ АДРЕСА</Link>
-          </li>
-          <li>
-            <Link href='/profile/favorites'>ИЗБРАННЫЕ</Link>
-          </li>
-          <li>
-            <Link href='/profile/settings'>НАСТРОЙКИ</Link>
-          </li>
+          {routes.map((route, index) => (
+            <li key={index}>
+              <Link href={route.value} onClick={() => handleRoute(route.value)}>
+                {route.label}
+              </Link>
+            </li>
+          ))}
           <li>
             <button onClick={handleLogout}>Выйти</button>
           </li>
@@ -53,22 +56,6 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
       {isMobile && <ProfileDrawer>{children}</ProfileDrawer>}
     </div>
   );
-
-  // useEffect(() => {
-  //   const handleRouteChange = () => {
-  //     if (isMobile) {
-  //       setOpen(true);
-  //     }
-
-  //     return;
-  //   };
-
-  //   router.events.on('routeChangeComplete', handleRouteChange);
-
-  //   return () => {
-  //     router.events.off('routeChangeComplete', handleRouteChange);
-  //   };
-  // }, [router]);
 
   return isMobile ? (
     <section>

@@ -15,7 +15,7 @@ const HeaderTop = () => {
         Помощь и контакт
       </Link>
       {isAuth ? (
-        <Link href='/profile'>riot</Link>
+        <Link href='/profile'>Профиль</Link>
       ) : (
         <ul>
           <li>

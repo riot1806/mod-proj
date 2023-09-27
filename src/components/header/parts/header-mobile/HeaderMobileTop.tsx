@@ -24,7 +24,7 @@ const HeaderMobileTop = () => {
       </Link>
       <div>
         <SearchDrawer />
-        <Link href={isAuth ? '/profile/favorites' : '/favorites'}>
+        <Link href='/favorites'>
           <Image src='/static/media/heart.svg' alt='' width={16} height={16} />
           <span>{favorites?.length || 0}</span>
         </Link>

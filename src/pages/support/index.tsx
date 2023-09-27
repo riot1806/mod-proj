@@ -1,14 +1,20 @@
+import { useState } from 'react';
 import styles from '@/styles/Support.module.scss';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { useGetSupportsQuery } from '@/redux/api/supportApi';
-import SecLayout from '@/components/layout/SecLayout';
-import Link from 'next/link';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import SecLayout from '@/components/layout/SecLayout';
+import SupportDrawer from '@/components/drawer/support/SupportDrawer';
 
 const Support = () => {
   const { data } = useGetSupportsQuery(null);
+  const [state, setState] = useState({
+    open: false,
+    body: '',
+  });
   const isMobile = useIsMobile();
 
   return (
@@ -54,19 +60,25 @@ const Support = () => {
           <input type='text' placeholder='Поиск' />
         </form>
         <ul className={styles.support__bottom}>
-          {data?.map(
-            (support) => (
+          {data?.map((support) =>
+            isMobile ? (
+              <>
+                <li
+                  key={support.id}
+                  onClick={() => setState({ open: true, body: support.body })}
+                  style={{ cursor: 'pointer' }}
+                >
+                  {support.title}
+                </li>
+                <SupportDrawer open={state.open} setOpen={setState}>
+                  {state.body}
+                </SupportDrawer>
+              </>
+            ) : (
               <li key={support.id}>
                 <Link href={`/support/${support.body}`}>{support.title}</Link>
               </li>
             )
-            // isMobile ? (
-            //   <li key={support.id}>{support.title}</li>
-            // ) : (
-            //   <li key={support.id}>
-            //     <Link href={`/support/${support.body}`}>{support.title}</Link>
-            //   </li>
-            // )
           )}
         </ul>
       </div>
