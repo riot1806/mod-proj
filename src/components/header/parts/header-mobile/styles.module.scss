@@ -8,8 +8,14 @@
   }
 
   .header__burger {
-    width: 30px;
+    width: fit-content;
     height: 30px;
+
+    button {
+      width: 50px;
+      display: flex;
+      align-items: center;
+    }
   }
 
   .header__top {

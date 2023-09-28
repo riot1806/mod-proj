@@ -26,6 +26,8 @@
 @media (max-width: 1000px) {
   .products__wrapper {
     grid-template-columns: repeat(2, 1fr) !important;
+    row-gap: 20px !important;
+    column-gap: 10px !important;
   }
 }
 

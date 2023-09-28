@@ -23,7 +23,7 @@ const FilterMobile = ({ data }: Props) => {
     <div className={styles.filter__mobile}>
       <div className={styles.filter__buttons}>
         <button onClick={handleOpen}>
-          Фильтр
+          Фильтры
           <Image src='/static/media/filter.svg' alt='' width={20} height={20} />
         </button>
         <button onClick={handleOpen}>

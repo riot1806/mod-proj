@@ -21,7 +21,8 @@ const Login = ({ callback }: Props) => {
 
     login({ phone: String(value) })
       .unwrap()
-      .then(() => callback!({ state: true, data: value }));
+      .then(() => callback!({ state: true, data: value }))
+      .catch((err) => alert(err.data.errors.phone));
   };
 
   return (

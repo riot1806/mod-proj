@@ -1,10 +1,13 @@
 .single__product {
+  margin: 0 auto;
+
   .single__product_slide {
     position: relative;
 
     img {
       max-height: 400px;
       border-radius: 5px;
+      object-position: top;
     }
 
     & > div {

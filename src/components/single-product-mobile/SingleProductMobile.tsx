@@ -14,6 +14,7 @@ import Colors from '../colors/Colors';
 import Button from '../custom/button/Button';
 import SingleProductMore from '../single-product-more/SingleProductMore';
 import SingleProductTabs from '../single-product-tabs/SingleProductTabs';
+import CurrencyFormat from 'react-currency-format';
 
 interface Props {
   product: any;
@@ -57,11 +58,19 @@ const SingleProductMobile = ({
         })}
       </Carousel>
       <div className={styles.single__product_info}>
-        <p>{product?.brand?.name}</p>
-        <b className={styles.single__product_b}>{product?.name}</b>
-        <strong className={styles.single__product_s}>
-          {product?.price} UZS
-        </strong>
+        <b className={styles.single__product_b}>{product?.brand.name}</b>
+        <p style={{ fontFamily: 'Helvetica Neue Bold, sans-serif' }}>
+          {product?.name}
+        </p>
+        <CurrencyFormat
+          value={1200000}
+          displayType='text'
+          thousandSeparator
+          renderText={(value) => (
+            <strong className={styles.single__product_s}>{value} UZS</strong>
+          )}
+          format='### ###'
+        />
         <Sizes sizes={product?.options} sizeId={sizeId} setSizeId={setSizeId} />
         <Colors colors={product?.colors} />
         <Button

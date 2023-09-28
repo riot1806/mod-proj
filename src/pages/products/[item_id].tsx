@@ -4,6 +4,7 @@ import styles from '@/styles/SingleProduct.module.scss';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import CurrencyFormat from 'react-currency-format';
 
 import { useGetProductQuery } from '@/redux/api/productApi';
 import { useGetImageSource } from '@/hooks/useGetImageSource';
@@ -98,9 +99,19 @@ const SingleProduct = () => {
               />
             )}
             <div className={styles.product__info}>
-              <p>{data?.brand.name}</p>
-              <b className={styles.product__b}>{data?.name}</b>
-              <strong className={styles.product__s}>{data?.price} UZS</strong>
+              <b className={styles.product__b}>{data?.brand.name}</b>
+              <p style={{ fontFamily: 'Helvetica Neue Bold, sans-serif' }}>
+                {data?.name}
+              </p>
+              <CurrencyFormat
+                value={1200000}
+                displayType='text'
+                thousandSeparator
+                renderText={(value) => (
+                  <strong className={styles.product__s}>{value} UZS</strong>
+                )}
+                format='### ###'
+              />
               <Sizes
                 sizes={data?.options}
                 sizeId={sizeId!}

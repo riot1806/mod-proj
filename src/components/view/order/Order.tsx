@@ -163,12 +163,16 @@ const Order = () => {
         setDeliverType={setDeliverType}
         styles={styles}
       />
-      <h3>СПОСОБ ОПЛАТЫ</h3>
-      <PaymentMethod
-        paymentMethod={paymentMethod}
-        setPaymentMethod={setPaymentMethod}
-        styles={styles}
-      />
+      {deliverType && (
+        <>
+          <h3>СПОСОБ ОПЛАТЫ</h3>
+          <PaymentMethod
+            paymentMethod={paymentMethod}
+            setPaymentMethod={setPaymentMethod}
+            styles={styles}
+          />
+        </>
+      )}
       <Button dark type='submit' withLoading={isLoading}>
         ДАЛЕЕ
       </Button>

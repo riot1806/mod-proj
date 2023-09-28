@@ -3,13 +3,19 @@
   gap: 20px;
 
   .item__info {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 10px;
+    overflow: hidden;
 
     b,
     strong {
       font-size: 18px;
+    }
+
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 

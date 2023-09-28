@@ -26,7 +26,11 @@ const AddAddressModal = () => {
   const { register, handleSubmit } = useForm<Inputs>();
   const [addAddress, { isLoading }] = useAddAddressMutation();
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = (event: MouseEvent) => {
+    event.preventDefault();
+
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
