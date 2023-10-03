@@ -91,6 +91,13 @@ p small {
   opacity: 0.5;
 }
 
+.g__preloader {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;

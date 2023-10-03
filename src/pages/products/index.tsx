@@ -2,6 +2,7 @@ import styles from '@/styles/Products.module.scss';
 
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
+import { CircularProgress } from '@mui/material';
 
 import {
   useGetCategoriesQuery,
@@ -17,7 +18,7 @@ const Products = () => {
   const search = searchParams.get('c');
 
   const { data } = useGetCategoriesQuery(null);
-  const { data: productsData } = useGetCategoryProductsQuery({
+  const { data: productsData, isLoading } = useGetCategoryProductsQuery({
     categoryId: Number(search),
     params: {
       brand: query.brand,
@@ -42,12 +43,21 @@ const Products = () => {
             Выберите категорию слева
           </strong>
         )}
-        <Filter categoryId={Number(search)} productsLength={productsData?.length!} />
-        <div className={styles.products__wrapper}>
-          {productsData?.map((product) => (
-            <ProductItem key={product.id} item={product} />
-          ))}
-        </div>
+        <Filter
+          categoryId={Number(search)}
+          productsLength={productsData?.length!}
+        />
+        {isLoading ? (
+          <div className='g__preloader'>
+            <CircularProgress size={45} color='inherit' />
+          </div>
+        ) : (
+          <div className={styles.products__wrapper}>
+            {productsData?.map((product) => (
+              <ProductItem key={product.id} item={product} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

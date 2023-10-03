@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import styles from '@/styles/Home.module.scss';
 
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
@@ -32,7 +31,7 @@ export default function Home() {
   return (
     <>
       {isLoading ? (
-        <div className={styles.home__preloader}>
+        <div className='g__preloader'>
           <CircularProgress size={45} color='inherit' />
         </div>
       ) : (
