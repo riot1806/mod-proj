@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { Product } from '@/interfaces/Product';
 import { useGetImageSource } from '@/hooks/useGetImageSource';
 import { useViewFavoritesQuery } from '@/redux/api/favoritesApi';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import Fav from '../fav/Fav';
 import ImageLoader from '../template/ImageLoader';
 
@@ -20,6 +21,7 @@ const ProductItem = ({ item }: Props) => {
   const [recent, setRecent] = useLocalStorage<string[]>('recent', []);
   const { refetch } = useViewFavoritesQuery('recent');
   const [imageLoaded, setImageLoaded] = useState(false);
+  const isMobile = useIsMobile();
 
   const strId = item.item_id?.toString() || item.id?.toString();
 
@@ -43,12 +45,13 @@ const ProductItem = ({ item }: Props) => {
       onClick={addToRecent}
     >
       <div className={styles.product__top}>
-        {!imageLoaded && <ImageLoader />}
+        {!imageLoaded && <ImageLoader height={isMobile ? '200px' : '400px'} />}
         <Image
           src={imageSource}
           alt=''
           fill
           onLoadingComplete={() => setImageLoaded(true)}
+          data-uniq={true}
         />
         <Fav itemId={item.item_id || item.id} />
       </div>
