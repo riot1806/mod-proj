@@ -1,0 +1,38 @@
+.products {
+  display: flex;
+
+  .products__left {
+    width: 25%;
+  }
+
+  .products__right {
+    width: 100%;
+
+    .products__nothing {
+      display: block;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .products__wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .products__wrapper {
+    grid-template-columns: repeat(2, 1fr) !important;
+    row-gap: 20px !important;
+    column-gap: 10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .products__left {
+    display: none;
+  }
+}

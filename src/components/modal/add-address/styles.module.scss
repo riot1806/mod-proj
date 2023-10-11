@@ -1,0 +1,10 @@
+@import '@/styles/mixins.scss';
+
+.modal__body form {
+  @include form;
+
+  .modal__flex {
+    display: flex;
+    align-items: center;
+  }
+}

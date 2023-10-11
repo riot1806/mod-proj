@@ -1,0 +1,25 @@
+.drawer__head {
+  position: relative;
+  display: flex;
+  padding: 10px;
+
+  b {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  button {
+    z-index: 2;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .drawer__head button {
+    margin: 0;
+  }
+}

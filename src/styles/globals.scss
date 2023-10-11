@@ -1,0 +1,126 @@
+@import url('/static/fonts/roman/style.css');
+@import url('/static/fonts/med/style.css');
+@import url('/static/fonts/bold/style.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &:focus {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b {
+  font-weight: 700;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  -webkit-appearance: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: black;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  position: unset !important;
+}
+
+main {
+  section {
+    max-width: 1280px;
+    width: 95%;
+    margin: 20px auto;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.MuiTabs-indicator {
+  background-color: #222222 !important;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+}
+
+p small {
+  opacity: 0.5;
+}
+
+.g__preloader {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #222222;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 768px) {
+  .MuiModal-root .MuiBox-root {
+    width: 100%;
+    height: 100%;
+  }
+}

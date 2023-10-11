@@ -1,0 +1,31 @@
+.drawer {
+  height: 100%;
+  position: relative;
+}
+
+.drawer__body {
+  padding-bottom: 40px;
+
+  ul li {
+    cursor: pointer;
+    border-bottom: 1px solid #efefef;
+    font-family: 'Helvetica Neue Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+
+    img {
+      object-fit: contain;
+    }
+  }
+}
+
+.drawer__footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

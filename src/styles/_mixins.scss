@@ -1,0 +1,86 @@
+@mixin input {
+  width: 100%;
+  outline: none;
+  border: 2px solid black;
+  font-size: 16px;
+  padding: 10px;
+}
+
+@mixin form {
+  display: grid;
+  gap: 20px;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    input,
+    textarea {
+      @include input;
+      resize: none;
+    }
+  }
+
+  p small {
+    opacity: 0.5;
+  }
+}
+
+@mixin select {
+  .filter__select {
+    width: 100%;
+    text-transform: uppercase;
+  }
+
+  .filter__select_control,
+  .filter__select__control_focused {
+    border: none;
+    box-shadow: none;
+  }
+
+  .filter__select_control {
+    background-color: #f6f6f6;
+  }
+
+  .filter__select__control_focused {
+    background-color: #222222;
+
+    .filter__select_placeholder {
+      color: white;
+    }
+
+    .filter__select_value {
+      color: white;
+    }
+  }
+
+  .filter__select_placeholder {
+    color: black;
+  }
+
+  .filter__select_indicator {
+    display: none;
+  }
+
+  .filter__select_list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter__select_option {
+    background-color: #f6f6f6;
+    color: black;
+  }
+
+  .filter__select_input {
+    color: white;
+  }
+}
+
+@mixin page_nothing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 50px 0;
+}

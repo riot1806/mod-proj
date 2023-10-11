@@ -1,0 +1,33 @@
+.services {
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .services__icon {
+        min-width: 35px;
+        min-height: 35px;
+        border-radius: 50%;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// @media (max-width: 500px) {
+//   .services ul {
+//     grid-template-columns: 1fr !important;
+//   }
+// }

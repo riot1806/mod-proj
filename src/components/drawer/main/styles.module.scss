@@ -1,0 +1,40 @@
+.drawer {
+  .drawer__auth {
+    display: flex;
+    align-items: center;
+
+    a {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid #ededed;
+      font-size: 14px;
+    }
+  }
+
+  .drawer__nav {
+    margin-top: 20px;
+  }
+
+  .drawer__categories li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    border-bottom: 1px solid #efefef;
+    padding: 20px 10px;
+
+    a {
+      font-family: 'Helvetica Neue Bold', sans-serif;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+  }
+}
