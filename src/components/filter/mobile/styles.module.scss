@@ -1,3 +1,5 @@
+@import '@/styles/mixins.scss';
+
 .filter__mobile {
   width: 100%;
 
@@ -22,21 +24,46 @@
 
   .filter__brands {
     display: flex;
+    align-items: center;
     gap: 20px;
-    overflow-x: scroll;
     margin-top: 20px;
 
-    &::-webkit-scrollbar {
-      display: none;
+    @include select;
+
+    .filter__select_control,
+    .filter__select__control_focused {
+      min-width: max-content !important;
+      background-color: transparent !important;
+      font-size: 14px !important;
     }
 
-    button {
-      min-width: fit-content;
+    .filter__select_list {
+      font-size: 14px;
+    }
+
+    .filter__btnnn {
       height: 30px;
-      border: 2px solid #7b7b7b;
       border-radius: 5px;
-      text-transform: uppercase;
       padding: 0 20px;
+    }
+
+    ul {
+      display: flex;
+      gap: 20px;
+      overflow-x: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      button {
+        height: 30px;
+        border: 2px solid #7b7b7b;
+        border-radius: 5px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        padding: 0 20px;
+      }
     }
   }
 }

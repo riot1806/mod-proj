@@ -2,6 +2,7 @@ import styles from './styles.module.scss';
 
 import { useRouter } from 'next/router';
 import Select, { ClassNamesConfig } from 'react-select';
+import { Checkbox } from '@mui/material';
 
 import { useGetCategoryFiltersQuery } from '@/redux/api/categoryApi';
 import { useIsMobile } from '@/hooks/useIsMobile';
@@ -57,10 +58,43 @@ const Filter = ({ categoryId, productsLength }: Props) => {
   };
 
   const handleSortChange = (value: string) => {
+    if (router.query['sort']?.includes(value)) return;
+
     router.push({
       pathname: '/products',
-      query: { ...router.query, sort: value },
+      query: {
+        ...router.query,
+        sort: router.query['sort']?.includes('new')
+          ? router.query['sort']?.concat(',', value)
+          : value,
+      },
     });
+  };
+
+  const handleNew = (state: boolean) => {
+    if (state) {
+      router.push({
+        pathname: '/products',
+        query: {
+          ...router.query,
+          sort: router.query['sort']
+            ? router.query['sort']?.concat(',', 'new')
+            : 'new',
+        },
+      });
+    } else {
+      router.push({
+        pathname: '/products',
+        query: {
+          ...router.query,
+          sort: router.query['sort']
+            ?.toString()
+            .split(',')
+            .filter((val) => val !== 'new')
+            .join(','),
+        },
+      });
+    }
   };
 
   if (!categoryId) return null;
@@ -88,19 +122,43 @@ const Filter = ({ categoryId, productsLength }: Props) => {
       </div>
       {!isMobile && (
         <div className={styles.filter__bottom}>
-          <p>
-            <small>КОЛ-ВО ТОВАРОВ: {productsLength}</small>
-          </p>
-          <Select
-            placeholder='СОРТИРОВАТЬ'
-            classNames={classNames}
-            options={sorts.map((sort) => ({
-              value: sort.slug,
-              label: sort.name,
-            }))}
-            // @ts-ignore
-            onChange={(newValue) => handleSortChange(newValue.value)}
-          />
+          <div className={styles.filter__left}>
+            {/* <label htmlFor='discount'>
+              <Checkbox
+                color='default'
+                style={{ color: '#222222' }}
+                id='discount'
+                // onChange={(event: any) => handleDiscount(event.target.checked)}
+              />
+              СКИДКИ
+            </label> */}
+            <label htmlFor='new'>
+              <Checkbox
+                color='default'
+                style={{ color: '#222222' }}
+                id='new'
+                onChange={(event: any) => handleNew(event.target.checked)}
+                checked={router.query['sort']?.includes('new')}
+              />
+              НОВИНКИ
+            </label>
+          </div>
+          <div className={styles.filter__right}>
+            <p>
+              <small>КОЛ-ВО ТОВАРОВ: {productsLength}</small>
+            </p>
+            <div className={styles.filter__divider}></div>
+            <Select
+              placeholder='СОРТИРОВАТЬ'
+              classNames={classNames}
+              options={sorts.map((sort) => ({
+                value: sort.slug,
+                label: sort.name,
+              }))}
+              // @ts-ignore
+              onChange={(newValue) => handleSortChange(newValue.value)}
+            />
+          </div>
         </div>
       )}
     </div>
