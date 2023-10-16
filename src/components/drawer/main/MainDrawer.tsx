@@ -6,7 +6,7 @@ import { Drawer } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useGetHomeQuery } from '@/redux/api/homeApi';
+import { useGetHomeCategoriesQuery, useGetHomeQuery } from '@/redux/api/homeApi';
 import { useGetLS } from '@/hooks/ls';
 import Navigation from '@/components/navigation/Navigation';
 import DrawerHead from '../head/DrawerHead';
@@ -24,6 +24,8 @@ const MainDrawer = () => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const { data: categoryData } = useGetHomeCategoriesQuery(activeCategory?.id!);
 
   return (
     <>
@@ -76,7 +78,7 @@ const MainDrawer = () => {
             <Navigation />
           </div>
           <ul className={styles.drawer__categories}>
-            {activeCategory?.categories?.map((c) => (
+            {categoryData?.map((c) => (
               <li key={c.id}>
                 <Link
                   href={{ pathname: '/products', query: { c: c.id } }}

@@ -1,9 +1,18 @@
+import { useState } from 'react';
 import styles from './styles.module.scss';
 
-import Link from 'next/link';
 import Image from 'next/image';
 
+import { useGetSupportsQuery } from '@/redux/api/supportApi';
+import SupportDrawer from '@/components/drawer/support/SupportDrawer';
+
 const FooterMobile = () => {
+  const { data } = useGetSupportsQuery(null);
+  const [state, setState] = useState({
+    open: false,
+    body: '',
+  });
+
   return (
     <footer className={styles.footer__mobile}>
       <div className={styles.footer__top}>
@@ -15,34 +24,25 @@ const FooterMobile = () => {
         </div>
       </div>
       <ul className={styles.footer__links}>
-        <li>
-          <Link href='/'>ПРИЛОЖЕНИЕ MOD</Link>
-          <Image src='/static/media/next.svg' alt='' width={16} height={16} />
-        </li>
-        <li>
-          <Link href='/'>СПОСОБ ОПЛАТЫ</Link>
-          <Image src='/static/media/next.svg' alt='' width={16} height={16} />
-        </li>
-        <li>
-          <Link href='/'>ВЫБОР MOD</Link>
-          <Image src='/static/media/next.svg' alt='' width={16} height={16} />
-        </li>
-        <li>
-          <Link href='/'>ГЛАВНЫЕ НОВИНКИ СЕЗОНА</Link>
-          <Image src='/static/media/next.svg' alt='' width={16} height={16} />
-        </li>
-        <li>
-          <Link href='/'>ПОДПИШИТЕСЬ НА MOD</Link>
-          <Image src='/static/media/next.svg' alt='' width={16} height={16} />
-        </li>
-        <li>
-          <Link href='/'>ОБСЛУЖИВАНИЕ КЛИЕНТОВ</Link>
-          <Image src='/static/media/next.svg' alt='' width={16} height={16} />
-        </li>
-        <li>
-          <Link href='/'>О MOD</Link>
-          <Image src='/static/media/next.svg' alt='' width={16} height={16} />
-        </li>
+        {data?.map((sp) => (
+          <>
+            <li
+              key={sp.id}
+              onClick={() => setState({ open: true, body: sp.body })}
+            >
+              <b>{sp.title}</b>
+              <Image
+                src='/static/media/next.svg'
+                alt=''
+                width={16}
+                height={16}
+              />
+            </li>
+            <SupportDrawer open={state.open} setOpen={setState}>
+              {state.body}
+            </SupportDrawer>
+          </>
+        ))}
       </ul>
       <p>
         Официальный сайт MOD. ‘MOD’ и логотип ‘MOD’ являются торговыми марками

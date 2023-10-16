@@ -1,5 +1,5 @@
 export const baseCarouselConfig = {
-  margin: 20,
+  margin: 15,
   loop: false,
   responsive: {
     0: {

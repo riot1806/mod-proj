@@ -58,7 +58,7 @@ const ProductItem = ({ item }: Props) => {
       <div className={styles.product__bottom}>
         <b>{item.brand.name}</b>
         <p>{item.name}</p>
-        {item.price ? (
+        {item.old_price ? (
           <div className={styles.product__sale}>
             <span>{item.price} UZS</span>
             <s>{item.old_price} UZS</s>
