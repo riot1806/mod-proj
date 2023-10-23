@@ -14,7 +14,7 @@ const HeaderTop = () => {
         <Image src='/static/media/warn.svg' alt='' width={16} height={16} />
         Помощь и контакт
       </Link>
-      {isAuth ? (
+      {Boolean(isAuth) ? (
         <Link href='/profile'>Профиль</Link>
       ) : (
         <ul>

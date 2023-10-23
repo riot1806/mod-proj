@@ -11,6 +11,7 @@ const HeaderMobileBottom = () => {
 
   if (isIncludes('products')) return null;
   else if (isIncludes('profile')) return null;
+  else if (isIncludes('checkout')) return null;
 
   return (
     <div className={styles.header__bottom}>

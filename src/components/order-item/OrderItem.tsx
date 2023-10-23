@@ -6,6 +6,7 @@ import { useGetImageSource } from '@/hooks/useGetImageSource';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { CartItem } from '@/interfaces/CartItem';
 import { Address } from '@/interfaces/Address';
+import { Order } from '@/interfaces/Order';
 import OrderItemMobile from './mobile/OrderItemMobile';
 
 interface Props {
@@ -17,9 +18,10 @@ interface Props {
     name: string;
   };
   product: CartItem;
+  order: Order;
 }
 
-const OrderItem = ({ reference, address, status, product }: Props) => {
+const OrderItem = ({ reference, address, status, product, order }: Props) => {
   const imageSource = useGetImageSource(product.media!);
   const isMobile = useIsMobile();
 
@@ -46,6 +48,7 @@ const OrderItem = ({ reference, address, status, product }: Props) => {
         product={product}
         imageSource={imageSource}
         statusColor={statusColor}
+        order={order}
       />
     );
 
@@ -71,7 +74,7 @@ const OrderItem = ({ reference, address, status, product }: Props) => {
           <p>{product.brand.name}</p>
           <b>{product.name}</b>
           <p>Размер: {product.option.name}</p>
-          <strong>{product.price} UZS</strong>
+          <strong>{product.price.toLocaleString()} UZS</strong>
         </div>
         <ul className={styles.item__details}>
           <li>
@@ -80,16 +83,16 @@ const OrderItem = ({ reference, address, status, product }: Props) => {
           </li>
           <li>
             <span>СТОИМОСТЬ</span>
-            <span>{product.price} сум</span>
+            <span>{product.price.toLocaleString()} сум</span>
           </li>
           <li>
             <span>ДОСТАВКА</span>
-            <span>1333 сум</span>
+            <span>1 333 сум</span>
           </li>
           <li>
             <span>К ОПЛАТЕ</span>
             <span>
-              <strong>{product.price * product.quantity} сум</strong>
+              <strong>{(product.price * product.quantity).toLocaleString()} сум</strong>
             </span>
           </li>
         </ul>

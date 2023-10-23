@@ -13,4 +13,5 @@ export interface Order {
   reference: number;
   address: Address;
   cart: Cart;
+  total_amount?: number;
 }

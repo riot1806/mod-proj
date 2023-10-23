@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 import { useLocalStorage } from 'usehooks-ts';
+import { Skeleton } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -51,7 +52,6 @@ const ProductItem = ({ item }: Props) => {
           alt=''
           fill
           onLoadingComplete={() => setImageLoaded(true)}
-          data-uniq={true}
         />
         <Fav itemId={item.item_id || item.id} />
       </div>
@@ -60,11 +60,11 @@ const ProductItem = ({ item }: Props) => {
         <p>{item.name}</p>
         {item.old_price ? (
           <div className={styles.product__sale}>
-            <span>{item.price} UZS</span>
-            <s>{item.old_price} UZS</s>
+            <span>{item.price.toLocaleString()} UZS</span>
+            <s>{item.old_price.toLocaleString()} UZS</s>
           </div>
         ) : (
-          <strong>{item.price} UZS</strong>
+          <strong>{item.price.toLocaleString()} UZS</strong>
         )}
       </div>
     </Link>

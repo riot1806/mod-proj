@@ -42,7 +42,7 @@ const CartItem = ({ item, cart, checkout, search }: Props) => {
 
   return (
     <div className={styles.item}>
-      <Image src={imageSource} alt='' width={100} height={100} />
+      <Image src={imageSource} alt='' width={105} height={100} />
       <div className={styles.item__info}>
         <b>{item.brand.name}</b>
         <p>{item.name}</p>
@@ -52,7 +52,11 @@ const CartItem = ({ item, cart, checkout, search }: Props) => {
             <p>Цвет: {item.color?.name}</p>
           </>
         )}
-        <strong>{item.price} so'm</strong>
+        {search ? (
+          <strong>{item.price.toLocaleString()} so'm</strong>
+        ) : (
+          <strong>{(item.price * item.quantity).toLocaleString()} so'm</strong>
+        )}
         {checkout && <p>Кол-во: {item.quantity}</p>}
       </div>
       {cart && (

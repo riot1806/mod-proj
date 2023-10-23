@@ -62,15 +62,9 @@ const SingleProductMobile = ({
         <p style={{ fontFamily: 'Helvetica Neue Bold, sans-serif' }}>
           {product?.name}
         </p>
-        <CurrencyFormat
-          value={1200000}
-          displayType='text'
-          thousandSeparator
-          renderText={(value) => (
-            <strong className={styles.single__product_s}>{value} UZS</strong>
-          )}
-          format='### ###'
-        />
+        <strong className={styles.single__product_s}>
+          {product.price.toLocaleString()} UZS
+        </strong>
         <Sizes sizes={product?.options} sizeId={sizeId} setSizeId={setSizeId} />
         <Colors colors={product?.colors} />
         <Button

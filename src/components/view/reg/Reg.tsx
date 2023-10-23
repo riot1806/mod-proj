@@ -57,7 +57,6 @@ const Reg = ({ callback, checkout }: Props) => {
         Фамилия
         <input type='text' id='last_name' {...register('last_name')} required />
       </label>
-      <p>На введеный вами номер придет код</p>
       <Button dark type='submit' withLoading={isLoading}>
         {checkout ? 'ДАЛЕЕ' : 'ОТПРАВИТЬ'}
       </Button>

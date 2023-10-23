@@ -24,7 +24,7 @@ const Cart = () => {
               ))}
             </div>
             <div className={styles.cart__right}>
-              <strong>Всего {data?.total_amount} so'm</strong>
+              <strong>Всего {data?.total_amount.toLocaleString()} so'm</strong>
               <p>Включая налоги и доставки</p>
               <Link href={isAuth ? '/checkout/otp/end' : '/checkout'}>
                 <Button dark>КУПИТЬ</Button>

@@ -18,7 +18,7 @@ const SingleProductMore = () => {
             <b>ЭКСПРЕСС</b> ДОСТАВКА
           </span>
           <span>
-            <strong>70000 UZS</strong> 1-2 рабочих дня
+            <strong>70 000 UZS</strong> 1-2 рабочих дня
           </span>
         </li>
       </ul>

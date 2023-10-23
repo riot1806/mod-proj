@@ -103,15 +103,9 @@ const SingleProduct = () => {
               <p style={{ fontFamily: 'Helvetica Neue Bold, sans-serif' }}>
                 {data?.name}
               </p>
-              <CurrencyFormat
-                value={1200000}
-                displayType='text'
-                thousandSeparator
-                renderText={(value) => (
-                  <strong className={styles.product__s}>{value} UZS</strong>
-                )}
-                format='### ###'
-              />
+              <strong className={styles.product__s}>
+                {data?.price.toLocaleString()} UZS
+              </strong>
               <Sizes
                 sizes={data?.options}
                 sizeId={sizeId!}

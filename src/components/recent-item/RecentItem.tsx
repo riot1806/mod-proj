@@ -55,7 +55,7 @@ const RecentItem = ({ item }: Props) => {
       <div className={styles.product__bottom}>
         <b>{item.brand.name}</b>
         <p>{item.category.name}</p>
-        <strong>{item.price || item.old_price} UZS</strong>
+        <strong>{item.price.toLocaleString()} UZS</strong>
       </div>
     </Link>
   );

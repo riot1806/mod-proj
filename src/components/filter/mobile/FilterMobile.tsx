@@ -24,6 +24,8 @@ const classNames: ClassNamesConfig = {
   option: (state) =>
     state.isFocused || state.isSelected ? styles.filter__select_option : '',
   input: () => styles.filter__select_input,
+  dropdownIndicator: () => styles.filter__indicator_container,
+  valueContainer: () => styles.filter__value_container,
 };
 
 const FilterMobile = ({ data }: Props) => {
@@ -65,6 +67,13 @@ const FilterMobile = ({ data }: Props) => {
     }
   };
 
+  const handleBrand = (brand: string) => {
+    router.push({
+      pathname: '/products',
+      query: { ...router.query, brand },
+    });
+  };
+
   return (
     <div className={styles.filter__mobile}>
       <div className={styles.filter__buttons}>
@@ -90,18 +99,31 @@ const FilterMobile = ({ data }: Props) => {
             }))
           }
           onChange={(newValue: any) => handleChange(newValue.value)}
+          menuPortalTarget={document.body}
         />
         <button
           style={{
             backgroundColor: router.query['sort']?.includes('new')
               ? '#f6f6f6'
               : 'unset',
+            padding: router.query['sort']?.includes('new') ? '0 10px' : '0',
           }}
           onClick={handleNew}
           className={styles.filter__btnnn}
         >
           НОВИНКИ
         </button>
+        <Select
+          isSearchable={false}
+          placeholder='БРЕНДЫ'
+          classNames={classNames}
+          options={brands?.map((brand) => ({
+            label: brand.name,
+            value: brand.slug,
+          }))}
+          onChange={(newValue: any) => handleBrand(newValue.value)}
+          menuPortalTarget={document.body}
+        />
         <ul>
           {brands?.map((brand) => (
             <li key={brand.id}>

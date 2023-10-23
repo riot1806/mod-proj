@@ -22,17 +22,15 @@ const ProfileOrders = () => {
             <h2 className={styles.profile__title}>МОИ ЗАКАЗЫ</h2>
             <Searchbar placeholder='Поиск' />
             <div className={styles.profile__wrapper}>
-              {data?.map((order) =>
-                order.cart.products.map((product) => (
-                  <OrderItem
-                    key={product.id}
-                    reference={order.reference}
-                    address={order.address}
-                    status={order.state}
-                    product={product}
-                  />
-                ))
-              )}
+              {data?.map((order) => (
+                <OrderItem
+                  reference={order.reference}
+                  address={order.address}
+                  status={order.state}
+                  product={order.cart.products[0]}
+                  order={order}
+                />
+              ))}
             </div>
           </div>
         ) : (

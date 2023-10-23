@@ -31,7 +31,7 @@ const DeliverType = ({ deliverType, setDeliverType, styles }: Props) => {
         <Image src='/static/media/time.svg' alt='' width={22} height={22} />
         <b>Экспресс доставка</b>
         <p>4 дня</p>
-        <strong>35000 сум</strong>
+        <strong>35 000 сум</strong>
         <div className={styles.form__check}>
           {deliverType === 'express' && (
             <Image

@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { CartItem as CartItemType } from '@/interfaces/CartItem';
-import CartItem from '../cart-item/CartItem';
 import { useGetImageSource } from '@/hooks/useGetImageSource';
 
 type SearchDropdownProps = {
@@ -31,7 +30,7 @@ const SearchDropdown = ({ styles, show, data }: SearchDropdownProps) => {
                 <div className={styles.search__dropdown_info}>
                   <b>{product.brand.name}</b>
                   <p>{product.name}</p>
-                  <strong>{product.price} so'm</strong>
+                  <strong>{product.price.toLocaleString()} so'm</strong>
                 </div>
               </div>
             </Link>

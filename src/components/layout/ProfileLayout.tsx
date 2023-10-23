@@ -12,9 +12,9 @@ import SecLayout from './SecLayout';
 import ProfileDrawer from '../drawer/profile/ProfileDrawer';
 
 const routes: { label: string; value: string }[] = [
-  { label: 'МОИ ДАННЫЕ', value: '/profile' },
-  { label: 'МОИ КАРТЫ', value: '/profile/cards' },
   { label: 'МОИ ЗАКАЗЫ', value: '/profile/orders' },
+  { label: 'МОИ КАРТЫ', value: '/profile/cards' },
+  { label: 'МОИ ДАННЫЕ', value: '/profile' },
   { label: 'МОИ АДРЕСА', value: '/profile/addresses' },
   { label: 'ИЗБРАННЫЕ', value: '/profile/favorites' },
   { label: 'НАСТРОЙКИ', value: '/profile/settings' },
