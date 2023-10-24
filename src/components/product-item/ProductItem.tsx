@@ -1,8 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import styles from './styles.module.scss';
 
-import { useIntersectionObserver, useLocalStorage } from 'usehooks-ts';
-import { Skeleton } from '@mui/material';
+import { useLocalStorage } from 'usehooks-ts';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -15,16 +14,29 @@ interface Props {
   item: Product;
 }
 
+const shimmer = (w: number, h: number) => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#f3f3f3" offset="20%" />
+      <stop stop-color="#ecebeb" offset="50%" />
+      <stop stop-color="#f3f3f3" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#f3f3f3" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+</svg>`;
+
+const toBase64 = (str: string) =>
+  typeof window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : window.btoa(str);
+
 const ProductItem = ({ item }: Props) => {
   const imageSource = useGetImageSource(item.media!);
   const [recent, setRecent] = useLocalStorage<string[]>('recent', []);
   const { refetch } = useViewFavoritesQuery('recent');
-
-  // INTERSECTION OBSERVER
-  const ref = useRef<HTMLAnchorElement | null>(null);
-  const entry = useIntersectionObserver(ref, {});
-  const isVisible = !!entry?.isIntersecting;
-  // INTERSECTION OBSERVER
 
   const strId = item.item_id?.toString() || item.id?.toString();
 
@@ -48,7 +60,16 @@ const ProductItem = ({ item }: Props) => {
       onClick={addToRecent}
     >
       <div className={styles.product__top}>
-        <Image src={imageSource} alt='' fill loading='eager' priority />
+        <Image
+          src={imageSource}
+          alt=''
+          placeholder={`data:image/svg+xml;base64,${toBase64(
+            shimmer(1000, 1000)
+          )}`}
+          width={1000}
+          height={1000}
+          style={{ maxWidth: '100%', height: 'auto' }}
+        />
         <Fav itemId={item.item_id || item.id} />
       </div>
       <div className={styles.product__bottom}>
