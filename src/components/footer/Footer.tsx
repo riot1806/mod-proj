@@ -5,11 +5,13 @@ import Image from 'next/image';
 
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useGetLS } from '@/hooks/ls';
+import { useGetSupportsQuery } from '@/redux/api/supportApi';
 import FooterMobile from './footer-mobile/FooterMobile';
 
 const Footer = () => {
   const isMobile = useIsMobile();
   const isAuth = useGetLS('token');
+  const { data } = useGetSupportsQuery(null);
 
   if (isMobile) return <FooterMobile />;
 
@@ -27,46 +29,13 @@ const Footer = () => {
         <hr />
         <div className={styles.footer__bottom}>
           <div>
-            <p>ИНТЕРНЕТ МАГАЗИН</p>
+            <p>ЦЕНТР ПОДДЕРЖКИ</p>
             <ul>
-              <li>
-                <Link href='/'>Центр поддержки Ason</Link>
-              </li>
-              <li>
-                <Link href='/'>Статус заказа по номеру</Link>
-              </li>
-              <li>
-                <Link href='/'>Оплата</Link>
-              </li>
-              <li>
-                <Link href='/'>Условия возврата</Link>
-              </li>
-              <li>
-                <Link href='/'>Условия доставки</Link>
-              </li>
-              <li>
-                <Link href='/'>Как выбрать размер</Link>
-              </li>
-              <li>
-                <Link href='/'>Как оформить заказ</Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p>МАГАЗИНЫ</p>
-            <ul>
-              <li>
-                <Link href='/'>Центр поддержки Ason</Link>
-              </li>
-              <li>
-                <Link href='/'>Статус заказа по номеру</Link>
-              </li>
-              <li>
-                <Link href='/'>Оплата</Link>
-              </li>
-              <li>
-                <Link href='/'>Условия возврата</Link>
-              </li>
+              {data?.map((sprt) => (
+                <li>
+                  <Link href={`/support/${sprt.body}`}>{sprt.title}</Link>
+                </li>
+              ))}
             </ul>
           </div>
           {Boolean(isAuth) && (
@@ -91,7 +60,7 @@ const Footer = () => {
           <div>
             <p>УЗНАТЬ БОЛЬШЕ</p>
             <ul>
-              <li>
+              {/* <li>
                 <a href=''>
                   <Image
                     src='/static/media/twitter.svg'
@@ -100,8 +69,8 @@ const Footer = () => {
                     height={16}
                   />
                 </a>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <a href=''>
                   <Image
                     src='/static/media/facebook.svg'
@@ -110,8 +79,8 @@ const Footer = () => {
                     height={16}
                   />
                 </a>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <a href=''>
                   <Image
                     src='/static/media/google.svg'
@@ -120,9 +89,9 @@ const Footer = () => {
                     height={16}
                   />
                 </a>
-              </li>
+              </li> */}
               <li>
-                <a href=''>
+                <a href='https://www.instagram.com/mod.uz/' target='_blank'>
                   <Image
                     src='/static/media/instagram.svg'
                     alt=''
@@ -131,7 +100,7 @@ const Footer = () => {
                   />
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href=''>
                   <Image
                     src='/static/media/vk.svg'
@@ -140,9 +109,9 @@ const Footer = () => {
                     height={16}
                   />
                 </a>
-              </li>
+              </li> */}
               <li>
-                <a href=''>
+                <a href='https://t.me/mod_uzbekistan' target='_blank'>
                   <Image
                     src='/static/media/telegram.svg'
                     alt=''

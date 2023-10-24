@@ -64,7 +64,13 @@ const Support = () => {
                   onClick={() => setState({ open: true, body: support.body })}
                   style={{ cursor: 'pointer' }}
                 >
-                  {support.title}
+                  <p>{support.title}</p>
+                  <Image
+                    src='/static/media/next.svg'
+                    alt=''
+                    width={16}
+                    height={16}
+                  />
                 </li>
                 <SupportDrawer open={state.open} setOpen={setState}>
                   {state.body}

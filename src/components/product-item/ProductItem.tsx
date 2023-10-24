@@ -23,7 +23,7 @@ const ProductItem = ({ item }: Props) => {
   // INTERSECTION OBSERVER
   const ref = useRef<HTMLAnchorElement | null>(null);
   const entry = useIntersectionObserver(ref, {});
-  const isVisible = entry?.isIntersecting;
+  const isVisible = !!entry?.isIntersecting;
   // INTERSECTION OBSERVER
 
   const strId = item.item_id?.toString() || item.id?.toString();
@@ -46,7 +46,6 @@ const ProductItem = ({ item }: Props) => {
       href={`/products/${item.item_id || item.id}`}
       className={styles.product}
       onClick={addToRecent}
-      ref={ref}
     >
       <div className={styles.product__top}>
         <Image src={imageSource} alt='' fill loading='eager' priority />
