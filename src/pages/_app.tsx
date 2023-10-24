@@ -4,6 +4,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import 'react-phone-number-input/style.css';
 
 import type { AppProps } from 'next/app';
+import { Toaster } from 'react-hot-toast';
 import NextNProgress from 'nextjs-progressbar';
 import dynamic from 'next/dynamic';
 
@@ -22,6 +23,7 @@ function App({ Component, pageProps }: AppProps) {
       <Layout>
         <NextNProgress {...nprogressConfig} />
         <TopWidget />
+        <Toaster position='top-center' />
         <Component {...pageProps} />
       </Layout>
     </DrawerContextProvider>

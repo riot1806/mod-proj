@@ -1,6 +1,7 @@
 import styles from '../styles.module.scss';
 
 import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import ContentLoader from 'react-content-loader';
 
@@ -14,6 +15,7 @@ import Dropdown from '@/components/dropdown/Dropdown';
 const HeaderBottom = () => {
   const { data, isLoading } = useGetHomeQuery(null);
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const search = searchParams.get('h');
 
@@ -36,7 +38,12 @@ const HeaderBottom = () => {
         <ul>
           {categoryData?.map((c) => (
             <li key={c.id}>
-              <Link href={{ pathname: '/products', query: { c: c.id } }}>
+              <Link
+                href={{
+                  pathname: '/products',
+                  query: { ...router.query, c: c.id },
+                }}
+              >
                 {c.name}
               </Link>
               <Dropdown id={activeCategory?.id!} styles={styles} />

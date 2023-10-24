@@ -4,7 +4,7 @@ import styles from '@/styles/SingleProduct.module.scss';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import CurrencyFormat from 'react-currency-format';
+import toast from 'react-hot-toast';
 
 import { useGetProductQuery } from '@/redux/api/productApi';
 import { useGetImageSource } from '@/hooks/useGetImageSource';
@@ -38,7 +38,7 @@ const SingleProduct = () => {
   const isMobile = useIsMobile(1000);
 
   const handleAddToCart = () => {
-    if (!sizeId) return alert('Выберите размер!');
+    if (!sizeId) return toast('Выберите размер!');
 
     addToCart({
       product_id: data?.id,
@@ -46,7 +46,7 @@ const SingleProduct = () => {
       option_id: sizeId!,
     })
       .unwrap()
-      .then(() => alert('Товар добавлен в корзину'));
+      .then(() => toast('Товар добавлен в корзину'));
   };
 
   useEffect(() => {

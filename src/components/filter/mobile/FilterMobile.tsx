@@ -19,12 +19,7 @@ const classNames: ClassNamesConfig = {
     state.isFocused
       ? styles.filter__select__control_focused
       : styles.filter__select_control,
-  menuList: () => styles.filter__select_list,
   indicatorSeparator: () => styles.filter__select_indicator,
-  option: (state) =>
-    state.isFocused || state.isSelected ? styles.filter__select_option : '',
-  input: () => styles.filter__select_input,
-  dropdownIndicator: () => styles.filter__indicator_container,
   valueContainer: () => styles.filter__value_container,
 };
 

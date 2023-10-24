@@ -1,6 +1,7 @@
 import styles from './styles.module.scss';
 
 import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import { useGetHomeQuery } from '@/redux/api/homeApi';
@@ -9,6 +10,7 @@ import ContentLoader from 'react-content-loader';
 const Navigation = () => {
   const { data, isLoading } = useGetHomeQuery(null);
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const search = searchParams.get('h');
 
@@ -39,7 +41,7 @@ const Navigation = () => {
         {data?.map((item) => (
           <li key={item.id}>
             <Link
-              href={{ pathname: '/', query: { h: item.slug } }}
+              href={{ pathname: '/', query: { ...router.query, h: item.slug } }}
               {...rest(item.slug)}
             >
               {item.name}

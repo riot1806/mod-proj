@@ -55,10 +55,6 @@ const Support = () => {
             <p>Выбрать размер</p>
           </li>
         </ul>
-        <form className={styles.support__middle}>
-          <Image src='/static/media/search.svg' alt='' width={16} height={16} />
-          <input type='text' placeholder='Поиск' />
-        </form>
         <ul className={styles.support__bottom}>
           {data?.map((support) =>
             isMobile ? (

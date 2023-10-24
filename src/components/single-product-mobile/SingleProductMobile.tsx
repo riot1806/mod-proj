@@ -14,7 +14,6 @@ import Colors from '../colors/Colors';
 import Button from '../custom/button/Button';
 import SingleProductMore from '../single-product-more/SingleProductMore';
 import SingleProductTabs from '../single-product-tabs/SingleProductTabs';
-import CurrencyFormat from 'react-currency-format';
 
 interface Props {
   product: any;

@@ -4,10 +4,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { useGetLS } from '@/hooks/ls';
 import FooterMobile from './footer-mobile/FooterMobile';
 
 const Footer = () => {
   const isMobile = useIsMobile();
+  const isAuth = useGetLS('token');
 
   if (isMobile) return <FooterMobile />;
 
@@ -67,23 +69,25 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div>
-            <p>МОЙ АККАУНТ</p>
-            <ul>
-              <li>
-                <Link href='/'>Мои карты</Link>
-              </li>
-              <li>
-                <Link href='/'>Мои заказы</Link>
-              </li>
-              <li>
-                <Link href='/'>Мои адреса</Link>
-              </li>
-              <li>
-                <Link href='/'>Избранные</Link>
-              </li>
-            </ul>
-          </div>
+          {Boolean(isAuth) && (
+            <div>
+              <p>МОЙ АККАУНТ</p>
+              <ul>
+                <li>
+                  <Link href='/profile/cards'>Мои карты</Link>
+                </li>
+                <li>
+                  <Link href='/profile/orders'>Мои заказы</Link>
+                </li>
+                <li>
+                  <Link href='/profile/addresses'>Мои адреса</Link>
+                </li>
+                <li>
+                  <Link href='/profile/favorites'>Избранные</Link>
+                </li>
+              </ul>
+            </div>
+          )}
           <div>
             <p>УЗНАТЬ БОЛЬШЕ</p>
             <ul>

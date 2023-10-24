@@ -2,6 +2,7 @@ import { rootApi } from './rootApi';
 import { Filter } from '@/types/filter.type';
 import { CartItem } from '@/interfaces/CartItem';
 import { Pagination } from '@/types/pagination.type';
+import { Category } from '@/interfaces/Category';
 
 const categoryApi = rootApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -32,6 +33,12 @@ const categoryApi = rootApi.injectEndpoints({
         pagination: Pagination;
       }) => response.data,
     }),
+    getCategory: builder.query<Category, number>({
+      query: (categoryId) => ({
+        url: `/categories/${categoryId}`,
+      }),
+      transformResponse: (response: { data: Category }) => response.data,
+    }),
   }),
 });
 
@@ -39,4 +46,5 @@ export const {
   useGetCategoriesQuery,
   useGetCategoryFiltersQuery,
   useGetCategoryProductsQuery,
+  useGetCategoryQuery,
 } = categoryApi;

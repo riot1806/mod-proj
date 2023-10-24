@@ -57,7 +57,7 @@ const Reg = ({ callback, checkout }: Props) => {
         Фамилия
         <input type='text' id='last_name' {...register('last_name')} required />
       </label>
-      <Button dark type='submit' withLoading={isLoading}>
+      <Button dark type='submit' withLoading={isLoading} className={styles.form__sbmt}>
         {checkout ? 'ДАЛЕЕ' : 'ОТПРАВИТЬ'}
       </Button>
     </form>

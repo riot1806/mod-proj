@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './styles.module.scss';
 
-import { useLocalStorage } from 'usehooks-ts';
+import { useIntersectionObserver, useLocalStorage } from 'usehooks-ts';
 import { Skeleton } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -9,9 +9,7 @@ import Image from 'next/image';
 import { Product } from '@/interfaces/Product';
 import { useGetImageSource } from '@/hooks/useGetImageSource';
 import { useViewFavoritesQuery } from '@/redux/api/favoritesApi';
-import { useIsMobile } from '@/hooks/useIsMobile';
 import Fav from '../fav/Fav';
-import ImageLoader from '../template/ImageLoader';
 
 interface Props {
   item: Product;
@@ -21,8 +19,12 @@ const ProductItem = ({ item }: Props) => {
   const imageSource = useGetImageSource(item.media!);
   const [recent, setRecent] = useLocalStorage<string[]>('recent', []);
   const { refetch } = useViewFavoritesQuery('recent');
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const isMobile = useIsMobile();
+
+  // INTERSECTION OBSERVER
+  const ref = useRef<HTMLAnchorElement | null>(null);
+  const entry = useIntersectionObserver(ref, {});
+  const isVisible = entry?.isIntersecting;
+  // INTERSECTION OBSERVER
 
   const strId = item.item_id?.toString() || item.id?.toString();
 
@@ -44,15 +46,10 @@ const ProductItem = ({ item }: Props) => {
       href={`/products/${item.item_id || item.id}`}
       className={styles.product}
       onClick={addToRecent}
+      ref={ref}
     >
       <div className={styles.product__top}>
-        {!imageLoaded && <ImageLoader height={isMobile ? '200px' : '400px'} />}
-        <Image
-          src={imageSource}
-          alt=''
-          fill
-          onLoadingComplete={() => setImageLoaded(true)}
-        />
+        <Image src={imageSource} alt='' fill loading='eager' priority />
         <Fav itemId={item.item_id || item.id} />
       </div>
       <div className={styles.product__bottom}>

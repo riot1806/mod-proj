@@ -18,7 +18,7 @@ const SupportDrawer = ({ open, setOpen, children }: SupportDrawerProps) => {
       PaperProps={{ style: { width: '100%' } }}
     >
       <DrawerHead title='ЦЕНТР ПОДДЕРЖКИ' setState={setOpen} />
-      <div style={{ padding: '10px' }}>{children}</div>
+      <div style={{ padding: '10px', lineHeight: '25px' }}>{children}</div>
     </Drawer>
   );
 };

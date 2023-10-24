@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { Drawer } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useGetHomeCategoriesQuery, useGetHomeQuery } from '@/redux/api/homeApi';
+import {
+  useGetHomeCategoriesQuery,
+  useGetHomeQuery,
+} from '@/redux/api/homeApi';
 import { useGetLS } from '@/hooks/ls';
 import Navigation from '@/components/navigation/Navigation';
 import DrawerHead from '../head/DrawerHead';
@@ -14,7 +18,9 @@ import DrawerHead from '../head/DrawerHead';
 const MainDrawer = () => {
   const { data } = useGetHomeQuery(null);
   const [open, setOpen] = useState(false);
-  const isAuth = useGetLS('token');
+  const isAuthLS = useGetLS('token');
+  const [isAuth, setIsAuth] = useState(isAuthLS);
+  const router = useRouter();
 
   const searchParams = useSearchParams();
 
@@ -26,6 +32,16 @@ const MainDrawer = () => {
   const handleClose = () => setOpen(false);
 
   const { data: categoryData } = useGetHomeCategoriesQuery(activeCategory?.id!);
+
+  useEffect(() => {
+    const handleLS = () => {
+      setIsAuth(localStorage.getItem('token'));
+    };
+
+    window.addEventListener('storage', handleLS);
+
+    return () => window.removeEventListener('storage', handleLS);
+  }, []);
 
   return (
     <>
@@ -41,7 +57,7 @@ const MainDrawer = () => {
         <div className={styles.drawer}>
           <DrawerHead title='' setState={setOpen} />
           <div className={styles.drawer__auth}>
-            {isAuth ? (
+            {Boolean(isAuth || isAuthLS) ? (
               <Link href='/profile' onClick={handleClose}>
                 <Image
                   src='/static/media/user.svg'
@@ -81,7 +97,10 @@ const MainDrawer = () => {
             {categoryData?.map((c) => (
               <li key={c.id}>
                 <Link
-                  href={{ pathname: '/products', query: { c: c.id } }}
+                  href={{
+                    pathname: '/products',
+                    query: { ...router.query, c: c.id },
+                  }}
                   onClick={handleClose}
                 >
                   {c.name}

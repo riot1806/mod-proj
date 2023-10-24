@@ -1,5 +1,6 @@
 import { CSSProperties } from 'react';
 
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -17,9 +18,12 @@ interface Props {
 
 const CategoryItem = ({ item }: Props) => {
   const imageSource = useGetImageSource(item.media!);
+  const router = useRouter();
 
   return (
-    <Link href={{ pathname: '/products', query: { c: item.id } }}>
+    <Link
+      href={{ pathname: '/products', query: { ...router.query, c: item.id } }}
+    >
       <Image src={imageSource} alt='' fill />
       <p style={styles}>{item.name}</p>
     </Link>

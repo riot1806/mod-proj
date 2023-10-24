@@ -1,6 +1,7 @@
 import styles from './styles.module.scss';
 
 import Image from 'next/image';
+import toast from 'react-hot-toast';
 
 import { useGetImageSource } from '@/hooks/useGetImageSource';
 import { CartItem } from '@/interfaces/CartItem';
@@ -25,7 +26,7 @@ const CartItem = ({ item, cart, checkout, search }: Props) => {
   const handleRemoveItem = () => {
     removeFromCart({ id: item.id, optionId: item.option.id })
       .unwrap()
-      .then(() => alert('Товар удален'));
+      .then(() => toast('Товар удален'));
   };
 
   const handleUpdateQuantity = (action: 'inc' | 'dec') => {

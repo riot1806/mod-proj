@@ -3,6 +3,7 @@ import styles from '../styles.module.scss';
 
 import { E164Number } from 'libphonenumber-js/core';
 import PhoneInput from 'react-phone-number-input';
+import toast from 'react-hot-toast';
 
 import { useLoginMutation } from '@/redux/api/authApi';
 import { Callback } from '@/types/callback.type';
@@ -22,7 +23,7 @@ const Login = ({ callback }: Props) => {
     login({ phone: String(value) })
       .unwrap()
       .then(() => callback!({ state: true, data: value }))
-      .catch((err) => alert(err.data.errors.phone));
+      .catch((err) => toast.error(err.data.errors.phone));
   };
 
   return (

@@ -1,6 +1,7 @@
 import styles from './styles.module.scss';
 
 import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,6 +14,7 @@ import {
 const CWidget = () => {
   const { data } = useGetHomeQuery(null);
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const search = searchParams.get('h');
 
@@ -49,7 +51,12 @@ const CWidget = () => {
             <ul>
               {category.children?.map((cat) => (
                 <li key={cat.id}>
-                  <Link href={{ pathname: '/products', query: { c: cat.id } }}>
+                  <Link
+                    href={{
+                      pathname: '/products',
+                      query: { ...router.query, c: cat.id },
+                    }}
+                  >
                     {cat.name}
                   </Link>
                 </li>

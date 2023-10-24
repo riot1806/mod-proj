@@ -3,6 +3,7 @@ import styles from '../styles.module.scss';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
 
 import { useGetUserQuery } from '@/redux/api/userApi';
 import {
@@ -50,7 +51,7 @@ const Order = () => {
     setIsLoading(true);
 
     if (isAuth) {
-      if (!addressId) return alert('Выберите адрес');
+      if (!addressId) return toast('Выберите адрес');
 
       createOrder({
         address_id: addressId!,
@@ -60,8 +61,13 @@ const Order = () => {
       })
         .unwrap()
         .then((response) => {
-          alert(`Ваш заказ №${response.data.reference} оформлен`);
-          return router.push('/');
+          return router.push({
+            pathname: '/order',
+            query: {
+              ...router.query,
+              o: response.data.id,
+            },
+          });
         })
         .finally(() => setIsLoading(false));
 
@@ -90,8 +96,13 @@ const Order = () => {
             })
               .unwrap()
               .then((response) => {
-                alert(`Ваш заказ №${response.data.reference} оформлен`);
-                return router.push('/');
+                return router.push({
+                  pathname: '/order',
+                  query: {
+                    ...router.query,
+                    o: response.data.id,
+                  },
+                });
               })
               .finally(() => setIsLoading(false))
           )
@@ -173,7 +184,12 @@ const Order = () => {
           />
         </>
       )}
-      <Button dark type='submit' withLoading={isLoading}>
+      <Button
+        dark
+        type='submit'
+        withLoading={isLoading}
+        className={styles.form__sbmt}
+      >
         ДАЛЕЕ
       </Button>
     </form>

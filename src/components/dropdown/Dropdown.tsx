@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import { useGetHomeCategoriesQuery } from '@/redux/api/homeApi';
@@ -9,6 +10,7 @@ type DropdownProps = {
 
 const Dropdown = ({ id, styles }: DropdownProps) => {
   const { data } = useGetHomeCategoriesQuery(id);
+  const router = useRouter();
 
   return (
     <div className={styles.dropdown}>
@@ -16,7 +18,10 @@ const Dropdown = ({ id, styles }: DropdownProps) => {
         <ul key={category.id}>
           <li>
             <Link
-              href={{ pathname: '/products', query: { c: category.id } }}
+              href={{
+                pathname: '/products',
+                query: { ...router.query, c: category.id },
+              }}
               className={styles.dropdown__bold}
             >
               {category.name}
@@ -24,7 +29,12 @@ const Dropdown = ({ id, styles }: DropdownProps) => {
           </li>
           {category.children?.map((cat) => (
             <li key={cat.id}>
-              <Link href={{ pathname: '/products', query: { c: cat.id } }}>
+              <Link
+                href={{
+                  pathname: '/products',
+                  query: { ...router.query, c: cat.id },
+                }}
+              >
                 {cat.name}
               </Link>
             </li>

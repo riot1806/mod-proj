@@ -23,7 +23,7 @@ const Checkout = () => {
     if (callback.data)
       router.push({
         pathname: '/checkout/otp',
-        query: { phone: callback.data },
+        query: { ...router.query, phone: callback.data },
       });
   }, [callback]);
 

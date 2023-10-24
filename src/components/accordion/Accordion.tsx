@@ -21,7 +21,10 @@ const CustomAccordion = ({ title, categoryId, children }: CustomProps) => {
   const router = useRouter();
 
   const handleChange = () => {
-    router.push({ pathname: '/products', query: { c: categoryId } });
+    router.push({
+      pathname: '/products',
+      query: { ...router.query, c: categoryId },
+    });
   };
 
   return (
@@ -40,6 +43,8 @@ const CustomAccordion = ({ title, categoryId, children }: CustomProps) => {
 };
 
 const AccordionComponent = ({ category }: Props) => {
+  const router = useRouter();
+
   return (
     <CustomAccordion title={category.name} categoryId={category.id}>
       {category.children?.map((cat) => (
@@ -47,7 +52,12 @@ const AccordionComponent = ({ category }: Props) => {
           <ul className={styles.accordion__list}>
             {cat.children?.map((c) => (
               <li key={c.id}>
-                <Link href={{ pathname: `/products`, query: { c: c.id } }}>
+                <Link
+                  href={{
+                    pathname: `/products`,
+                    query: { ...router.query, c: c.id },
+                  }}
+                >
                   {c.name}
                 </Link>
               </li>

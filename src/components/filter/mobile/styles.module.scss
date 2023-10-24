@@ -33,36 +33,28 @@
       display: none;
     }
 
-    @include select;
-
     .filter__select {
-      width: fit-content !important;
+      min-width: fit-content;
     }
 
     .filter__select_control,
     .filter__select__control_focused {
-      min-width: max-content !important;
-      background-color: transparent !important;
-      font-size: 15px !important;
-      justify-content: flex-start !important;
+      border: none;
+      box-shadow: none;
+    }
+
+    .filter__select_indicator {
+      display: none;
     }
 
     .filter__value_container {
-      flex: none !important;
-    }
-
-    .filter__select_list {
-      font-size: 15px;
+      padding: 0;
     }
 
     .filter__btnnn {
       height: 30px;
       border-radius: 5px;
       font-size: 15px;
-    }
-
-    .filter__indicator_container {
-      padding: 0 !important;
     }
 
     ul {

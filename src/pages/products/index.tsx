@@ -7,6 +7,7 @@ import { CircularProgress } from '@mui/material';
 import {
   useGetCategoriesQuery,
   useGetCategoryProductsQuery,
+  useGetCategoryQuery,
 } from '@/redux/api/categoryApi';
 import AccordionComponent from '@/components/accordion/Accordion';
 import Filter from '@/components/filter/Filter';
@@ -16,9 +17,16 @@ const Products = () => {
   const { query } = useRouter();
   const searchParams = useSearchParams();
   const search = searchParams.get('c');
+  const catSearch = searchParams.get('h');
 
-  const { data } = useGetCategoriesQuery(null);
-  const { data: productsData, isLoading } = useGetCategoryProductsQuery({
+  const { data: categories } = useGetCategoriesQuery(null);
+
+  const activeCategory = categories?.find(
+    (c) => c.slug === (catSearch === 'women' ? 'zenshhiny' : 'muzciny')
+  );
+
+  const { data } = useGetCategoryQuery(activeCategory?.id);
+  const { data: productsData, isFetching } = useGetCategoryProductsQuery({
     categoryId: Number(search),
     params: {
       brand: query.brand,
@@ -33,7 +41,7 @@ const Products = () => {
   return (
     <section className={styles.products}>
       <div className={styles.products__left}>
-        {data?.map((category) => (
+        {categories?.map((category) => (
           <AccordionComponent key={category.id} category={category} />
         ))}
       </div>
@@ -47,7 +55,7 @@ const Products = () => {
           categoryId={Number(search)}
           productsLength={productsData?.length!}
         />
-        {isLoading ? (
+        {isFetching ? (
           <div className='g__preloader'>
             <CircularProgress size={45} color='inherit' />
           </div>

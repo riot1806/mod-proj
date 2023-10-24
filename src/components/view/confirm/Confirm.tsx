@@ -3,6 +3,7 @@ import styles from '../styles.module.scss';
 
 import { useRouter } from 'next/router';
 import OTPInput from 'react-otp-input';
+import toast from 'react-hot-toast';
 
 import { useConfirmMutation } from '@/redux/api/authApi';
 import Button from '../../custom/button/Button';
@@ -33,11 +34,12 @@ const Confirm = ({ phone, checkout }: Props) => {
       .unwrap()
       .then(({ token }) => {
         localStorage.setItem('token', token);
+        window.dispatchEvent(new Event('storage'));
         checkout
           ? router.push('/checkout/otp/end')
           : (window.location.href = '/');
       })
-      .catch((err) => alert(err.data.message));
+      .catch((err) => toast.error(err.data.message));
   };
 
   return (
@@ -52,8 +54,7 @@ const Confirm = ({ phone, checkout }: Props) => {
         containerStyle={{ display: 'flex', justifyContent: 'center' }}
         inputStyle={st}
       />
-      {/* <p>На введеный вами номер придет код</p> */}
-      <Button dark type='submit' withLoading={isLoading}>
+      <Button dark type='submit' withLoading={isLoading} className={styles.form__sbmt}>
         {checkout ? 'ДАЛЕЕ' : 'ВОЙТИ'}
       </Button>
     </form>
