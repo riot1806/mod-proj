@@ -1,0 +1,21 @@
+.pagination {
+  margin: 40px 0 20px 0;
+
+  .pagination__prev,
+  .pagination__next {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 2px;
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    margin-bottom: 0;
+  }
+}

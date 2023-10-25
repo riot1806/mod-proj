@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router';
 
 import SecLayout from '@/components/layout/SecLayout';
+import { useGetSupportQuery } from '@/redux/api/supportApi';
 
 const SupportSingle = () => {
   const { query } = useRouter();
-
-  const body = query.body;
+  const { data } = useGetSupportQuery(+query.id);
 
   return (
     <SecLayout title='ЦЕНТР ПОДДЕРЖКИ'>
-      <div style={{ width: '100%' }}>{body}</div>
+      <div style={{ width: '100%' }}>{data?.body}</div>
     </SecLayout>
   );
 };

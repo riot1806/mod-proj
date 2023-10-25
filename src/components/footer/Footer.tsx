@@ -33,7 +33,7 @@ const Footer = () => {
             <ul>
               {data?.map((sprt) => (
                 <li>
-                  <Link href={`/support/${sprt.body}`}>{sprt.title}</Link>
+                  <Link href={`/support/${sprt.id}`}>{sprt.title}</Link>
                 </li>
               ))}
             </ul>

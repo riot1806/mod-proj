@@ -9,7 +9,13 @@ const supportApi = rootApi.injectEndpoints({
       }),
       transformResponse: (response: { data: Support[] }) => response.data,
     }),
+    getSupport: builder.query<Support, number>({
+      query: (supportId) => ({
+        url: `/pages/${supportId}`,
+      }),
+      transformResponse: (response: { data: Support }) => response.data,
+    }),
   }),
 });
 
-export const { useGetSupportsQuery } = supportApi;
+export const { useGetSupportsQuery, useGetSupportQuery } = supportApi;

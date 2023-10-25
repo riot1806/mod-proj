@@ -19,7 +19,7 @@ const categoryApi = rootApi.injectEndpoints({
       transformResponse: (response: { data: Filter[] }) => response.data,
     }),
     getCategoryProducts: builder.query<
-      CartItem[],
+      { data: CartItem[]; pagination: Pagination },
       { categoryId: number; params: any }
     >({
       query: ({ categoryId, params }) => ({
@@ -28,10 +28,6 @@ const categoryApi = rootApi.injectEndpoints({
           ...params,
         },
       }),
-      transformResponse: (response: {
-        data: CartItem[];
-        pagination: Pagination;
-      }) => response.data,
     }),
     getCategory: builder.query<Category, number>({
       query: (categoryId) => ({
