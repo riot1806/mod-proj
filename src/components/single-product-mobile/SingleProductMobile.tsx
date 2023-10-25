@@ -62,7 +62,7 @@ const SingleProductMobile = ({
           {product?.name}
         </p>
         <strong className={styles.single__product_s}>
-          {product.price.toLocaleString()} UZS
+          {product?.price.toLocaleString()} UZS
         </strong>
         <Sizes sizes={product?.options} sizeId={sizeId} setSizeId={setSizeId} />
         <Colors colors={product?.colors} />

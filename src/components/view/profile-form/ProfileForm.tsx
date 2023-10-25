@@ -110,7 +110,7 @@ const ProfileForm = ({ styles }: Props) => {
         ГОРОД
         <input type='text' id='city' value='Ташкент' disabled />
       </label>
-      <div className={styles.profile__avatar}>
+      {/* <div className={styles.profile__avatar}>
         <Image
           src='/static/media/avatar.webp'
           alt=''
@@ -124,12 +124,11 @@ const ProfileForm = ({ styles }: Props) => {
           </label>
           <button>УДАЛИТЬ</button>
         </div>
-      </div>
+      </div> */}
       <div className={styles.profile__btns}>
         <Button dark type='submit' withLoading={isLoading}>
           СОХРАНИТЬ
         </Button>
-        <Button>ОТМЕНА</Button>
       </div>
     </form>
   );

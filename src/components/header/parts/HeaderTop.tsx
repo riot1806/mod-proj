@@ -27,7 +27,7 @@ const HeaderTop = () => {
         Помощь и контакт
       </Link>
       {Boolean(isAuth || isAuthLS) ? (
-        <Link href='/profile'>Профиль</Link>
+        <Link href='/profile/orders'>Профиль</Link>
       ) : (
         <ul>
           <li>

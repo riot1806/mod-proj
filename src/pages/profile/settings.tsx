@@ -59,7 +59,6 @@ const ProfileSettings = () => {
             <Button dark type='submit'>
               СОХРАНИТЬ
             </Button>
-            <Button>ОТМЕНА</Button>
           </div>
         </form>
       </div>

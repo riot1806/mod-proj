@@ -9,7 +9,7 @@ const SupportSingle = () => {
 
   return (
     <SecLayout title='ЦЕНТР ПОДДЕРЖКИ'>
-      <div style={{ width: '100%' }}>{data?.body}</div>
+      <div style={{ width: '100%', lineHeight: '25px' }}>{data?.body}</div>
     </SecLayout>
   );
 };
