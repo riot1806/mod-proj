@@ -9,34 +9,17 @@ import { Product } from '@/interfaces/Product';
 import { useGetImageSource } from '@/hooks/useGetImageSource';
 import { useViewFavoritesQuery } from '@/redux/api/favoritesApi';
 import Fav from '../fav/Fav';
+import { usePlaceholder } from '@/hooks/usePlaceholder';
 
 interface Props {
   item: Product;
 }
 
-const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <linearGradient id="g">
-      <stop stop-color="#f3f3f3" offset="20%" />
-      <stop stop-color="#ecebeb" offset="50%" />
-      <stop stop-color="#f3f3f3" offset="70%" />
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="#f3f3f3" />
-  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
-  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
-</svg>`;
-
-const toBase64 = (str: string) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
-    : window.btoa(str);
-
 const ProductItem = ({ item }: Props) => {
   const imageSource = useGetImageSource(item.media!);
   const [recent, setRecent] = useLocalStorage<string[]>('recent', []);
   const { refetch } = useViewFavoritesQuery('recent');
+  const placeholder = usePlaceholder(1000, 1000);
 
   const strId = item.item_id?.toString() || item.id?.toString();
 
@@ -63,9 +46,7 @@ const ProductItem = ({ item }: Props) => {
         <Image
           src={imageSource}
           alt=''
-          placeholder={`data:image/svg+xml;base64,${toBase64(
-            shimmer(1000, 1000)
-          )}`}
+          placeholder={placeholder}
           width={1000}
           height={1000}
           style={{ maxWidth: '100%', height: 'auto' }}

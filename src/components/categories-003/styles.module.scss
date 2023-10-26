@@ -1,0 +1,25 @@
+.categories__carousel {
+  margin-top: 20px;
+
+  .categories__item {
+    text-align: center;
+
+    img {
+      width: 150px !important;
+      height: 150px !important;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    h4 {
+      margin-top: 10px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .categories__carousel .categories__item img {
+    width: 120px !important;
+    height: 120px !important;
+  }
+}

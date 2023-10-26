@@ -45,6 +45,7 @@
     .product__sale {
       display: flex;
       gap: 20px;
+      overflow: hidden;
 
       span {
         color: #d54a52;
@@ -54,6 +55,8 @@
       s {
         opacity: 0.5;
         white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
     }
   }
