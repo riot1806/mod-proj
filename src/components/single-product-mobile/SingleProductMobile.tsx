@@ -14,6 +14,7 @@ import Colors from '../colors/Colors';
 import Button from '../custom/button/Button';
 import SingleProductMore from '../single-product-more/SingleProductMore';
 import SingleProductTabs from '../single-product-tabs/SingleProductTabs';
+import { usePlaceholder } from '@/hooks/usePlaceholder';
 
 interface Props {
   product: any;
@@ -31,6 +32,7 @@ const SingleProductMobile = ({
   isLoading,
 }: Props) => {
   const router = useRouter();
+  const placeholder = usePlaceholder(1000, 400)
 
   return (
     <section className={styles.single__product}>
@@ -40,7 +42,7 @@ const SingleProductMobile = ({
 
           return (
             <div key={media.id} className={styles.single__product_slide}>
-              <Image src={imageSource} alt='' fill />
+              <Image src={imageSource} alt='' fill placeholder={placeholder} />
               <div className={styles.single__product_over}>
                 <button onClick={() => router.back()}>
                   <Image
