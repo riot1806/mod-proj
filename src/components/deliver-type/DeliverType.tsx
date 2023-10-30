@@ -30,7 +30,7 @@ const DeliverType = ({ deliverType, setDeliverType, styles }: Props) => {
       <li onClick={() => setDeliverType('express')}>
         <Image src='/static/media/time.svg' alt='' width={22} height={22} />
         <b>Экспресс доставка</b>
-        <p>4 дня</p>
+        <p>2 дня</p>
         <strong>35 000 сум</strong>
         <div className={styles.form__check}>
           {deliverType === 'express' && (

@@ -54,15 +54,15 @@ const ProductItem = ({ item }: Props) => {
         <Fav itemId={item.item_id || item.id} />
       </div>
       <div className={styles.product__bottom}>
-        <b>{item.brand.name}</b>
+        <b>{item.brand?.name}</b>
         <p>{item.name}</p>
         {item.old_price ? (
           <div className={styles.product__sale}>
-            <span>{item.price.toLocaleString()} UZS</span>
+            <span>{item.price?.toLocaleString()} UZS</span>
             <s>{item.old_price.toLocaleString()} UZS</s>
           </div>
         ) : (
-          <strong>{item.price.toLocaleString()} UZS</strong>
+          <strong>{item.price?.toLocaleString()} UZS</strong>
         )}
       </div>
     </Link>

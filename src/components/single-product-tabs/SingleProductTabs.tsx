@@ -66,7 +66,7 @@ const SingleProductTabs = ({
       <Tabs value={value} onChange={handleChange} textColor='inherit'>
         <Tab label='ОПИСАНИЕ' {...a11yProps(0)} />
         {/* <Tab label='РАЗМЕРЫ' {...a11yProps(1)} /> */}
-        <Tab label='ДОСТАВКА' {...a11yProps(2)} />
+        {/* <Tab label='ДОСТАВКА' {...a11yProps(2)} /> */}
       </Tabs>
       <CustomTabPanel value={value} index={0}>
         <div className={styles.tabs__description}>
@@ -84,9 +84,9 @@ const SingleProductTabs = ({
       {/* <CustomTabPanel value={value} index={1}>
         <Sizes sizes={sizes} sizeId={sizeId} setSizeId={setSizeId} />
       </CustomTabPanel> */}
-      <CustomTabPanel value={value} index={2}>
+      {/* <CustomTabPanel value={value} index={2}>
         Доставка
-      </CustomTabPanel>
+      </CustomTabPanel> */}
     </>
   );
 };

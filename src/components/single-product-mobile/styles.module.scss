@@ -9,7 +9,7 @@
       border-radius: 5px;
     }
 
-    &>div {
+    & > div {
       position: absolute;
       top: 0;
       left: 0;
@@ -33,9 +33,15 @@
     text-transform: uppercase;
     margin-top: 20px;
 
+    .single__product_fl {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
     .single__product_b,
     .single__product_s {
-      font-size: 20px;
+      font-size: 18px;
     }
 
     .product__add span {

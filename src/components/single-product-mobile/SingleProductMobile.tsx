@@ -32,7 +32,7 @@ const SingleProductMobile = ({
   isLoading,
 }: Props) => {
   const router = useRouter();
-  const placeholder = usePlaceholder(1000, 400)
+  const placeholder = usePlaceholder(1000, 400);
 
   return (
     <section className={styles.single__product}>
@@ -59,13 +59,16 @@ const SingleProductMobile = ({
         })}
       </Carousel>
       <div className={styles.single__product_info}>
-        <b className={styles.single__product_b}>{product?.brand.name}</b>
-        <p style={{ fontFamily: 'Helvetica Neue Bold, sans-serif' }}>
-          {product?.name}
-        </p>
-        <strong className={styles.single__product_s}>
-          {product?.price.toLocaleString()} UZS
-        </strong>
+        <div className={styles.single__product_fl}>
+          <b className={styles.single__product_b}>{product?.brand.name}</b>
+          <p>{product?.name}</p>
+          <strong
+            className={styles.single__product_s}
+            style={{ fontFamily: 'Helvetica Neue Bold, sans-serif' }}
+          >
+            {product?.price.toLocaleString()} UZS
+          </strong>
+        </div>
         <Sizes sizes={product?.options} sizeId={sizeId} setSizeId={setSizeId} />
         <Colors colors={product?.colors} />
         <Button
