@@ -37,35 +37,37 @@ const ProductItem = ({ item }: Props) => {
   }, [recent]);
 
   return (
-    <Link
-      href={`/products/${item.item_id || item.id}`}
-      className={styles.product}
-      onClick={addToRecent}
-    >
-      <div className={styles.product__top}>
-        <Image
-          src={imageSource}
-          alt=''
-          placeholder={placeholder}
-          width={1000}
-          height={1000}
-          style={{ maxWidth: '100%', height: 'auto' }}
-        />
-        <Fav itemId={item.item_id || item.id} />
-      </div>
-      <div className={styles.product__bottom}>
-        <b>{item.brand?.name}</b>
-        <p>{item.name}</p>
-        {item.old_price ? (
-          <div className={styles.product__sale}>
-            <span>{item.price?.toLocaleString()} UZS</span>
-            <s>{item.old_price.toLocaleString()} UZS</s>
-          </div>
-        ) : (
-          <strong>{item.price?.toLocaleString()} UZS</strong>
-        )}
-      </div>
-    </Link>
+    item.price && (
+      <Link
+        href={`/products/${item.item_id || item.id}`}
+        className={styles.product}
+        onClick={addToRecent}
+      >
+        <div className={styles.product__top}>
+          <Image
+            src={imageSource}
+            alt=''
+            placeholder={placeholder}
+            width={1000}
+            height={1000}
+            style={{ maxWidth: '100%', height: 'auto' }}
+          />
+          <Fav itemId={item.item_id || item.id} />
+        </div>
+        <div className={styles.product__bottom}>
+          <b>{item.brand?.name}</b>
+          <p>{item.name}</p>
+          {item.old_price ? (
+            <div className={styles.product__sale}>
+              <span>{item.price.toLocaleString()} UZS</span>
+              <s>{item.old_price.toLocaleString()} UZS</s>
+            </div>
+          ) : (
+            <strong>{item.price.toLocaleString()} UZS</strong>
+          )}
+        </div>
+      </Link>
+    )
   );
 };
 

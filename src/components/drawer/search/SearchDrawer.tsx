@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
-import { Box, Drawer } from '@mui/material';
+import { Box, CircularProgress, Drawer } from '@mui/material';
 import { useForm, SubmitHandler, set } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -21,7 +21,7 @@ type Inputs = {
 const SearchDrawer = () => {
   const [open, setOpen] = useState(false);
   const { register, handleSubmit } = useForm<Inputs>();
-  const [trigger, { data }] = useLazySearchProductsQuery();
+  const [trigger, { data, isFetching }] = useLazySearchProductsQuery();
   const router = useRouter();
   const isMobile = useIsMobile();
   const [show, setShow] = useState(false);
@@ -90,14 +90,20 @@ const SearchDrawer = () => {
             onChange={handleChange}
           />
           <div className={styles.drawer__wrapper}>
-            {data?.map((product) => (
-              <Link
-                href={`/products/${product.item_id || product.id}`}
-                key={product.id}
-              >
-                <CartItem item={product} search />
-              </Link>
-            ))}
+            {isFetching ? (
+              <div className='g__preloader'>
+                <CircularProgress size={45} color='inherit' />
+              </div>
+            ) : (
+              data?.map((product) => (
+                <Link
+                  href={`/products/${product.item_id || product.id}`}
+                  key={product.id}
+                >
+                  <CartItem item={product} search />
+                </Link>
+              ))
+            )}
           </div>
         </Box>
       </Drawer>

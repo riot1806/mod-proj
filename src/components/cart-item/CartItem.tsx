@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 
 import { useGetImageSource } from '@/hooks/useGetImageSource';
 import { CartItem } from '@/interfaces/CartItem';
+import { usePlaceholder } from '@/hooks/usePlaceholder';
 import {
   useRemoveFromCartMutation,
   useUpdateQuantityMutation,
@@ -22,6 +23,7 @@ const CartItem = ({ item, cart, checkout, search }: Props) => {
   const imageSource = useGetImageSource(item.media!);
   const [removeFromCart] = useRemoveFromCartMutation();
   const [updateQuantity] = useUpdateQuantityMutation();
+  const placeholder = usePlaceholder(110, 100);
 
   const handleRemoveItem = () => {
     removeFromCart({ id: item.id, optionId: item.option.id })
@@ -43,7 +45,13 @@ const CartItem = ({ item, cart, checkout, search }: Props) => {
 
   return (
     <div className={styles.item}>
-      <Image src={imageSource} alt='' width={105} height={100} />
+      <Image
+        src={imageSource}
+        alt=''
+        width={110}
+        height={100}
+        placeholder={placeholder}
+      />
       <div className={styles.item__info}>
         <b>{item.brand.name}</b>
         <p>{item.name}</p>

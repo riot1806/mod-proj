@@ -47,7 +47,10 @@ const Order = () => {
 
   const [addressId, setAddressId] = useState<number>();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data, event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     setIsLoading(true);
 
     if (isAuth) {
@@ -74,7 +77,7 @@ const Order = () => {
       return;
     }
 
-    await addAddress({
+    return await addAddress({
       first_name: userData?.first_name!,
       last_name: userData?.last_name!,
       street: data.address,
@@ -118,24 +121,26 @@ const Order = () => {
   }, [isSuccess]);
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form}>
       <h3>АДРЕС ДОСТАВКИ</h3>
       {Boolean(isAuth) ? (
-        <div className={styles.form__addresses}>
-          {addresses?.length ? (
-            addresses?.map((address) => (
-              <AddressItem
-                key={address.id}
-                address={address}
-                checkout
-                className={addressId === address.id ? styles.form__active : ''}
-                onClick={() => setAddressId(address.id)}
-              />
-            ))
-          ) : (
-            <AddAddressModal />
-          )}
-        </div>
+        <>
+          <div className={styles.form__addresses}>
+            {addresses?.length &&
+              addresses.map((address) => (
+                <AddressItem
+                  key={address.id}
+                  address={address}
+                  checkout
+                  className={
+                    addressId === address.id ? styles.form__active : ''
+                  }
+                  onClick={() => setAddressId(address.id)}
+                />
+              ))}
+          </div>
+          <AddAddressModal />
+        </>
       ) : (
         <>
           <label htmlFor='address'>
@@ -186,9 +191,10 @@ const Order = () => {
       )}
       <Button
         dark
-        type='submit'
+        type='button'
         withLoading={isLoading}
         className={styles.form__sbmt}
+        onClick={handleSubmit(onSubmit)}
       >
         ДАЛЕЕ
       </Button>

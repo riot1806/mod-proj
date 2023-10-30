@@ -1,5 +1,6 @@
 import styles from '@/styles/Cart.module.scss';
 
+import { CircularProgress } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -10,13 +11,17 @@ import Button from '@/components/custom/button/Button';
 import CartItem from '@/components/cart-item/CartItem';
 
 const Cart = () => {
-  const { data } = useViewCartQuery(null);
+  const { data, isFetching } = useViewCartQuery(null);
   const isAuth = useGetLS('token');
 
   return (
     <SecLayout title='КОРЗИНА'>
       <div className={styles.cart}>
-        {data?.products.length ? (
+        {isFetching ? (
+          <div className='g__preloader'>
+            <CircularProgress size={45} color='inherit' />
+          </div>
+        ) : data?.products.length ? (
           <div className={styles.cart__wrapper}>
             <div className={styles.cart__left}>
               {data?.products.map((product) => (

@@ -32,7 +32,7 @@ const SingleProductMobile = ({
   isLoading,
 }: Props) => {
   const router = useRouter();
-  const placeholder = usePlaceholder(1000, 400);
+  const placeholder = usePlaceholder(1000, 1000);
 
   return (
     <section className={styles.single__product}>
@@ -42,7 +42,7 @@ const SingleProductMobile = ({
 
           return (
             <div key={media.id} className={styles.single__product_slide}>
-              <Image src={imageSource} alt='' fill placeholder={placeholder} />
+              <Image src={imageSource} alt='' width={1000} height={1000} placeholder={placeholder} />
               <div className={styles.single__product_over}>
                 <button onClick={() => router.back()}>
                   <Image

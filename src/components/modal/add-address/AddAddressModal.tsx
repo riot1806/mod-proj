@@ -33,7 +33,10 @@ const AddAddressModal = () => {
   };
   const handleClose = () => setOpen(false);
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data, event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     addAddress({
       first_name: data?.first_name!,
       last_name: data?.last_name!,
@@ -45,6 +48,8 @@ const AddAddressModal = () => {
     })
       .unwrap()
       .then(() => handleClose());
+    
+    return;
   };
 
   return (
