@@ -173,7 +173,7 @@ const Order = () => {
           </label>
         </>
       )}
-      <h3>ТИП ДОСТАВКИ</h3>
+      <h3 style={{ marginTop: '20px' }}>ТИП ДОСТАВКИ</h3>
       <DeliverType
         deliverType={deliverType}
         setDeliverType={setDeliverType}

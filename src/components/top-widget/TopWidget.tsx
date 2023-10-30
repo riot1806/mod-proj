@@ -11,7 +11,13 @@ const TopWidget = () => {
   const isMobile = useIsMobile();
 
   const handleClick = () => {
-    window.location.href = 'https://apps.apple.com/us/app/mod/id1476161336';
+    const isIOS = navigator.userAgent
+      .toLowerCase()
+      .includes('iphone' || 'mac' || 'ipad');
+
+    window.location.href = isIOS
+      ? 'https://apps.apple.com/us/app/mod/id1476161336'
+      : 'https://play.google.com/store/apps/details?id=mod.client';
   };
 
   return (

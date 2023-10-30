@@ -3,6 +3,7 @@ import styles from '@/styles/Products.module.scss';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import { CircularProgress } from '@mui/material';
+import toast from 'react-hot-toast';
 
 import {
   useGetCategoriesQuery,
@@ -28,7 +29,11 @@ const Products = () => {
   );
 
   const { data } = useGetCategoryQuery(activeCategory?.id);
-  const { data: productsData, isFetching } = useGetCategoryProductsQuery({
+  const {
+    data: productsData,
+    isFetching,
+    isError,
+  } = useGetCategoryProductsQuery({
     categoryId: Number(search),
     params: {
       page: page || 1,
@@ -40,6 +45,8 @@ const Products = () => {
       sort: query.sort,
     },
   });
+
+  if (isError) return null;
 
   return (
     <section className={styles.products}>
