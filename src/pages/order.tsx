@@ -69,8 +69,17 @@ const Order = () => {
                         <span>{product.price.toLocaleString()} сум</span>
                       </li>
                       <li>
-                        <span>Цена доставки</span>
-                        <span>10 000 сум</span>
+                        {data?.delivery === 'express' ? (
+                          <>
+                            <span>Цена доставки</span>
+                            <span>35 000 сум</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Доставка</span>
+                            <span>БЕСПЛАТНО</span>
+                          </>
+                        )}
                       </li>
                       <li>
                         <span>

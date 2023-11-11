@@ -20,7 +20,7 @@ const HeaderMobileTop = () => {
         <MainDrawer />
       </div>
       <Link href='/' className={styles.header__logo}>
-        MOD
+        <Image src='/static/media/logo_fin.png' alt='' width={60} height={60} />
       </Link>
       <div>
         <SearchDrawer />

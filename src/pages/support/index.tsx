@@ -78,7 +78,7 @@ const Support = () => {
               </>
             ) : (
               <li key={support.id}>
-                <Link href={`/support/${support.body}`}>{support.title}</Link>
+                <Link href={`/support/${support.id}`}>{support.title}</Link>
               </li>
             )
           )}
