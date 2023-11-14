@@ -28,7 +28,7 @@ const Banner = ({ title, items }: Props) => {
   const [isFirstBanner, setIsFirstBanner] = useState<boolean>();
   const [isLoaded, setIsLoaded] = useState(false);
   const isMobile = useIsMobile();
-  const router = useRouter()
+  const router = useRouter();
 
   const val = ref.current?.dataset.fstb === 'true';
 
@@ -41,7 +41,12 @@ const Banner = ({ title, items }: Props) => {
       <section data-fstb={false} ref={ref}>
         {!isLoaded && <ImageLoader height={isMobile ? '150px' : '300px'} />}
         {title && isLoaded && <h2>{title}</h2>}
-        <Link href={{ pathname: '/products', query: { ...router.query, c: items[0]?.id } }}>
+        <Link
+          href={{
+            pathname: '/products',
+            query: { ...router.query, c: items[0].item_id || items[0]?.id },
+          }}
+        >
           <Image
             src={imageSource}
             alt=''
